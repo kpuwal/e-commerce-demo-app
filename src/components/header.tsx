@@ -2,12 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { widths } from '../styles';
 
-function Header() {
-  return (
-    <HeaderBar>
-      <Container>header</Container>
-    </HeaderBar>
-  );
+class Header extends React.Component {
+  render () {
+    return (
+      <HeaderBar>
+        <Container>header</Container>
+      </HeaderBar>
+    );
+  }
 }
 
 export default Header;
