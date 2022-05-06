@@ -43,7 +43,7 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
     !this.props.match
     ? result = await (QueryGraphQL.getCategory('all'))
     : result = await (QueryGraphQL.getCategory(this.props.match));
-    this.setState({products: result.category.products});
+    this.setState({products: result.products});
   }
 
   render() {
