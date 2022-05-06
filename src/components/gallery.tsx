@@ -1,3 +1,4 @@
+// needs loader
 import React from 'react';
 
 interface PropsTypes {
@@ -6,19 +7,17 @@ interface PropsTypes {
 }
 
 interface StateTypes {
-  selectedImage: string
+  selectedImage: string,
+  isLoading: boolean
 }
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
-      selectedImage: this.props.images[0]
+      selectedImage: this.props.images[0],
+      isLoading: true
   }}
-
-  componentDidMount() {
-    this.setState({selectedImage: this.props.images[0]})
-  }
 
   handleSelect(image: string) {
     this.setState({ selectedImage: image});
@@ -43,7 +42,7 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
           )}
         </div>
         <div>
-          <img src={this.state.selectedImage} alt={'sth'} style={{width: '200px', objectFit: 'fill'}} />
+          <img src={this.state.selectedImage} alt={this.props.descr} style={{width: '200px', objectFit: 'fill'}} />
         </div>
         </div>
       </React.Fragment>

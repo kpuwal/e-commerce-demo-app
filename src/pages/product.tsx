@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../operations/queries';
 import { ProductType } from '../types';
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import { Gallery } from '../components';
+import Attributes from '../containers/attributes';
 
 interface PropsTypes {
   match: string
@@ -39,10 +40,8 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     const product = this.state.product;
     return (
       <React.Fragment>
-        <div>{parse(product.description)}</div>
-        <div>
-          <Gallery images={product.gallery} descr={product.description} />
-        </div>
+        <Gallery images={product.gallery} descr={product.name} />
+        <Attributes attributes={product.attributes} />
       </React.Fragment>
   )}
 }
