@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { widths, unit } from '../styles';
+// import styled from 'styled-components';
+// import { widths, unit } from '../styles';
 import { QueryGraphQL } from '../operations/queries';
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
@@ -33,17 +33,17 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
   componentDidMount() { this.fetchData() }
 
- componentDidUpdate (prevProps: any) {
-  if (prevProps.match !== this.props.match) {
-    this.fetchData()}
-  }
+  componentDidUpdate (prevProps: any) {
+    if (prevProps.match !== this.props.match) {
+      this.fetchData()}
+    }
 
   async fetchData() {
-      let result;
-      !this.props.match
-      ? result = await (QueryGraphQL.getCategory('all'))
-      : result = await (QueryGraphQL.getCategory(this.props.match));
-      this.setState({products: result.category.products});
+    let result;
+    !this.props.match
+    ? result = await (QueryGraphQL.getCategory('all'))
+    : result = await (QueryGraphQL.getCategory(this.props.match));
+    this.setState({products: result.category.products});
   }
 
   render() {
@@ -68,15 +68,15 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
 export default withRouterParams(CategoriesGrid);
 
-const PageContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  alignSelf: 'center',
-  flexGrow: 1,
-  maxWidth: `${widths.regularPageWidth}px`,
-  width: '100%',
-  padding: 0,
-  paddingBottom: `${unit} * 5`,
-});
+// const PageContainer = styled.div({
+//   display: 'flex',
+//   justifyContent: 'center',
+//   flexDirection: 'row',
+//   flexWrap: 'wrap',
+//   alignSelf: 'center',
+//   flexGrow: 1,
+//   maxWidth: `${widths.regularPageWidth}px`,
+//   width: '100%',
+//   padding: 0,
+//   paddingBottom: `${unit} * 5`,
+// });
