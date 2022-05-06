@@ -3,6 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 // import styled from 'styled-components';
 // import { widths, unit } from '../styles';
 import { QueryGraphQL } from '../operations/queries';
+import { CategoryType, ProductType } from '../types';
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
   let [searchParams] = useSearchParams();
@@ -15,7 +16,7 @@ interface PropsTypes {
 }
 
 interface StateTypes {
-  products: any
+  products: ProductType[];
 }
 
 class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
@@ -25,17 +26,20 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
       products: []
   }}
 
-  componentDidMount() { this.fetchData() }
+  componentDidMount() {
+    this.fetchData();
+  }
 
   componentDidUpdate (prevProps: any) {
     if (prevProps.match !== this.props.match) {
-      this.fetchData()}
+      this.fetchData()
     }
+  }
 
   async fetchData() {
-    let result;
+    let result: CategoryType;
     if (!this.props.match) {
-      result = await (QueryGraphQL.getCategory('all'))
+      result = await (QueryGraphQL.getCategory('all'));
     } else {
       result = await (QueryGraphQL.getCategory(this.props.match));
     }
@@ -44,15 +48,27 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const products = this.state.products;
+
     return (
       <React.Fragment>
         <div>CategoriesGrid</div>
         <p>{!this.props.match ? 'all' : this.props.match}</p>
         <ul>
-          {products.map((product: any) => {
+          {products.map((product: ProductType) => {
             return (
               <li key={product.id}>
-                <Link to={`/product/${product.id}`}>{product.id}</Link>
+                <Link to={`/product/${product.id}`}>
+                  <img 
+                    src={product.gallery[0]}
+                    alt={product.name}
+                    style={{width: '200px'}}
+                  />
+                  {product.name}
+                  <p>
+                    {product.prices[0].currency.symbol}
+                    {product.prices[0].amount}
+                  </p>
+                </Link>
               </li>
             )
           })}
