@@ -3,13 +3,42 @@ import {
   useParams,
 } from "react-router-dom";
 import { QueryGraphQL } from '../operations/queries';
+import { ProductType } from '../types';
+import parse from 'html-react-parser';
 
 
 interface PropsTypes {
   match: string;
 }
 interface StateTypes {
-  product: string[];
+  product: ProductType;
+}
+
+const initialState = {
+    id: '',
+    name: '',
+    inStock: false,
+    gallery: [],
+    description: '',
+    category: '',
+    attributes: {
+      id: '',
+      name: '',
+      type: '',
+      items: {
+        displayValue: '',
+        value: '',
+        id: '',
+      }}
+    ,
+    prices: [{
+      currency: {
+        label: '',
+        symbol: '',
+      },
+      amount: 0,
+    }],
+    brand: '',
 }
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
@@ -21,7 +50,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
-      product: []
+      product: initialState,
     }
   }
 
@@ -30,13 +59,13 @@ class Product extends React.Component<PropsTypes, StateTypes> {
 
   async fetchData() {
     const result = await (QueryGraphQL.getProduct(this.props.match));
-    console.log("result ", result)
-    // this.setState({products: result.category.product});
+    this.setState({product: result});
   }
 
   render () {
-    console.log(this.props.match)
-    return <div>product</div>
+    const product = this.state.product;
+    console.log(product.description)
+    return <div>{parse(product.description)}</div>
   }
 }
 

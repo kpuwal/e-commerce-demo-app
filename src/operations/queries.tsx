@@ -33,7 +33,7 @@ async function getCategory(category: string) {
 }
 
 async function getProduct(id: string) {
-  const query = new Query('product')
+  const query = new Query('product', true)
     .addArgument('id','String!', id)
     .addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'brand'])
     .addField(new Field('attributes')
@@ -49,7 +49,8 @@ async function getProduct(id: string) {
       )
     )
   client.setEndpoint(url);
-  return  await client.post(query);
+  const result = await client.post(query);
+  return (JSON.parse(JSON.stringify(result.product)));
 }
 
 export const QueryGraphQL = {

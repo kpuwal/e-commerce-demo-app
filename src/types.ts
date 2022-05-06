@@ -3,17 +3,17 @@ export type PriceType = {
   amount: number,
 }
 
-export type AttributeType = {
+export type ItemsType = {
   displayValue: string,
   value: string,
   id: string,
 }
 
-export type AttributeSetType = {
+export type AttributesType = {
   id: string,
   name: string,
   type: string,
-  items: AttributeType[],
+  items: ItemsType,
 }
 
 export type ProductType = {
@@ -23,7 +23,7 @@ export type ProductType = {
   gallery: string[],
   description: string,
   category: string,
-  attributes: AttributeSetType[],
+  attributes: AttributesType,
   prices: PriceType[],
   brand: string,
 }
