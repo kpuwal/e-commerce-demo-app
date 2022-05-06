@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import {Layout} from '../components';
+import {Layout, Cart} from '../components';
 
 import CategoriesGrid from './categories-grid';
 import Product from './product';
@@ -14,6 +14,7 @@ export default class Pages extends React.Component {
       <Route path="/" element={<Layout />}>
         <Route index element={<CategoriesGrid />} />
         <Route path="/product/:id" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<div>404</div>} />
       </Route>
     </Routes>

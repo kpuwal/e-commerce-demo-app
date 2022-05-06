@@ -23,7 +23,7 @@ export type ProductType = {
   gallery: string[],
   description: string,
   category: string,
-  attributes: AttributesType,
+  attributes: AttributesType[],
   prices: PriceType[],
   brand: string,
 }

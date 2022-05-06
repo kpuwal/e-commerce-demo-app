@@ -10,12 +10,6 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
   return <WrappedComponent {...props} match={name} />
 }
 
-// function getParameters() {
-//   const queryString = window.location.search;
-//   const urlParams = new URLSearchParams(queryString);
-//   return  urlParams.get('category');
-// }
-
 interface PropsTypes {
   match: string;
 }
@@ -40,9 +34,11 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
   async fetchData() {
     let result;
-    !this.props.match
-    ? result = await (QueryGraphQL.getCategory('all'))
-    : result = await (QueryGraphQL.getCategory(this.props.match));
+    if (!this.props.match) {
+      result = await (QueryGraphQL.getCategory('all'))
+    } else {
+      result = await (QueryGraphQL.getCategory(this.props.match));
+    }
     this.setState({products: result.products});
   }
 

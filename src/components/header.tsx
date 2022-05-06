@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { QueryGraphQL } from '../operations/queries';
 import { widths } from '../styles';
-import {CategoryLink, CustomLink} from '../utils/category-link';
+import {CategoryLink} from '../utils/category-link';
 import {Link} from 'react-router-dom';
 
 interface StateTypes {
@@ -41,6 +41,15 @@ export default class Header extends React.Component<any, StateTypes> {
               )
             }
           </ul>
+        </Container>
+        <Container>
+          <div>logo</div>
+        </Container>
+        <Container>
+          <div>change currency</div>
+        </Container>
+        <Container>
+          <Link to="/cart">mini cart</Link>
         </Container>
       </HeaderBar>
     );
