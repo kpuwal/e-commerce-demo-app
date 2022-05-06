@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Pages from './pages';
+import { BrowserRouter } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
+import { Layout, Cart } from './components';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
+import CategoriesGrid from './pages/categories-grid';
+import Product from './pages/product';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +14,14 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Pages />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<CategoriesGrid />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="*" element={<div>404</div>} />
+        </Route>
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
