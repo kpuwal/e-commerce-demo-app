@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../operations/queries';
 import { CategoryType, ProductType } from '../types';
 import ProductButton from '../containers/product-button';
@@ -41,7 +41,6 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const products = this.state.products;
-console.log(products[0])
     return (
       <React.Fragment>
         <div>CategoriesGrid</div>

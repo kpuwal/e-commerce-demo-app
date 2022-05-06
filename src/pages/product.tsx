@@ -23,7 +23,9 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     }
   }
 
-  componentDidMount() { this.fetchData() }
+  componentDidMount() {
+    this.fetchData()
+  }
 
   async fetchData() {
     const result = await (QueryGraphQL.getProduct(this.props.match)) as ProductType;
@@ -33,12 +35,11 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.state.product;
     return (
-      <>
+      <React.Fragment>
         <div>{parse(product.description)}</div>
         <div>{}</div>
-      </>
-    )
-  }
+      </React.Fragment>
+  )}
 }
 
 const initialState = {
