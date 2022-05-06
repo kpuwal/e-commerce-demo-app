@@ -18,7 +18,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<CategoriesGrid />} />
-          <Route path="/product/:id" element={<Product />} />
+          <Route path=":id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<div>404</div>} />
         </Route>

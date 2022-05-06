@@ -13,7 +13,7 @@ async function getCategory(category: string) {
   const query = new Query('category', true)
 		.addArgument('input', 'CategoryInput', { title: category })
     .addField(new Field('products')
-      .addFieldList(['id', 'name', 'inStock', 'gallery', 'brand'])
+      .addFieldList(['id', 'name', 'inStock', 'category', 'gallery', 'brand'])
       .addField(new Field('prices')
         .addField('amount')
         .addField(new Field('currency')

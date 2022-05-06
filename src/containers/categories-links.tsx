@@ -28,15 +28,15 @@ class CategoriesLinks extends React.Component<PropsTypes, StateTypes> {
     const activeCategory = this.props.match !== null ? this.props.match : 'all';
     return (
       <ul>
-      {this.state.categories.map((name: string) => (
-        <li key={name}>
-          <Link to={`/?category=${name}`} style={{color: activeCategory === name ? "red" : "black"}}>
-            {name}
-          </Link>
-        </li>
-        ))
-      }
-    </ul>
+        {this.state.categories.map((name: string) => (
+          <li key={name}>
+            <Link to={`/?category=${name}`} style={{color: activeCategory === name ? "red" : "black"}}>
+              {name}
+            </Link>
+          </li>
+          ))
+        }
+      </ul>
     )
   }
 }
