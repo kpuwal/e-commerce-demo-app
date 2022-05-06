@@ -1,14 +1,17 @@
 import React from 'react';
-import {
-  useParams,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../operations/queries';
 import { ProductType } from '../types';
 import parse from 'html-react-parser';
+import { Gallery } from '../components';
 
+interface PropsTypes {
+  match: string
+}
 
-interface PropsTypes { match: string };
-interface StateTypes { product: ProductType };
+interface StateTypes {
+  product: ProductType
+}
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
   let { id } = useParams<"id">();
@@ -37,7 +40,9 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     return (
       <React.Fragment>
         <div>{parse(product.description)}</div>
-        <div>{}</div>
+        <div>
+          <Gallery images={product.gallery} descr={product.description} />
+        </div>
       </React.Fragment>
   )}
 }
