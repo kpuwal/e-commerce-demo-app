@@ -1,43 +1,43 @@
-export type Price = {
-  currency: Currency,
+export type PriceType = {
+  currency: CurrencyType,
   amount: number,
 }
 
-export type Attribute = {
+export type AttributeType = {
   displayValue: string,
   value: string,
   id: string,
 }
 
-export type AttributeSet = {
+export type AttributeSetType = {
   id: string,
   name: string,
   type: string,
-  items: Attribute[],
+  items: AttributeType[],
 }
 
-export type Product = {
+export type ProductType = {
   id: string,
   name: string,
   inStock: boolean,
   gallery: string[],
   description: string,
   category: string,
-  attributes: AttributeSet[],
-  prices: Price[],
+  attributes: AttributeSetType[],
+  prices: PriceType[],
   brand: string,
 }
 
-export type Category = {
+export type CategoryType = {
   name: string
-  products: Product[],
+  products: ProductType[],
 }
 
-export type Currency = {
+export type CurrencyType = {
   label: string,
   symbol: string,
 }
 
-export type CategoryInput = {
+export type CategoryInputType = {
   title: string,
 }

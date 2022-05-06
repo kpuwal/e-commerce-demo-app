@@ -1,17 +1,17 @@
 import React from 'react';
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import { Header } from '../components';
-// import { unit } from '../styles';
+import { widths, unit } from '../styles';
+import {Outlet} from 'react-router-dom';
 
-
-const Layout = (InnerComponent: any) => class extends React.Component {
+class Layout extends React.Component {
   render () {
     return (
     <React.Fragment>
       <Header />
-      {/* <PageContainer> */}
-        <InnerComponent />
-      {/* </PageContainer> */}
+      <PageContainer>
+        <Outlet />
+      </PageContainer>
     </React.Fragment>
     )
   }
@@ -19,14 +19,15 @@ const Layout = (InnerComponent: any) => class extends React.Component {
 
 export default Layout;
 
-// const PageContainer = styled.div`
-//   display: 'flex',
-//   justifyContent: 'center,
-//   flexDirection: 'row',
-//   flexWrap: 'wrap',
-//   alignSelf: 'center',
-//   flexGrow: 1,
-//   width: '100%',
-//   padding: 0,
-//   paddingBottom: ${unit} * 5,
-// `
+const PageContainer = styled.div({
+  display: 'flex',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  alignSelf: 'center',
+  flexGrow: 1,
+  maxWidth: `${widths.regularPageWidth}px`,
+  width: '100%',
+  padding: 0,
+  paddingBottom: `${unit} * 5`,
+});

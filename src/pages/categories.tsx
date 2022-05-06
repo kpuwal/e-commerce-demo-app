@@ -2,29 +2,50 @@ import React from 'react';
 import styled from 'styled-components';
 import { widths, unit } from '../styles';
 import { QueryGraphQL } from '../operations/queries';
+import { CategoryType } from '../types';
+import { useParams } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 
-interface CategoriesTypes {
-  categories: string[]
+// function withRouter(Children: any){
+//   return(props: any)=>{
+//      const match  = {params: useParams()};
+//      return <Children {...props}  match = {match}/>
+//  }
+// }
+
+const withRouter = (WrappedComponent: any) => (props: any) => {
+  const params = useParams();
+
+  return (
+    <WrappedComponent
+      {...props}
+      params={params}
+    />
+  );
+};
+
+interface CategoryProps {
+  categories: CategoryType[]
 }
 
 class Categories extends React.Component {
-  state: CategoriesTypes = {
-    categories: []
-  }
+  // state: CategoryProps = {
+  //   categories: []
+  // }
   
-  async componentDidMount() {
-    const result = await QueryGraphQL.getCategories();
-    console.log(result.categories)
-    this.setState({categories: result.categories});
-  }
+  // async componentDidMount() {
+    // const result = await QueryGraphQL.getCategories();
+    // console.log(result.categories)
+    // this.setState({categories: result.categories});
+  // }
 
   render () {
     return (
-    <React.Fragment>
-      <PageContainer>
-        {this.state.categories.map((item: any, idx: number) => <div key={idx}>{item.name}</div>)}
-      </PageContainer>
-    </React.Fragment>
+      <React.Fragment>
+        <PageContainer>
+          <Outlet />
+        </PageContainer>
+      </React.Fragment>
 
     )
   }

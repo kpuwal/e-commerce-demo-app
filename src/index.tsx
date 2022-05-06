@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Pages from './pages';
 import reportWebVitals from './reportWebVitals';
-import { Header } from './components';
+import {BrowserRouter} from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,8 +10,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Header />
-    <Pages />
+    <BrowserRouter>
+      <Pages />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
