@@ -30,7 +30,6 @@ export function CategoryLink({ categoryName, children, ...props }: CategoryLinkP
 
 export function CustomLink({ children, to, ...props }: LinkProps) {
   let resolved = useResolvedPath(to);
-  
   let match = useMatch({ path: resolved.pathname, end: true });
   
 

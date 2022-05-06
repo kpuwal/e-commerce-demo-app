@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from "react-router-dom";
-import { Layout, Cart } from './components';
+import { Layout } from './components';
 import reportWebVitals from './reportWebVitals';
 import CategoriesGrid from './pages/categories-grid';
 import Product from './pages/product';
+import Cart from './pages/cart';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

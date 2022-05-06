@@ -30,7 +30,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     this.setState({product: result});
   }
 
-  render () {
+  render() {
     const product = this.state.product;
     return (
       <>

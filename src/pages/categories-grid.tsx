@@ -1,15 +1,7 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-// import styled from 'styled-components';
-// import { widths, unit } from '../styles';
 import { QueryGraphQL } from '../operations/queries';
 import { CategoryType, ProductType } from '../types';
-
-const withRouterParams = (WrappedComponent: any) => (props: any) => {
-  let [searchParams] = useSearchParams();
-  let name = searchParams.get('category');
-  return <WrappedComponent {...props} match={name} />
-}
 
 interface PropsTypes {
   match: string;
@@ -78,17 +70,10 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
   }
 }
 
-export default withRouterParams(CategoriesGrid);
+const withRouterParams = (WrappedComponent: any) => (props: any) => {
+  let [searchParams] = useSearchParams();
+  let name = searchParams.get('category');
+  return <WrappedComponent {...props} match={name} />
+}
 
-// const PageContainer = styled.div({
-//   display: 'flex',
-//   justifyContent: 'center',
-//   flexDirection: 'row',
-//   flexWrap: 'wrap',
-//   alignSelf: 'center',
-//   flexGrow: 1,
-//   maxWidth: `${widths.regularPageWidth}px`,
-//   width: '100%',
-//   padding: 0,
-//   paddingBottom: `${unit} * 5`,
-// });
+export default withRouterParams(CategoriesGrid);
