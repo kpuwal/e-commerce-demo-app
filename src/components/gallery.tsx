@@ -8,7 +8,8 @@ interface PropsTypes {
 
 interface StateTypes {
   selectedImage: string,
-  isLoading: boolean
+  isLoading: boolean,
+  opacity: number
 }
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
@@ -16,18 +17,20 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
     super(props);
     this.state = {
       selectedImage: this.props.images[0],
-      isLoading: true
+      isLoading: true,
+      opacity: 1,
   }}
 
   handleSelect(image: string) {
     this.setState({ selectedImage: image});
+    this.setState({ opacity: 0});
   }
 
   render() {
     const images = this.props.images;
     return (
       <React.Fragment>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{display: 'flex', flexDirection: 'row', width: '400px'}}>
         <div>
           {images.map((image, idx) => 
             <div
@@ -41,8 +44,11 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
             </div>
           )}
         </div>
-        <div>
-          <img src={this.state.selectedImage} alt={this.props.descr} style={{width: '200px', objectFit: 'fill'}} />
+        <div style={{position: 'relative'}}>
+        <div style={{position: 'absolute'}}>
+          <img src={this.props.images[0]} alt={this.props.descr} style={{width: '200px', objectFit: 'fill', position:  'absolute', opacity: `${this.state.opacity}`}} />
+          <img src={this.state.selectedImage} alt={this.props.descr} style={{width: '200px', objectFit: 'fill', position:  'relative'}} />
+        </div>
         </div>
         </div>
       </React.Fragment>

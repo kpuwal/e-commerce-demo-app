@@ -40,14 +40,20 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     const product = this.state.product;
     return (
       <React.Fragment>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+        {/* <div style={{position: 'relative', float: 'left'}}> */}
         <Gallery 
           images={product.gallery} 
           descr={product.name}
         />
-        <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '300px'}}>
+        <div style={{position: 'relative',float: 'right', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '300px'}}>
+          <h3>{product.name}</h3>
+          <p>{product.brand}</p>
           <Attributes attributes={product.attributes} />
           <InfoDisplay descr={product.description} />
         </div>
+        </div>
+        {/* </div> */}
       </React.Fragment>
   )}
 }

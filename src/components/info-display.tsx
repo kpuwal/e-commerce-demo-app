@@ -8,7 +8,7 @@ interface PropsTypes {
 export default class InfoDisplay extends Component<PropsTypes> {
   render() {
     return (
-      <div style={{fontSize: '11px'}}>
+      <div style={{fontSize: '11px', display: 'block'}}>
         {parse(this.props.descr)}
       </div>
     )
