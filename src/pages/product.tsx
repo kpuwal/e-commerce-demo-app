@@ -28,7 +28,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   componentDidMount() {
-    this.fetchData()
+    this.fetchData();
   }
 
   async fetchData() {

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { widths } from '../styles';
 import CategoriesLinks from '../containers/categories-links';
+import CurrencyList from '../containers/currency-list';
 
 export default class Header extends React.Component {
   render () {
@@ -15,7 +16,7 @@ export default class Header extends React.Component {
           <div>logo</div>
         </Container>
         <Container>
-          <div>change currency</div>
+          <CurrencyList />
         </Container>
         <Container>
           <Link to="/cart">mini cart</Link>

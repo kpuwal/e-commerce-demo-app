@@ -53,8 +53,17 @@ async function getProduct(id: string) {
   return (JSON.parse(JSON.stringify(result.product)));
 }
 
+async function getCurrencies() {
+  const query = new Query('currencies', true)
+    .addFieldList(['label', 'symbol'])
+  client.setEndpoint(url);
+  const result = await client.post(query);
+  return (result.currencies);
+}
+
 export const QueryGraphQL = {
   getCategories,
   getCategory,
   getProduct,
+  getCurrencies,
 }
