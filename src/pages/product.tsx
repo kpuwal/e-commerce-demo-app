@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../operations/queries';
 import { ProductType } from '../types';
 // import parse from 'html-react-parser';
-import { Gallery } from '../components';
+import { Gallery, InfoDisplay } from '../components';
 import Attributes from '../containers/attributes';
 
 interface PropsTypes {
@@ -40,8 +40,14 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     const product = this.state.product;
     return (
       <React.Fragment>
-        <Gallery images={product.gallery} descr={product.name} />
-        <Attributes attributes={product.attributes} />
+        <Gallery 
+          images={product.gallery} 
+          descr={product.name}
+        />
+        <div style={{display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '300px'}}>
+          <Attributes attributes={product.attributes} />
+          <InfoDisplay descr={product.description} />
+        </div>
       </React.Fragment>
   )}
 }

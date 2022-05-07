@@ -45,8 +45,9 @@ export default class Product extends React.Component<PropsTypes, StateTypes> {
             src={product.gallery[0]}
             alt={product.name}
             style={{width: '150px'}}/>
+            {!product.inStock && <p>OUT OF STOCK</p>}
         </Link>
-          <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.addToCart(product)}>+</div>
+          {product.inStock && <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.addToCart(product)}>+</div>}
         </div>
         <div>
           <h3>{product.name}</h3>
