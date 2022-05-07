@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Swatch} from '../components';
+import {Swatch, PriceDisplay} from '../components';
 
 interface PropsTypes {
   attributes: any
@@ -40,6 +40,7 @@ export default class Attributes extends Component<PropsTypes> {
             return null;
           })
         }
+        <PriceDisplay symbol={'$'} amount={300} />
       </div>
     )
   }

@@ -41,7 +41,6 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     return (
       <React.Fragment>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-        {/* <div style={{position: 'relative', float: 'left'}}> */}
         <Gallery 
           images={product.gallery} 
           descr={product.name}
@@ -53,7 +52,6 @@ class Product extends React.Component<PropsTypes, StateTypes> {
           <InfoDisplay descr={product.description} />
         </div>
         </div>
-        {/* </div> */}
       </React.Fragment>
   )}
 }
