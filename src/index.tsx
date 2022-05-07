@@ -4,6 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from "react-router-dom";
 import { Layout } from './components';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
+import { Provider } from 'react-redux';
+
 import CategoriesGrid from './pages/categories-grid';
 import Product from './pages/product';
 import Cart from './pages/cart';
@@ -14,6 +17,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -24,6 +28,7 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

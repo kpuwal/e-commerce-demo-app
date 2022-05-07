@@ -14,8 +14,11 @@ export default class CurrencyList extends React.Component<any, StateTypes> {
     }
   }
   componentDidMount() {
-    console.log('currency list?')
     this.fetchData();
+  }
+
+  handleCurrencyChange(current: string) {
+    console.log(current)
   }
 
   async fetchData() {
@@ -31,7 +34,9 @@ export default class CurrencyList extends React.Component<any, StateTypes> {
         <ul>
         {currencies.map((currency) => 
           <li key={currency.label}>
-            {currency.label}- {currency.symbol}
+            <div onClick={() => this.handleCurrencyChange(currency.label)}>
+              {currency.label}- {currency.symbol}
+            </div>
           </li>)
         }
         </ul>
