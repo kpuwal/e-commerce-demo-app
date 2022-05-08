@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { QueryGraphQL } from '../operations/queries';
+import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
 import ProductButton from '../containers/product-button';
 

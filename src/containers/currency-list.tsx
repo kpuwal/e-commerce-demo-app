@@ -1,5 +1,5 @@
 import React from 'react';
-import { QueryGraphQL } from '../operations/queries';
+import { QueryGraphQL } from '../graphql/queries';
 import { CurrencyType } from '../types';
 import { connect } from "react-redux";
 import { changeCurrency } from '../redux/slices/currency-slice';

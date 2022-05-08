@@ -14,6 +14,7 @@ export const cartSlice = createSlice({
       state.items.push({
         product: action.payload,
         selectedAttributes: selectedAttributes,
+        count: 1
       })
     },
   },

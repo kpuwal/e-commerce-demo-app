@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
-import { QueryGraphQL } from '../operations/queries';
+import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
 import { Gallery, InfoDisplay } from '../components';
 import Attributes from '../containers/attributes';

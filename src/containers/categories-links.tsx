@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSearchParams, Link} from 'react-router-dom';
-import { QueryGraphQL } from '../operations/queries';
+import { QueryGraphQL } from '../graphql/queries';
 
 interface StateTypes {
   categories: string[]
