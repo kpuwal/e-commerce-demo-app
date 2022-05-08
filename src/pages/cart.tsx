@@ -6,11 +6,13 @@ interface PropsTypes {
   items: any,
 }
 
-class Cart extends React.Component<PropsTypes> {
+class Cart extends React.Component<any, PropsTypes> {
+
   render() {
     return (
       <div>
         {this.props.items.map((item: any, idx: number) => {
+          console.log("cart: ", this.props.items)
           return (
             <div key={idx}>
               <h3>{item.product.name}</h3>

@@ -1,22 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductType, AttributesType, CartType } from '../../types';
 
-const initialState: CartType = {
-  items: []
-}
-
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: {
+    items: [] as CartType[]
+  },
   reducers: {
     addToCart: (state, action: PayloadAction<ProductType>) => {
-      const selectedAttributes = getDefaultAttributes(action.payload.attributes)
-      state.items.push({
-        product: action.payload,
-        selectedAttributes: selectedAttributes,
-        count: 1
-      })
+      if (isDouble(state.items, action.payload.id)) {
+        const idx = findItem(state.items, action.payload.id);
+        state.items[idx].count += 1
+      } else {
+        state.items.push({
+          product: action.payload,
+          selectedAttributes: getDefaultAttributes(action.payload.attributes),
+          count: 1
+        })
+      }
     },
+    updateCount: (state, action) => {
+      console.log("here?")
+    }
   },
 })
 
@@ -26,6 +31,15 @@ function getDefaultAttributes(arr: AttributesType[]) {
   })
 }
 
+function isDouble(arr: CartType[], id: string) {
+  const findDoubles = arr.filter((item: any) => item.product.id === id);
+  return (findDoubles.length !== 0);
+}
+
+function findItem(arr: CartType[], id: string) {
+  return arr.findIndex((item: any) => item.product.id === id);
+}
+
 const { actions, reducer } = cartSlice;
-export const { addToCart } = actions;
+export const { addToCart, updateCount } = actions;
 export default reducer;
