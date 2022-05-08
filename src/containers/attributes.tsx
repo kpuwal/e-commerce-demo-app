@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import {Swatch, PriceDisplay} from '../components';
 
 interface PropsTypes {
-  attributes: any
+  attributes: any,
+  prices: any
 }
 
 export default class Attributes extends Component<PropsTypes> {
   render() {
     const attributes = this.props.attributes;
-  
+  console.log('prices from attributes ', this.props.prices)
     return (
       <div>
         {
@@ -40,7 +41,7 @@ export default class Attributes extends Component<PropsTypes> {
             return null;
           })
         }
-        <PriceDisplay symbol={'$'} amount={300} />
+        <PriceDisplay prices={this.props.prices} />
       </div>
     )
   }

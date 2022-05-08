@@ -1,12 +1,14 @@
 import React from 'react';
 import { QueryGraphQL } from '../operations/queries';
 import { CurrencyType } from '../types';
+import { connect } from "react-redux";
+import { changeCurrency } from '../redux/slices/currency-slice';
 
 interface StateTypes {
   currencies: CurrencyType[],
 }
 
-export default class CurrencyList extends React.Component<any, StateTypes> {
+class CurrencyList extends React.Component<any, StateTypes> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -18,12 +20,11 @@ export default class CurrencyList extends React.Component<any, StateTypes> {
   }
 
   handleCurrencyChange(current: string) {
-    console.log(current)
+    this.props.changeCurrency(current)
   }
 
   async fetchData() {
     const result = (await QueryGraphQL.getCurrencies()) as CurrencyType[];
-    console.log(result)
     this.setState({currencies: result});
   }
 
@@ -44,3 +45,8 @@ export default class CurrencyList extends React.Component<any, StateTypes> {
     )
   }
 }
+
+const mapDispatchToProps = { changeCurrency };
+
+
+export default connect(null, mapDispatchToProps)(CurrencyList);

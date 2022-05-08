@@ -1,18 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export const currencySlice = createSlice({
   name: 'currency',
   initialState: {
     currencies: [],
-    activeCurrency: 0,
+    activeCurrency: 'USD',
   },
   reducers: {
-    changeCurrency: (state, action) => {
+    changeCurrency: (state, action: PayloadAction<string>) => {
       state.activeCurrency = action.payload
     },
   },
 })
 
-export const { changeCurrency } = currencySlice.actions;
+const { actions, reducer } = currencySlice;
 
-export default currencySlice.reducer;
+export const { changeCurrency } = actions;
+export default reducer;

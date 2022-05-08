@@ -2,7 +2,6 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../operations/queries';
 import { ProductType } from '../types';
-// import parse from 'html-react-parser';
 import { Gallery, InfoDisplay } from '../components';
 import Attributes from '../containers/attributes';
 
@@ -11,7 +10,8 @@ interface PropsTypes {
 }
 
 interface StateTypes {
-  product: ProductType
+  product: ProductType,
+  isLoading: boolean
 }
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
@@ -24,6 +24,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     super(props);
     this.state = {
       product: initialState,
+      isLoading: true,
     }
   }
 
@@ -32,15 +33,20 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   async fetchData() {
-    const result = await (QueryGraphQL.getProduct(this.props.match)) as ProductType;
-    this.setState({product: result});
+    try {
+      const result = await (QueryGraphQL.getProduct(this.props.match)) as ProductType;
+      this.setState({product: result, isLoading: false});
+    } catch {
+      console.log('error while loading data!')
+    }
   }
 
   render() {
     const product = this.state.product;
+    console.log("loaded product ", this.state.product)
     return (
       <React.Fragment>
-        <div style={{display: 'flex', flexDirection: 'row'}}>
+        {!this.state.isLoading && <div style={{display: 'flex', flexDirection: 'row'}}>
         <Gallery 
           images={product.gallery} 
           descr={product.name}
@@ -48,10 +54,10 @@ class Product extends React.Component<PropsTypes, StateTypes> {
         <div style={{position: 'relative',float: 'right', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '300px'}}>
           <h3>{product.name}</h3>
           <p>{product.brand}</p>
-          <Attributes attributes={product.attributes} />
+          <Attributes attributes={product.attributes} prices={product.prices} />
           <InfoDisplay descr={product.description} />
         </div>
-        </div>
+        </div>}
       </React.Fragment>
   )}
 }
