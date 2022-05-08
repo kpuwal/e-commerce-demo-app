@@ -9,7 +9,6 @@ interface PropsTypes {
 export default class Attributes extends Component<PropsTypes> {
   render() {
     const attributes = this.props.attributes;
-  console.log('prices from attributes ', this.props.prices)
     return (
       <div>
         {

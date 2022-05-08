@@ -7,11 +7,7 @@ interface PropsTypes {
   activeCurrency: string
 }
 
-interface StateTypes {
-  price: PriceType
-}
-
-class PriceDisplay extends React.Component<PropsTypes, StateTypes> {
+class PriceDisplay extends React.Component<PropsTypes> {
   render() {
     const price = this.props.prices.filter((item: PriceType) => 
       item.currency.label === this.props.activeCurrency
@@ -19,8 +15,10 @@ class PriceDisplay extends React.Component<PropsTypes, StateTypes> {
 
     return (
       <>
-      <h3>Price</h3>
-      <div style={{padding: '10px'}}>{(price.currency.symbol)} {(price.amount)}</div>
+        <h3>Price</h3>
+        <div style={{padding: '0px'}}>
+          {(price.currency.symbol)} {(price.amount)}
+        </div>
       </>
     )
   }

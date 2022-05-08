@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ProductType } from '../types';
+import PriceDisplay from '../components/price-display';
 
 type PropsTypes = {
   product: ProductType
@@ -49,11 +50,7 @@ export default class Product extends React.Component<PropsTypes, StateTypes> {
         </Link>
           {product.inStock && <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.addToCart(product)}>+</div>}
         </div>
-        <div>
-          <h3>{product.name}</h3>
-          <p>{product.prices[0].currency.symbol}
-          {product.prices[0].amount}</p>
-        </div>
+        <PriceDisplay prices={product.prices} />
         </div>
       </React.Fragment>
     )

@@ -37,13 +37,12 @@ class Product extends React.Component<PropsTypes, StateTypes> {
       const result = await (QueryGraphQL.getProduct(this.props.match)) as ProductType;
       this.setState({product: result, isLoading: false});
     } catch {
-      console.log('error while loading data!')
+      console.log('error while loading data')
     }
   }
 
   render() {
     const product = this.state.product;
-    console.log("loaded product ", this.state.product)
     return (
       <React.Fragment>
         {!this.state.isLoading && <div style={{display: 'flex', flexDirection: 'row'}}>
