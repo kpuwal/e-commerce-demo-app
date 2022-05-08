@@ -15,7 +15,7 @@ class PriceDisplay extends React.Component<PropsTypes> {
 
     return (
       <>
-        <h3>Price</h3>
+        {/* <h3>Price</h3> */}
         <div style={{padding: '0px'}}>
           {(price.currency.symbol)} {(price.amount)}
         </div>
