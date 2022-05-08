@@ -1,32 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductType, AttributesType, SelectedAttributesType } from '../../types';
-
-const productInitialState = {
-  id: '',
-  name: '',
-  inStock: true,
-  gallery: [''],
-  description: '',
-  category: '',
-  attributes: [{
-    id: '',
-    name: '',
-    type: '',
-    items: [{ displayValue: '', value: '', id: '' }],
-  }],
-  prices: [{
-    currency: { label: '', symbol: '' },
-    amount: 0
-  }],
-  brand: '',
-}
-
-const attributesInitState = [{
-  id: '',
-  name: '',
-  type: '',
-  items: { displayValue: '', value: '', id: '' }
-}]
+import { ProductType, SelectedAttributesType } from '../../types';
+import { itemInitState, selAttrInitState, getDefaultAttributes } from './helper';
 
 type CartType = {
   items: [{
@@ -37,8 +11,8 @@ type CartType = {
 
 const initialState: CartType = {
   items: [{
-    item: productInitialState,
-    selectedAttributes: attributesInitState
+    item: itemInitState,
+    selectedAttributes: selAttrInitState
   }]
 }
 
@@ -55,13 +29,6 @@ export const cartSlice = createSlice({
     },
   },
 })
-
-function getDefaultAttributes(arr: AttributesType[]) {
-  const defaultAttr = arr.map((item: AttributesType) => {
-    return {...item, items: item.items[0]}
-  })
-  return defaultAttr;
-}
 
 const { actions, reducer } = cartSlice;
 export const { addToCart } = actions;
