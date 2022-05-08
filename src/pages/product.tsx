@@ -72,7 +72,7 @@ const initialState = {
     id: '',
     name: '',
     type: '',
-    items: { displayValue: '', value: '', id: '' }}],
+    items: [{ displayValue: '', value: '', id: '' }]}],
   prices: [{ 
     currency: { label: '', symbol: '' },
     amount: 0 }],

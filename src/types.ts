@@ -13,7 +13,7 @@ export type AttributesType = {
   id: string,
   name: string,
   type: string,
-  items: ItemsType,
+  items: ItemsType[],
 }
 
 export type ProductType = {
@@ -40,4 +40,11 @@ export type CurrencyType = {
 
 export type CategoryInputType = {
   title: string,
+}
+
+export type SelectedAttributesType = {
+  id: string,
+  name: string,
+  type: string,
+  items: { displayValue: string, value: string, id: string},
 }

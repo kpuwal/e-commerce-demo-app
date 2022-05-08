@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Swatch, PriceDisplay} from '../components';
 
 interface PropsTypes {
@@ -6,7 +6,7 @@ interface PropsTypes {
   prices: any
 }
 
-export default class Attributes extends Component<PropsTypes> {
+export default class Attributes extends React.Component<PropsTypes> {
   render() {
     const attributes = this.props.attributes;
     return (

@@ -20,7 +20,7 @@ class CurrencyList extends React.Component<any, StateTypes> {
   }
 
   handleCurrencyChange(current: string) {
-    this.props.changeCurrency(current)
+    this.props.changeCurrency(current);
   }
 
   async fetchData() {
@@ -47,6 +47,4 @@ class CurrencyList extends React.Component<any, StateTypes> {
 }
 
 const mapDispatchToProps = { changeCurrency };
-
-
 export default connect(null, mapDispatchToProps)(CurrencyList);
