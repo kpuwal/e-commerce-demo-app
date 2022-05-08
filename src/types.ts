@@ -48,3 +48,12 @@ export type SelectedAttributesType = {
   type: string,
   items: { displayValue: string, value: string, id: string},
 }
+
+type CartTypeItem = {
+  product: ProductType,
+  selectedAttributes: SelectedAttributesType[]
+}
+
+export type CartType = {
+  items: CartTypeItem[]
+}
