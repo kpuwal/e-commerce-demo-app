@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 
-import CategoriesGrid from './pages/categories-grid';
+import Categories from './pages/categories';
 import Product from './pages/product';
 import Cart from './pages/cart';
 
@@ -21,7 +21,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<CategoriesGrid />} />
+          <Route index element={<Categories />} />
           <Route path=":id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<div>404</div>} />

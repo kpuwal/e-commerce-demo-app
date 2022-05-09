@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { widths } from '../styles';
-import CategoriesLinks from '../containers/categories-links';
+import CategoriesList from '../containers/categories-list';
 import CurrencyList from '../containers/currency-list';
 
 export default class Header extends React.Component {
@@ -10,7 +10,7 @@ export default class Header extends React.Component {
     return (
       <HeaderBar>
         <Container>
-         <CategoriesLinks />
+         <CategoriesList />
         </Container>
         <Container>
           <div>logo</div>

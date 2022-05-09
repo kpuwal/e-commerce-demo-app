@@ -1,3 +1,24 @@
+/* Cart shape:
+{
+  items: {
+    product: ProductType,
+    selectedAttributes: [{
+      id: string,
+      name: string,
+      type: string,
+      items: {
+        displayValue: string,
+        value: string,
+        id: string
+      },
+    }],
+    count: number
+  },
+  quantity: number,
+  totalPrice: PriceType,
+  tax: PriceType
+}*/
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductType, AttributesType, CartType, PriceType } from '../../types';
 
@@ -36,7 +57,7 @@ export const cartSlice = createSlice({
         state.tax = refreshTax(state.totalPrice);
       }
     },
-    updateCount: (state, action) => {
+    updateQuantity: (state, action) => {
       console.log("here?")
     }
   },
@@ -68,5 +89,5 @@ function refreshTax(arr: PriceType[]) {
 }
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, updateCount } = actions;
+export const { addToCart, updateQuantity } = actions;
 export default reducer;
