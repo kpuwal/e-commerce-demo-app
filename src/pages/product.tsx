@@ -4,6 +4,7 @@ import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
 import { Gallery, InfoDisplay } from '../components';
 import Attributes from '../containers/attributes';
+import ProductDescription from '../containers/product-description';
 
 interface PropsTypes {
   match: string
@@ -61,6 +62,8 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   )}
 }
 
+export default withRouterParams(Product);
+
 const initialState = {
   id: '',
   name: '',
@@ -78,5 +81,3 @@ const initialState = {
     amount: 0 }],
   brand: '',
 }
-
-export default withRouterParams(Product);

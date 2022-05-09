@@ -2,7 +2,7 @@ import React from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
-import ProductButton from '../containers/product-button';
+import ProductListing from '../containers/product-listing';
 
 interface PropsTypes {
   match: string;
@@ -46,7 +46,7 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
         <div>CategoriesGrid</div>
         <p>{this.props.match !== null ? this.props.match : 'all'}</p>
           {products.map((product: ProductType) => 
-            <ProductButton key={product.id} product={product} />
+            <ProductListing key={product.id} product={product} />
           )}
       </React.Fragment>
     )

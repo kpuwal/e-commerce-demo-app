@@ -1,5 +1,6 @@
 import React from 'react';
 import {Swatch, PriceDisplay} from '../components';
+import styled from 'styled-components';
 
 interface PropsTypes {
   attributes: any,
@@ -17,11 +18,11 @@ export default class Attributes extends React.Component<PropsTypes> {
               return (
                 <div key={idx}>
                   <h3>{attr.name}</h3>
-                  <div style={{display: 'flex', flexDirection: 'row'}}>
-                    {attr.items.map((item: any, idx: number) => (
-                      <Swatch key={idx} color={'white'} displayValue={item.value} />
+                  <Container>
+                    {attr.items.map((item: any) => (
+                      <Swatch key={item.id} color={'white'} item={item} />
                     ))}
-                  </div>
+                  </Container>
                 </div>
               )
             }
@@ -29,11 +30,11 @@ export default class Attributes extends React.Component<PropsTypes> {
               return (
                 <div key={idx}>
                   <h3>{attr.name}</h3>
-                  <div style={{display: 'flex', flexDirection: 'row'}}>
-                    {attr.items.map((item: any, idx: number) => (
-                      <Swatch key={idx} color={item.value} displayValue={item.displayValue} />
+                  <Container>
+                    {attr.items.map((item: any) => (
+                      <Swatch key={item.id} color={item.value} item={item} />
                     ))}
-                  </div>
+                  </Container>
                 </div>
               )
             }
@@ -45,3 +46,8 @@ export default class Attributes extends React.Component<PropsTypes> {
     )
   }
 }
+
+const Container = styled.div({
+  display: 'flex', 
+  flexDirection: 'row',
+})

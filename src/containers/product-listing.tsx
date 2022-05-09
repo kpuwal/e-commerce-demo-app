@@ -33,7 +33,6 @@ class ProductButton extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleAddToCart(product: ProductType) {
-    console.log(product)
     this.props.addToCart(product)
   }
 
