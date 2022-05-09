@@ -10,6 +10,7 @@
         displayValue: string,
         value: string,
         id: string
+        isSelected: boolean
       },
     }],
     count: number
@@ -20,8 +21,8 @@
 }*/
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductType, CartType, PriceType } from '../../types';
-import {isDuplicate, findItem, refreshTotalPrice, refreshTax, getDefaultAttributes} from './helper';
+import { ProductType, CartItemType, PriceType } from '../../types';
+import {isDuplicate, findItem, refreshTotalPrice, refreshTax, createCartItem} from './helper';
 
 const initPrice = [
   {amount: 0, currency: {label: 'USD', symbol: '$'}},
@@ -34,7 +35,7 @@ const initPrice = [
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [] as CartType[],
+    items: [] as CartItemType[],
     quantity: 0,
     totalPrice: initPrice,
     tax: initPrice,
@@ -44,19 +45,15 @@ export const cartSlice = createSlice({
       if (isDuplicate(state.items, action.payload.id)) {
         const idx = findItem(state.items, action.payload.id);
         state.items[idx].count += 1;
-        state.quantity += 1;
-        state.totalPrice = refreshTotalPrice(state.totalPrice, action.payload.prices);
-        state.tax = refreshTax(state.totalPrice);
       } else {
         state.items.push({
-          product: action.payload,
-          selectedAttributes: getDefaultAttributes(action.payload.attributes),
+          product: createCartItem(action.payload),
           count: 1
         });
-        state.quantity += 1;
-        state.totalPrice = refreshTotalPrice(state.totalPrice, action.payload.prices);
-        state.tax = refreshTax(state.totalPrice);
       }
+      state.quantity += 1;
+      state.totalPrice = refreshTotalPrice(state.totalPrice, action.payload.prices);
+      state.tax = refreshTax(state.totalPrice);
     },
     updateQuantity: (state, action) => {
       console.log("here?")

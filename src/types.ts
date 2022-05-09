@@ -42,15 +42,39 @@ export type CategoryInputType = {
   title: string,
 }
 
-export type SelectedAttributesType = {
-  id: string,
-  name: string,
-  type: string,
-  items: { displayValue: string, value: string, id: string},
-}
+// export type SelectedAttributesType = {
+//   id: string,
+//   name: string,
+//   type: string,
+//   items: { displayValue: string, value: string, id: string},
+// }
 
-export type CartType = {
-  product: ProductType,
-  selectedAttributes: SelectedAttributesType[],
+// export type CartType = {
+//   product: ProductType,
+//   count: number
+// }
+
+export type CartItemType = {
+  product: {
+    id: string,
+    name: string,
+    inStock: boolean,
+    gallery: string[],
+    description: string,
+    category: string,
+    prices: PriceType[],
+    brand: string,
+    attributes: {
+      id: string,
+      name: string,
+      type: string,
+      items: {
+        displayValue: string,
+        value: string,
+        id: string,
+        isSelected?: boolean
+      }[],
+    }[],
+  },
   count: number
 }

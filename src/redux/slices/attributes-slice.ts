@@ -1,26 +1,30 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+// import { CartItemType } from '../../types';
 
 export const attributesSlice = createSlice({
-  name: 'currency',
-  initialState: [{
-    selectedAttributes: {
-      id: '',
-      name: '',
-      type: '',
-      items: {
-        displayValue: '',
-        value: '',
-        id: '' 
-      }
+  name: 'attributes',
+  initialState: {
+    selectedAttributes: [
+      {
+        id: '',
+        name: '',
+        type: '',
+        items: {
+          displayValue: '',
+          value: '',
+          id: '',
+          isSelected: false
+        }
     }
-  }],
+  ]
+  },
   reducers: {
-    changeAttributes: (state, action: PayloadAction<string>) => {
-      // state.activeCurrency = action.payload
+    addAttributes: (state, action: PayloadAction) => {
+      // state.selectedAttributes.push(action.payload)
     },
   },
 })
 
 const { actions, reducer } = attributesSlice;
-export const { changeAttributes } = actions;
+export const { addAttributes } = actions;
 export default reducer;

@@ -2,8 +2,6 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
-import { Gallery, InfoDisplay } from '../components';
-import Attributes from '../containers/attributes';
 import ProductDescription from '../containers/product-description';
 
 interface PropsTypes {
@@ -43,21 +41,9 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const product = this.state.product;
     return (
       <React.Fragment>
-        {!this.state.isLoading && <div style={{display: 'flex', flexDirection: 'row'}}>
-        <Gallery 
-          images={product.gallery} 
-          descr={product.name}
-        />
-        <div style={{position: 'relative',float: 'right', display: 'flex', flexDirection: 'column', flexWrap: 'wrap', width: '300px'}}>
-          <h3>{product.name}</h3>
-          <p>{product.brand}</p>
-          <Attributes attributes={product.attributes} prices={product.prices} />
-          <InfoDisplay descr={product.description} />
-        </div>
-        </div>}
+        {!this.state.isLoading && <ProductDescription product={this.state.product} />}
       </React.Fragment>
   )}
 }
