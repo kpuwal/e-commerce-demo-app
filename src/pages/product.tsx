@@ -1,17 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
 import { Gallery, InfoDisplay, PriceDisplay } from '../components';
 import AttributeList from '../containers/attribute-list';
+import { addToCart } from '../redux/slices/cart-slice';
 
 type SelectedAttributesType<Attr extends string>= {
   [key in Attr]: string
 }
 
-interface PropsTypes { match: string }
+interface PropsTypes { 
+  match: string,
+  addToCart: any
+}
 
 interface StateTypes {
   product: ProductType,
@@ -34,8 +39,10 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleAddToCart(product: ProductType) {
-    console.log("product from PDP ", product)
-    console.log("selected attributes ", this.state.selectedAttributes)
+    this.props.addToCart({
+      product,
+      selectedAttributes: this.state.selectedAttributes
+    })
   }
 
   handleChange = (e: any) => {
@@ -53,7 +60,6 @@ class Product extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const product = this.state.product;
-    console.log("selected ", this.state.selectedAttributes)
     return (
       <React.Fragment>
         {!this.state.isLoading && 
@@ -85,8 +91,10 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
   return <WrappedComponent {...props} match={id} />
 }
 
+const mapDispatchToProps = { addToCart };
 const ProductWithRouterParams =  withRouterParams(Product);
-export default ProductWithRouterParams;
+
+export default connect(null, mapDispatchToProps)(ProductWithRouterParams);
 
 const Container = styled.div({
   display: 'flex', 
