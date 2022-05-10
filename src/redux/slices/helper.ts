@@ -1,4 +1,4 @@
-import { AttributesType, CartAttributesType, CartItemType, PriceType, ProductType, ItemsType, CartProductType } from '../../types';
+import { AttributesType, CartItemType, PriceType } from '../../types';
 
 export function getDefaultAttributes(arr: AttributesType[]) {
   const attributesArr = arr.map((item: AttributesType) => {
@@ -7,7 +7,7 @@ export function getDefaultAttributes(arr: AttributesType[]) {
 }
 
 export function isDuplicate(arr: CartItemType[], id: string) {
-  const findDoubles = arr.filter((item: CartItemType) => item.product.id === id);
+  const findDoubles = arr.filter((item: CartItemType) => item.product.id === id)
   return (findDoubles.length !== 0);
 }
 

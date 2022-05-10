@@ -1,25 +1,3 @@
-/* Cart shape:
-{
-  items: {
-    product: ProductType,
-    selectedAttributes: [{
-      id: string,
-      name: string,
-      type: string,
-      items: {
-        displayValue: string,
-        value: string,
-        id: string
-        isSelected: boolean
-      },
-    }],
-    count: number
-  },
-  quantity: number,
-  totalPrice: PriceType,
-  tax: PriceType
-}*/
-
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductType, CartItemType, PriceType } from '../../types';
 import {isDuplicate, getDefaultAttributes, findItem, refreshTotalPrice, refreshTax} from './helper';
@@ -32,6 +10,12 @@ const initPrice = [
   {amount: 0, currency: {label: 'RUB', symbol: '₽'}},
 ] as PriceType[]
 
+type AddToCartTypes = {
+  product: ProductType,
+  selectedAttributes?: {},
+  count?: number
+}
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
@@ -41,19 +25,20 @@ export const cartSlice = createSlice({
     tax: initPrice,
   },
   reducers: {
-    addToCart: (state, action: PayloadAction<ProductType>) => {
-      if (isDuplicate(state.items, action.payload.id)) {
-        const idx = findItem(state.items, action.payload.id);
+    addToCart: (state, action: PayloadAction<AddToCartTypes>) => {
+      const { product, selectedAttributes, count } = action.payload;
+      if (isDuplicate(state.items, product.id)) {
+        const idx = findItem(state.items, product.id);
         state.items[idx].count += 1;
       } else {
         state.items.push({
-          product: action.payload,
-          selectedAttributes: getDefaultAttributes(action.payload.attributes),
+          product: product,
+          selectedAttributes: !selectedAttributes ? getDefaultAttributes(product.attributes) : selectedAttributes,
           count: 1
         });
       }
       state.quantity += 1;
-      state.totalPrice = refreshTotalPrice(state.totalPrice, action.payload.prices);
+      state.totalPrice = refreshTotalPrice(state.totalPrice, product.prices);
       state.tax = refreshTax(state.totalPrice);
     },
     updateAttributes: (state, action) => {

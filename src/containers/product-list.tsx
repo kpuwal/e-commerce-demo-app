@@ -15,7 +15,7 @@ type StateTypes = {
   display: string
 }
 
-class ProductButton extends React.Component<PropsTypes, StateTypes> {
+class ProductList extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
@@ -23,17 +23,17 @@ class ProductButton extends React.Component<PropsTypes, StateTypes> {
   }}
 
   showButton(e: any) {
-    // e.preventDefault();
+    e.preventDefault();
     this.setState({display: 'flex'});
   }
 
   hideButton(e: any) {
-    // e.preventDefault();
+    e.preventDefault();
     this.setState({display: "none"});
   }
 
   handleAddToCart(product: ProductType) {
-    this.props.addToCart(product)
+    this.props.addToCart({product})
   }
 
   render() {
@@ -62,4 +62,4 @@ class ProductButton extends React.Component<PropsTypes, StateTypes> {
 }
 
 const mapDispatchToProps = { addToCart };
-export default connect(null, mapDispatchToProps)(ProductButton);
+export default connect(null, mapDispatchToProps)(ProductList);
