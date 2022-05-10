@@ -34,7 +34,7 @@ export const cartSlice = createSlice({
         state.items.push({
           product: product,
           selectedAttributes: !selectedAttributes ? getDefaultAttributes(product.attributes) : selectedAttributes,
-          count: 1
+          count: !count ? 1 : count
         });
       }
       state.quantity += 1;

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
 import { Gallery, InfoDisplay, PriceDisplay } from '../components';
-import Attributes from '../containers/attributes';
+import AttributeList from '../containers/attribute-list';
 
 type SelectedAttributesType<Attr extends string>= {
   [key in Attr]: string
@@ -62,7 +62,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
           <AttributesContainer>
             <h3>{product.name}</h3>
             <h4>{product.brand}</h4>
-            <Attributes 
+            <AttributeList 
               attributes={product.attributes}
               selectedAttributes={this.state.selectedAttributes}
               handleSelect={this.handleChange}
@@ -78,13 +78,6 @@ class Product extends React.Component<PropsTypes, StateTypes> {
         }
       </React.Fragment>
   )}
-
-  // render() {
-  //   return (
-  //     <React.Fragment>
-  //       {!this.state.isLoading && <ProductDescription product={this.state.product} />}
-  //     </React.Fragment>
-  // )}
 }
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {

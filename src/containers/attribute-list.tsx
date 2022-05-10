@@ -12,7 +12,7 @@ interface PropsTypes {
   productIndex?: number,
 }
 
-export default class Attributes extends React.Component<PropsTypes> {
+export default class AttributeList extends React.Component<PropsTypes> {
   render() {
     const attributes = this.props.attributes;
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Attributes from '../containers/attributes';
+import AttributeList from '../containers/attribute-list';
 import PriceDisplay from '../components/price-display';
 import { updateAttributes } from '../redux/slices/cart-slice';
 
@@ -32,13 +32,12 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
     return (
       <div>
         {this.props.items.map((item: any, idx: number) => {
-          console.log("selected", item.selectedAttributes)
           return (
             <div key={idx}>
               <h3>{item.product.name}</h3>
               <p>{item.product.brand}</p>
               <p>Count: {item.count}</p>
-              <Attributes
+              <AttributeList
                 productIndex={idx}
                 attributes={item.product.attributes}
                 selectedAttributes={item.selectedAttributes}
