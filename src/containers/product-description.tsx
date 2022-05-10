@@ -18,7 +18,7 @@ export default class ProductDescription extends React.Component<PropsTypes> {
     const product = this.props.product;
     return (
       <Container>
-        <Gallery images={product.gallery} descr={product.name} />
+        {/* <Gallery images={product.gallery} descr={product.name} />
         <AttributesContainer>
           <h3>{product.name}</h3>
           <h4>{product.brand}</h4>
@@ -31,7 +31,7 @@ export default class ProductDescription extends React.Component<PropsTypes> {
           </CartButton>
           <PriceDisplay prices={product.prices} />
           <InfoDisplay descr={product.description} />
-        </AttributesContainer>
+        </AttributesContainer> */}
       </Container>
     )
   }

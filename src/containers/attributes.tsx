@@ -6,28 +6,12 @@ import { AttributesType, PriceType } from '../types';
 
 interface PropsTypes {
   attributes: AttributesType[],
-  prices: PriceType[]
+  prices: PriceType[],
+  selectedAttributes: any,
+  handleSelect: any,
 }
-interface StateTypes {
-  selectedAttributes: any
-}
 
-export default class Attributes extends React.Component<PropsTypes, StateTypes> {
-  constructor(props: PropsTypes) {
-    super(props);
-    this.state = {
-      selectedAttributes: {}
-    };
-  }
-
-  handleChange = (e: any) => {
-   const { name, value } = e;
-    this.setState((prevState: any) => {
-			const attributes = { ...prevState.selectedAttributes, [name]: value };
-			return { selectedAttributes: attributes };
-		});
-  }
-
+export default class Attributes extends React.Component<PropsTypes> {
   render() {
     const attributes = this.props.attributes;
     return (
@@ -39,8 +23,8 @@ export default class Attributes extends React.Component<PropsTypes, StateTypes> 
             <SwatchRow 
               items={attr.items} 
               name={attr.name}
-              selectedAttr={this.state.selectedAttributes}
-              handleSelect={this.handleChange}/>
+              selectedAttr={this.props.selectedAttributes}
+              handleSelect={this.props.handleSelect}/>
           </div>)
           })
         }

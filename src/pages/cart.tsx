@@ -10,9 +10,27 @@ interface PropsTypes {
   tax: any
 }
 
-class Cart extends React.Component<PropsTypes, PropsTypes> {
+interface StateTypes {
+  selectedAttributes: any,
+}
+
+class Cart extends React.Component<PropsTypes, StateTypes> {
+  constructor(props: PropsTypes) {
+    super(props);
+    this.state = {
+      selectedAttributes: {}
+    }
+  }
+
+  handleChange = (e: any) => {
+    const { name, value } = e;
+     this.setState((prevState: any) => {
+       const attributes = { ...prevState.selectedAttributes, [name]: value };
+       return { selectedAttributes: attributes };
+     });
+   }
+
   render() {
-    console.log("this is tax ", this.props.tax)
     return (
       <div>
         {this.props.items.map((item: any, idx: number) => {
@@ -23,7 +41,11 @@ class Cart extends React.Component<PropsTypes, PropsTypes> {
               <p>Count: {item.count}</p>
               <Attributes
                 attributes={item.product.attributes}
+                selectedAttributes={this.state.selectedAttributes}
+                handleSelect={this.handleChange}
                 prices={item.product.prices} />
+              <PriceDisplay prices={item.product.prices} />
+              
                 <hr/>
             </div>
           )

@@ -7,23 +7,25 @@ import { AttributesType, CartAttributesType, CartItemType, PriceType, ProductTyp
 // }
 
 export function isDuplicate(arr: CartItemType[], id: string) {
-  const findDoubles = arr.filter((item: any) => item.product.id === id);
+  const findDoubles = arr.filter((item: CartItemType) => item.product.id === id);
   return (findDoubles.length !== 0);
 }
 
 export function findItem(arr: CartItemType[], id: string) {
-  return arr.findIndex((item: any) => item.product.id === id);
+  return arr.findIndex((item: CartItemType) => item.product.id === id);
 }
 
 export function refreshTotalPrice(oldArr: PriceType[], newArr: PriceType[]) {
-  return oldArr.map((item: any, idx: number) =>  {
-    return {...item, amount: item.amount + newArr[idx].amount}});
+  return oldArr.map((item: PriceType, idx: number) =>  {
+    const rounded = Math.round(((item.amount + newArr[idx].amount)+ Number.EPSILON)*100)/100
+    return {...item, amount: rounded}});
 }
 
 export function refreshTax(arr: PriceType[]) {
-  return arr.map((item: any) =>  {
-    return {...item, amount: Math.round(((item.amount * 0.21) + Number.EPSILON) * 100) / 100}});
-}
+  return arr.map((item: PriceType) =>  {
+    const rounded = Math.round(((item.amount * 0.21)+ Number.EPSILON)*100)/100
+    return {...item, amount: rounded}
+})}
 
 export function mapCartAttributes(attributes: AttributesType[]): CartAttributesType[] {
   return attributes.map((attr: AttributesType) => {
