@@ -54,27 +54,31 @@ export type CategoryInputType = {
 //   count: number
 // }
 
-export type CartItemType = {
-  product: {
+export type CartAttributesType = {
+  id: string,
+  name: string,
+  type: string,
+  items: {
+    displayValue: string,
+    value: string,
     id: string,
-    name: string,
-    inStock: boolean,
-    gallery: string[],
-    description: string,
-    category: string,
-    prices: PriceType[],
-    brand: string,
-    attributes: {
-      id: string,
-      name: string,
-      type: string,
-      items: {
-        displayValue: string,
-        value: string,
-        id: string,
-        isSelected?: boolean
-      }[],
-    }[],
-  },
+    isSelected?: boolean
+  }[],
+}
+
+export type CartProductType = {
+  id: string,
+  name: string,
+  inStock: boolean,
+  gallery: string[],
+  description: string,
+  category: string,
+  prices: PriceType[],
+  brand: string,
+  attributes: CartAttributesType[],
+}
+
+export type CartItemType = {
+  product: CartProductType,
   count: number
 }

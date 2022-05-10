@@ -1,4 +1,4 @@
-import { AttributesType, CartItemType, PriceType, ProductType, ItemsType } from '../../types';
+import { AttributesType, CartAttributesType, CartItemType, PriceType, ProductType, ItemsType, CartProductType } from '../../types';
 
 // export function getDefaultAttributes(arr: AttributesType[]) {
 //   return arr.map((item: AttributesType) => {
@@ -25,8 +25,8 @@ export function refreshTax(arr: PriceType[]) {
     return {...item, amount: Math.round(((item.amount * 0.21) + Number.EPSILON) * 100) / 100}});
 }
 
-export function createCartItem(product: ProductType) {
-  const attr = product.attributes.map((attr: AttributesType) => {
+export function mapCartAttributes(attributes: AttributesType[]): CartAttributesType[] {
+  return attributes.map((attr: AttributesType) => {
     return {
       ...attr,
       items: attr.items.map((item: ItemsType) => {
@@ -36,8 +36,12 @@ export function createCartItem(product: ProductType) {
         }
     })}
   })
+}
+
+export function createCartItem(product: ProductType): CartProductType {
+  const attributes = mapCartAttributes(product.attributes);
   return {
     ...product,
-    attributes: attr
+    attributes,
   }
 }

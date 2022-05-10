@@ -18,10 +18,7 @@ export default class ProductDescription extends React.Component<PropsTypes> {
     const product = this.props.product;
     return (
       <Container>
-        <Gallery 
-          images={product.gallery} 
-          descr={product.name}
-        />
+        <Gallery images={product.gallery} descr={product.name} />
         <AttributesContainer>
           <h3>{product.name}</h3>
           <h4>{product.brand}</h4>
@@ -29,7 +26,9 @@ export default class ProductDescription extends React.Component<PropsTypes> {
             attributes={product.attributes}
             prices={product.prices} 
           />
-          <div style={{padding: 20, margin: 10, backgroundColor: 'lightgreen'}} onClick={() => this.handleAddToCart(product)}>Add To Cart</div>
+          <CartButton onClick={() => this.handleAddToCart(product)}>
+            Add To Cart
+          </CartButton>
           <PriceDisplay prices={product.prices} />
           <InfoDisplay descr={product.description} />
         </AttributesContainer>
@@ -50,4 +49,8 @@ const AttributesContainer = styled.div({
   flexDirection: 'column',
   flexWrap: 'wrap',
   width: '300px'
+})
+
+const CartButton = styled.div({
+  padding: 20, margin: 10,color: 'white', backgroundColor: '#5ECE7B'
 })
