@@ -5,7 +5,8 @@ type PropsTypes = {
   items: any,
   name: string,
   handleSelect: any,
-  selectedAttr: any
+  selectedAttr: any,
+  productIndex?: number
 }
 
 export default class SwatchRow extends Component<PropsTypes> {
@@ -16,8 +17,7 @@ export default class SwatchRow extends Component<PropsTypes> {
           const checked = Object.keys(this.props.selectedAttr).length !== 0 &&
           this.props.selectedAttr[this.props.name] === item.id;
           return (
-            <Container key={item.id} onClick={() => this.props.handleSelect({name: this.props.name, value: item.id})} style={{
-
+            <Container key={item.id} onClick={() => this.props.handleSelect({name: this.props.name, value: item.id, idx: this.props.productIndex})} style={{
               backgroundColor: checked ? 'pink': 'white',
               color: checked ? 'white' : 'black',
             }}>{item.displayValue}</Container>

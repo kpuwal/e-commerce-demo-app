@@ -9,6 +9,7 @@ interface PropsTypes {
   prices: PriceType[],
   selectedAttributes: any,
   handleSelect: any,
+  productIndex?: number,
 }
 
 export default class Attributes extends React.Component<PropsTypes> {
@@ -24,7 +25,8 @@ export default class Attributes extends React.Component<PropsTypes> {
               items={attr.items} 
               name={attr.name}
               selectedAttr={this.props.selectedAttributes}
-              handleSelect={this.props.handleSelect}/>
+              handleSelect={this.props.handleSelect}
+              productIndex={this.props.productIndex} />
           </div>)
           })
         }

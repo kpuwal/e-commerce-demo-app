@@ -1,10 +1,10 @@
 import { AttributesType, CartAttributesType, CartItemType, PriceType, ProductType, ItemsType, CartProductType } from '../../types';
 
-// export function getDefaultAttributes(arr: AttributesType[]) {
-//   return arr.map((item: AttributesType) => {
-//     return {...item, items: item.items[0]}
-//   })
-// }
+export function getDefaultAttributes(arr: AttributesType[]) {
+  const attributesArr = arr.map((item: AttributesType) => {
+    return {[item.name]: item.items[0].id}})
+  return Object.assign({}, ...attributesArr);
+}
 
 export function isDuplicate(arr: CartItemType[], id: string) {
   const findDoubles = arr.filter((item: CartItemType) => item.product.id === id);
@@ -27,23 +27,24 @@ export function refreshTax(arr: PriceType[]) {
     return {...item, amount: rounded}
 })}
 
-export function mapCartAttributes(attributes: AttributesType[]): CartAttributesType[] {
-  return attributes.map((attr: AttributesType) => {
-    return {
-      ...attr,
-      items: attr.items.map((item: ItemsType) => {
-        return {
-          ...item,
-          isSelected: false
-        }
-    })}
-  })
-}
 
-export function createCartItem(product: ProductType): CartProductType {
-  const attributes = mapCartAttributes(product.attributes);
-  return {
-    ...product,
-    attributes,
-  }
-}
+// export function mapCartAttributes(attributes: AttributesType[]): CartAttributesType[] {
+//   return attributes.map((attr: AttributesType) => {
+//     return {
+//       ...attr,
+//       items: attr.items.map((item: ItemsType) => {
+//         return {
+//           ...item,
+//           isSelected: false
+//         }
+//     })}
+//   })
+// }
+
+// export function createCartItem(product: ProductType): CartProductType {
+//   const attributes = mapCartAttributes(product.attributes);
+//   return {
+//     ...product,
+//     attributes,
+//   }
+// }

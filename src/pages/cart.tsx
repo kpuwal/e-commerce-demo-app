@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from "react-redux";
 import Attributes from '../containers/attributes';
 import PriceDisplay from '../components/price-display';
+import { updateAttributes } from '../redux/slices/cart-slice';
 
 interface PropsTypes {
   items: any,
   quantity: number,
   totalPrice: any,
-  tax: any
+  tax: any,
+  updateAttributes: any
 }
 
 interface StateTypes {
@@ -23,30 +25,27 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleChange = (e: any) => {
-    const { name, value } = e;
-     this.setState((prevState: any) => {
-       const attributes = { ...prevState.selectedAttributes, [name]: value };
-       return { selectedAttributes: attributes };
-     });
+    this.props.updateAttributes(e)
    }
 
   render() {
     return (
       <div>
         {this.props.items.map((item: any, idx: number) => {
+          console.log("selected", item.selectedAttributes)
           return (
             <div key={idx}>
               <h3>{item.product.name}</h3>
               <p>{item.product.brand}</p>
               <p>Count: {item.count}</p>
               <Attributes
+                productIndex={idx}
                 attributes={item.product.attributes}
-                selectedAttributes={this.state.selectedAttributes}
+                selectedAttributes={item.selectedAttributes}
                 handleSelect={this.handleChange}
                 prices={item.product.prices} />
               <PriceDisplay prices={item.product.prices} />
-              
-                <hr/>
+              <hr/>
             </div>
           )
         })}
@@ -68,4 +67,5 @@ const mapStateToProps = (state: any) => ({
   tax: state.cart.tax
 })
 
-export default connect(mapStateToProps)(Cart);
+const mapDispatchToProps = { updateAttributes };
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

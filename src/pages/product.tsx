@@ -53,6 +53,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const product = this.state.product;
+    console.log("selected ", this.state.selectedAttributes)
     return (
       <React.Fragment>
         {!this.state.isLoading && 

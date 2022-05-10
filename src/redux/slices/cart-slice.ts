@@ -22,7 +22,7 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ProductType, CartItemType, PriceType } from '../../types';
-import {isDuplicate, findItem, refreshTotalPrice, refreshTax, createCartItem} from './helper';
+import {isDuplicate, getDefaultAttributes, findItem, refreshTotalPrice, refreshTax} from './helper';
 
 const initPrice = [
   {amount: 0, currency: {label: 'USD', symbol: '$'}},
@@ -47,7 +47,8 @@ export const cartSlice = createSlice({
         state.items[idx].count += 1;
       } else {
         state.items.push({
-          product: createCartItem(action.payload),
+          product: action.payload,
+          selectedAttributes: getDefaultAttributes(action.payload.attributes),
           count: 1
         });
       }
@@ -55,12 +56,16 @@ export const cartSlice = createSlice({
       state.totalPrice = refreshTotalPrice(state.totalPrice, action.payload.prices);
       state.tax = refreshTax(state.totalPrice);
     },
+    updateAttributes: (state, action) => {
+      const { name, value, idx } = action.payload
+      state.items[idx].selectedAttributes = {...state.items[idx].selectedAttributes, [name]: value}
+    },
     updateQuantity: (state, action) => {
       console.log("here?")
-    }
+    },
   },
 })
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, updateQuantity } = actions;
+export const { addToCart, updateQuantity, updateAttributes } = actions;
 export default reducer;

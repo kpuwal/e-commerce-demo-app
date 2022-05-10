@@ -80,5 +80,6 @@ export type CartProductType = {
 
 export type CartItemType = {
   product: CartProductType,
+  selectedAttributes: {},
   count: number
 }
