@@ -8,6 +8,7 @@ import { ProductType } from '../types';
 import { Gallery, InfoDisplay, PriceDisplay } from '../components';
 import AttributeList from '../containers/attribute-list';
 import { addToCart } from '../redux/slices/cart-slice';
+import ProductCounter from '../containers/product-counter'
 
 type SelectedAttributesType<Attr extends string>= {
   [key in Attr]: string
@@ -74,6 +75,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
               handleSelect={this.handleChange}
               prices={product.prices} 
             />
+            <ProductCounter isVertical={false} />
             <CartButton onClick={() => this.handleAddToCart(product)}>
               Add To Cart
             </CartButton>
