@@ -7,7 +7,7 @@ import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
 import { InfoDisplay, PriceDisplay } from '../components';
 import AttributeList from '../containers/attribute-list';
-import Gallery from '../containers/gallery';
+import Gallery2 from '../containers/gallery2';
 import { addToCart } from '../redux/slices/cart-slice';
 
 type SelectedAttributesType<Attr extends string>= {
@@ -65,7 +65,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
       <React.Fragment>
         {!this.state.isLoading && 
           <Container>
-          <Gallery images={product.gallery} isMini={false} />
+          <Gallery2 images={product.gallery} isMini={false} />
           <AttributesContainer>
             <h3>{product.name}</h3>
             <h4>{product.brand}</h4>
@@ -75,7 +75,6 @@ class Product extends React.Component<PropsTypes, StateTypes> {
               handleSelect={this.handleChange}
               prices={product.prices} 
             />
-            {/* <ProductCounter isVertical={false} /> */}
             <CartButton onClick={() => this.handleAddToCart(product)}>
               Add To Cart
             </CartButton>
@@ -100,7 +99,9 @@ export default connect(null, mapDispatchToProps)(ProductWithRouterParams);
 
 const Container = styled.div({
   display: 'flex', 
-  flexDirection: 'row'
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  width: '50%'
 })
 
 const AttributesContainer = styled.div({
