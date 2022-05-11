@@ -4,15 +4,11 @@ import { connect } from "react-redux";
 
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
-import { ProductType } from '../types';
+import { ProductType, SelectedAttributesType } from '../types';
 import { InfoDisplay, PriceDisplay } from '../components';
 import AttributeList from '../containers/attribute-list';
-import Gallery2 from '../containers/gallery2';
+import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
-
-type SelectedAttributesType<Attr extends string>= {
-  [key in Attr]: string
-}
 
 interface PropsTypes { 
   match: string,
@@ -65,7 +61,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
       <React.Fragment>
         {!this.state.isLoading && 
           <Container>
-          <Gallery2 images={product.gallery} isMini={false} />
+          <Gallery images={product.gallery} isMini={false} />
           <AttributesContainer>
             <h3>{product.name}</h3>
             <h4>{product.brand}</h4>
@@ -101,7 +97,7 @@ const Container = styled.div({
   display: 'flex', 
   flexDirection: 'row',
   justifyContent: 'space-between',
-  width: '50%'
+  // width: '50%'
 })
 
 const AttributesContainer = styled.div({

@@ -7,6 +7,7 @@ import ProductCounter from '../containers/product-counter';
 import { widths } from '../styles';
 import Gallery from '../containers/gallery';
 
+
 interface PropsTypes {
   items: any,
   quantity: number,

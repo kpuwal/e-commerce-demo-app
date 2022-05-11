@@ -42,18 +42,6 @@ export type CategoryInputType = {
   title: string,
 }
 
-// export type SelectedAttributesType = {
-//   id: string,
-//   name: string,
-//   type: string,
-//   items: { displayValue: string, value: string, id: string},
-// }
-
-// export type CartType = {
-//   product: ProductType,
-//   count: number
-// }
-
 export type CartAttributesType = {
   id: string,
   name: string,
@@ -80,6 +68,10 @@ export type CartProductType = {
 
 export type CartItemType = {
   product: CartProductType,
-  selectedAttributes: {},
+  selectedAttributes: SelectedAttributesType<string>,
   count: number
+}
+
+export type SelectedAttributesType<Attr extends string>= {
+  [key in Attr]: string
 }
