@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { widths } from '../styles';
-import CategoriesList from '../containers/categories-list';
+import CategoryList from '../containers/category-list';
 import CurrencyList from '../containers/currency-list';
+import { Badge } from './'
 
 export default class Header extends React.Component {
   render () {
     return (
       <HeaderBar>
         <Container>
-         <CategoriesList />
+         <CategoryList />
         </Container>
         <Container>
           <div>logo</div>
@@ -20,6 +21,7 @@ export default class Header extends React.Component {
         </Container>
         <Container>
           <Link to="/cart">mini cart</Link>
+          <Badge />
         </Container>
       </HeaderBar>
     );

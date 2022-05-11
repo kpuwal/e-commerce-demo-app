@@ -10,7 +10,7 @@ interface PropsTypes {
   match: string;
 }
 
-class CategoriesLinks extends React.Component<PropsTypes, StateTypes> {
+class CategoryList extends React.Component<PropsTypes, StateTypes> {
   constructor(props: any){
     super(props);
     this.state = {
@@ -47,4 +47,4 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
   return <WrappedComponent {...props} match={currentCategory} />
 }
 
-export default withRouterParams(CategoriesLinks);
+export default withRouterParams(CategoryList);

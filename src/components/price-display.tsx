@@ -9,17 +9,15 @@ interface PropsTypes {
 
 class PriceDisplay extends React.Component<PropsTypes> {
   render() {
-    const price = this.props.prices.filter((item: PriceType) => 
-      item.currency.label === this.props.activeCurrency
+    const { prices, activeCurrency } = this.props;
+    const price = prices.filter((item: PriceType) => 
+      item.currency.label === activeCurrency
     )[0];
 
     return (
-      <>
-        {/* <h3>Price</h3> */}
-        <div style={{padding: '0px'}}>
-          {(price.currency.symbol)} {(price.amount)}
-        </div>
-      </>
+      <div style={{padding: '0px'}}>
+        {(price.currency.symbol)} {(price.amount)}
+      </div>
     )
   }
 }

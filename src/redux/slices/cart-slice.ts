@@ -36,8 +36,8 @@ export const cartSlice = createSlice({
           selectedAttributes: !selectedAttributes ? getDefaultAttributes(product.attributes) : selectedAttributes,
           count: !count ? 1 : count
         });
+        state.quantity += 1;
       }
-      state.quantity += 1;
       state.totalPrice = refreshTotalPrice(state.totalPrice, product.prices);
       state.tax = refreshTax(state.totalPrice);
     },
