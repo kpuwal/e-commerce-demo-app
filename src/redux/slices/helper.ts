@@ -15,9 +15,15 @@ export function findItem(arr: CartItemType[], id: string) {
   return arr.findIndex((item: CartItemType) => item.product.id === id);
 }
 
-export function refreshTotalPrice(oldArr: PriceType[], newArr: PriceType[]) {
-  return oldArr.map((item: PriceType, idx: number) =>  {
-    const rounded = Math.round(((item.amount + newArr[idx].amount)+ Number.EPSILON)*100)/100
+export function increaseTotalPrice(totalPrice: PriceType[], itemPrice: PriceType[]) {
+  return totalPrice.map((item: PriceType, idx: number) =>  {
+    const rounded = Math.round(((item.amount + itemPrice[idx].amount)+ Number.EPSILON)*100)/100
+    return {...item, amount: rounded}});
+}
+
+export function decreaseTotalPrice(totalPrice: PriceType[], itemPrice: PriceType[]) {
+  return totalPrice.map((item: PriceType, idx: number) =>  {
+    const rounded = Math.round(((item.amount - itemPrice[idx].amount)+ Number.EPSILON)*100)/100
     return {...item, amount: rounded}});
 }
 

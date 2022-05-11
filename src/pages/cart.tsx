@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import AttributeList from '../containers/attribute-list';
 import PriceDisplay from '../components/price-display';
-import { updateAttributes } from '../redux/slices/cart-slice';
+import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import ProductCounter from '../containers/product-counter';
 
 interface PropsTypes {
@@ -10,27 +10,18 @@ interface PropsTypes {
   quantity: number,
   totalPrice: any,
   tax: any,
-  updateAttributes: any
+  updateAttributes: Function,
+  updateCount: Function
 }
 
-interface StateTypes {
-  selectedAttributes: any,
-}
-
-class Cart extends React.Component<PropsTypes, StateTypes> {
-  constructor(props: PropsTypes) {
-    super(props);
-    this.state = {
-      selectedAttributes: {}
-    }
-  }
-
+class Cart extends React.Component<PropsTypes> {
   handleUpdateAttributes = (e: any) => {
     this.props.updateAttributes(e)
   }
 
-  handleCount() {
-
+  handleCount = (action: {}) => {
+console.log(action)
+    this.props.updateCount(action)
   }
 
   render() {
@@ -48,7 +39,7 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
                 handleSelect={this.handleUpdateAttributes}
                 prices={item.product.prices} />
               <PriceDisplay prices={item.product.prices} />
-              <ProductCounter isVertical={false} amount={item.count} handleCount={this.handleCount} />
+              <ProductCounter isVertical={false} amount={item.count} handleCount={this.handleCount} productIndex={idx} />
               <hr/>
             </div>
           )
@@ -71,5 +62,5 @@ const mapStateToProps = (state: any) => ({
   tax: state.cart.tax
 })
 
-const mapDispatchToProps = { updateAttributes };
+const mapDispatchToProps = { updateAttributes, updateCount };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

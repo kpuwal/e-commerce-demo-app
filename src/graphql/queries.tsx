@@ -10,7 +10,6 @@ async function getCategories() {
 }
 
 async function getCategory(category: string) {
-  console.log('category? ', category)
   const query = new Query('category', true)
 		.addArgument('input', 'CategoryInput', { title: category })
     .addField(new Field('products')

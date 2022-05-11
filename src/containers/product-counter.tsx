@@ -1,32 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components';
 import { connect } from "react-redux";
 
 interface PropsTypes {
   isVertical: boolean,
   amount: number,
+  productIndex: number,
   handleCount: Function
-  // count: number
 }
 
 class ProductCounter extends React.Component<PropsTypes> {
   handleIncrement() {
-    console.log('plus')
+    const idx = this.props.productIndex;
+    this.props.handleCount({actionType: 'increment', idx})
   }
 
   handleDecrement() {
-    console.log('minus')
+    const idx = this.props.productIndex;
+    this.props.handleCount({actionType: 'decrement', idx})
   }
 
   render() {
     const {isVertical, amount} = this.props;
+    console.log("amount ", amount)
     return (
       <Container style={{
         flexDirection: isVertical ? 'column' : 'row', 
         height: isVertical ? '120px' : '5%'}}>
-        <button onClick={this.handleIncrement}>+</button>
+        <button onClick={() => this.handleIncrement()}>+</button>
         <CounterDisplay>{amount}</CounterDisplay>
-        <button onClick={this.handleDecrement}>-</button>
+        <button onClick={() => this.handleDecrement()} disabled={amount === 0}>-</button>
       </Container>
     )
   }
@@ -46,15 +49,15 @@ const Container = styled.div({
   justifyContent: 'space-around'
 })
 
-const CounterButton = styled.button({
-  // display: 'flex',
-  width: '20px',
-  height: '20px',
-  border: '1px solid black',
-  textAlign: 'center',
-  verticalAlign: 'middle',
-  lineHeight: '20px'
-})
+// const CounterButton = styled.button({
+//   // display: 'flex',
+//   width: '20px',
+//   height: '20px',
+//   border: '1px solid black',
+//   textAlign: 'center',
+//   verticalAlign: 'middle',
+//   lineHeight: '20px'
+// })
 
 const CounterDisplay = styled.div({
   width: '140px',

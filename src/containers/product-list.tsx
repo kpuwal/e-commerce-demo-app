@@ -8,7 +8,7 @@ import PriceDisplay from '../components/price-display';
 
 type PropsTypes = {
   product: ProductType,
-  addToCart: any
+  addToCart: Function
 }
 
 type StateTypes = {
@@ -33,7 +33,7 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleAddToCart(product: ProductType) {
-    this.props.addToCart({product})
+    this.props.addToCart({product});
   }
 
   render() {

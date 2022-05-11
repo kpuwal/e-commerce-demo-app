@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ProductType, CartItemType, PriceType } from '../../types';
-import {isDuplicate, getDefaultAttributes, findItem, refreshTotalPrice, refreshTax} from './helper';
+import { CartItemType, PriceType } from '../../types';
+import {isDuplicate, getDefaultAttributes, findItem, increaseTotalPrice, decreaseTotalPrice, refreshTax} from './helper';
 
 const initPrice = [
   {amount: 0, currency: {label: 'USD', symbol: '$'}},
@@ -9,12 +9,6 @@ const initPrice = [
   {amount: 0, currency: {label: 'JPY', symbol: '¥'}},
   {amount: 0, currency: {label: 'RUB', symbol: '₽'}},
 ] as PriceType[]
-
-type AddToCartTypes = {
-  product: ProductType,
-  selectedAttributes?: {},
-  count?: number
-}
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -25,8 +19,8 @@ export const cartSlice = createSlice({
     tax: initPrice,
   },
   reducers: {
-    addToCart: (state, action: PayloadAction<AddToCartTypes>) => {
-      const { product, selectedAttributes, count } = action.payload;
+    addToCart: (state, action: PayloadAction<CartItemType>) => {
+      const { product, selectedAttributes } = action.payload;
       if (isDuplicate(state.items, product.id)) {
         const idx = findItem(state.items, product.id);
         state.items[idx].count += 1;
@@ -34,23 +28,33 @@ export const cartSlice = createSlice({
         state.items.push({
           product: product,
           selectedAttributes: !selectedAttributes ? getDefaultAttributes(product.attributes) : selectedAttributes,
-          count: !count ? 1 : count
+          count: 1
         });
       }
       state.quantity += 1;
-      state.totalPrice = refreshTotalPrice(state.totalPrice, product.prices);
+      state.totalPrice = increaseTotalPrice(state.totalPrice, product.prices);
       state.tax = refreshTax(state.totalPrice);
     },
     updateAttributes: (state, action) => {
       const { name, value, idx } = action.payload
       state.items[idx].selectedAttributes = {...state.items[idx].selectedAttributes, [name]: value}
     },
-    updateQuantity: (state, action) => {
-      console.log("here?")
+    updateCount: (state, action) => {
+      const { actionType, idx } = action.payload;
+      if (actionType === 'increment') {
+        state.items[idx].count += 1
+        state.quantity += 1
+        state.totalPrice = increaseTotalPrice(state.totalPrice, state.items[idx].product.prices);
+      } else {
+        state.items[idx].count -= 1
+        state.quantity -= 1
+        state.totalPrice = decreaseTotalPrice(state.totalPrice, state.items[idx].product.prices);
+      }
+      state.tax = refreshTax(state.totalPrice);
     },
   },
 })
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, updateQuantity, updateAttributes } = actions;
+export const { addToCart, updateCount, updateAttributes } = actions;
 export default reducer;

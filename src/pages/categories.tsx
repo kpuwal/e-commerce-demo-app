@@ -31,9 +31,7 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
 
   async fetchData() {
     let result: CategoryType;
-    console.log(this.props.match)
     if (!this.props.match) {
-      console.log('here?')
       result = await QueryGraphQL.getCategory('all');
     } else {
       result = await (QueryGraphQL.getCategory(this.props.match));
