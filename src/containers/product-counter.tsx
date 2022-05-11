@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
+import { connect } from "react-redux";
 
 interface PropsTypes {
-  isVertical: boolean
+  isVertical: boolean,
+  amount: number,
+  handleCount: Function
+  // count: number
 }
 
-
-export default class ProductCounter extends Component<PropsTypes> {
+class ProductCounter extends React.Component<PropsTypes> {
   handleIncrement() {
     console.log('plus')
   }
@@ -16,18 +19,24 @@ export default class ProductCounter extends Component<PropsTypes> {
   }
 
   render() {
-    const {isVertical} = this.props;
+    const {isVertical, amount} = this.props;
     return (
       <Container style={{
         flexDirection: isVertical ? 'column' : 'row', 
         height: isVertical ? '120px' : '5%'}}>
         <button onClick={this.handleIncrement}>+</button>
-        <CounterDisplay>12</CounterDisplay>
+        <CounterDisplay>{amount}</CounterDisplay>
         <button onClick={this.handleDecrement}>-</button>
       </Container>
     )
   }
 }
+
+const mapStateToProps = (state: any) => ({
+  counter: state.cart.items,
+})
+
+export default connect(mapStateToProps)(ProductCounter);
 
 const Container = styled.div({
   display: 'flex', 

@@ -10,6 +10,7 @@ async function getCategories() {
 }
 
 async function getCategory(category: string) {
+  console.log('category? ', category)
   const query = new Query('category', true)
 		.addArgument('input', 'CategoryInput', { title: category })
     .addField(new Field('products')
@@ -49,7 +50,7 @@ async function getProduct(id: string) {
       )
     )
   client.setEndpoint(url);
-  const result = await client.post(query);
+  const result = await client.post(query)
   return (JSON.parse(JSON.stringify(result.product)));
 }
 

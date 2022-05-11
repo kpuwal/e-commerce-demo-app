@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import AttributeList from '../containers/attribute-list';
 import PriceDisplay from '../components/price-display';
 import { updateAttributes } from '../redux/slices/cart-slice';
+import ProductCounter from '../containers/product-counter';
 
 interface PropsTypes {
   items: any,
@@ -24,9 +25,13 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
     }
   }
 
-  handleChange = (e: any) => {
+  handleUpdateAttributes = (e: any) => {
     this.props.updateAttributes(e)
-   }
+  }
+
+  handleCount() {
+
+  }
 
   render() {
     return (
@@ -36,14 +41,14 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
             <div key={idx}>
               <h3>{item.product.name}</h3>
               <p>{item.product.brand}</p>
-              <p>Count: {item.count}</p>
               <AttributeList
                 productIndex={idx}
                 attributes={item.product.attributes}
                 selectedAttributes={item.selectedAttributes}
-                handleSelect={this.handleChange}
+                handleSelect={this.handleUpdateAttributes}
                 prices={item.product.prices} />
               <PriceDisplay prices={item.product.prices} />
+              <ProductCounter isVertical={false} amount={item.count} handleCount={this.handleCount} />
               <hr/>
             </div>
           )
