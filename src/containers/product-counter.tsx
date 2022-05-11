@@ -22,7 +22,6 @@ class ProductCounter extends React.Component<PropsTypes> {
 
   render() {
     const {isVertical, amount} = this.props;
-    console.log("amount ", amount)
     return (
       <Container style={{
         flexDirection: isVertical ? 'column' : 'row', 

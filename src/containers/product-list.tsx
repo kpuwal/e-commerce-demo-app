@@ -39,24 +39,22 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.props.product;
     return (
-      <React.Fragment>
-        <div style={{flexDirection: 'column', margin: '5%'}}>
-          <div
-            style={{display: 'flex'}}
-            onMouseEnter={e => this.showButton(e)}
-            onMouseLeave={e => this.hideButton(e)}>
-            <Link to={`/${product.id}`}>
-              <img 
-                src={product.gallery[0]}
-                alt={product.name}
-                style={{width: '150px'}}/>
-                {!product.inStock && <p>OUT OF STOCK</p>}
-            </Link>
-              {product.inStock && <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.handleAddToCart(product)}>+</div>}
-          </div>
-          <PriceDisplay prices={product.prices} />
+      <div style={{flexDirection: 'column', margin: '5%'}}>
+        <div
+          style={{display: 'flex'}}
+          onMouseEnter={e => this.showButton(e)}
+          onMouseLeave={e => this.hideButton(e)}>
+          <Link to={`/${product.id}`}>
+            <img 
+              src={product.gallery[0]}
+              alt={product.name}
+              style={{width: '150px'}}/>
+              {!product.inStock && <p>OUT OF STOCK</p>}
+          </Link>
+            {product.inStock && <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.handleAddToCart(product)}>+</div>}
         </div>
-      </React.Fragment>
+        <PriceDisplay prices={product.prices} />
+      </div>
     )
   }
 }

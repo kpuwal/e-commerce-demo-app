@@ -5,10 +5,10 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType } from '../types';
-import { Gallery, InfoDisplay, PriceDisplay } from '../components';
+import { InfoDisplay, PriceDisplay } from '../components';
 import AttributeList from '../containers/attribute-list';
+import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
-// import ProductCounter from '../containers/product-counter'
 
 type SelectedAttributesType<Attr extends string>= {
   [key in Attr]: string
@@ -65,7 +65,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
       <React.Fragment>
         {!this.state.isLoading && 
           <Container>
-          <Gallery images={product.gallery} descr={product.name} />
+          <Gallery images={product.gallery} isMini={false} />
           <AttributesContainer>
             <h3>{product.name}</h3>
             <h4>{product.brand}</h4>
