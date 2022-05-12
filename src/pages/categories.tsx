@@ -6,13 +6,8 @@ import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
 import ProductList from '../containers/product-list';
 
-interface PropsTypes {
-  match: string;
-}
-
-interface StateTypes {
-  products: ProductType[];
-}
+interface PropsTypes {  match: string };
+interface StateTypes { products: ProductType[] };
 
 class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -45,10 +40,15 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
     const products = this.state.products;
     return (
       <Container>
-        {/* <p>{this.props.match !== null ? this.props.match : 'all'}</p> */}
-          {products.map((product: ProductType) => 
-            <ProductList key={product.id} product={product} />
-          )}
+        <CategoryNameContainer>
+          <CategoryName>
+            {this.props.match !== null ? this.props.match : 'all'}
+          </CategoryName>
+        </CategoryNameContainer>
+
+        <ProductListContainer>
+          {products.map((product: ProductType) => <ProductList key={product.id} product={product} /> )}
+        </ProductListContainer>
       </Container>
     )
   }
@@ -62,10 +62,26 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
 
 export default withRouterParams(Categories);
 
-const Container = styled.div({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'flex-start',
-})
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const CategoryNameContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  width: 80%;
+  margin: 1em 0 4em 0;
+`
+const CategoryName = styled.h1`
+  font-family: Raleway;
+  font-weight: 100;
+`
 
+const ProductListContainer = styled.div`
+  display: flex;
+  width: 80%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+ 
+`

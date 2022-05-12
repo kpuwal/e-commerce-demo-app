@@ -18,5 +18,4 @@ export const colors = {
   text: '#1f1f1f',
   // textSecondary: SKColors.grey.dark,
   // ...SKColors,
-};
-
+}
