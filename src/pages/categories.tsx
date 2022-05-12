@@ -66,6 +66,6 @@ const Container = styled.div({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
-  justifyContent: 'center'
+  justifyContent: 'flex-start',
 })
 

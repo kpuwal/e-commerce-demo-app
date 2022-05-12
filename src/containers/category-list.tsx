@@ -27,16 +27,21 @@ class CategoryList extends React.Component<PropsTypes, StateTypes> {
   render() {
     const activeCategory = this.props.match !== null ? this.props.match : 'all';
     return (
-      <ul>
+      <>
         {this.state.categories.map((name: string) => (
-          <li key={name}>
-            <Link to={`/?category=${name}`} style={{color: activeCategory === name ? "red" : "black"}}>
-              {name}
+          <div key={name} style={{flexDirection: 'row', padding: '10px', borderBottom: activeCategory === name ? '1px solid #5ECE7B' : '0px solid #fff'}}>
+            <Link to={`/?category=${name}`}
+              style={{
+                color: activeCategory === name ? "#5ECE7B" : "black",
+                fontFamily: 'Raleway',
+                textDecoration: 'none'
+                }}>
+              {name.toUpperCase()}
             </Link>
-          </li>
+          </div>
           ))
         }
-      </ul>
+      </>
     )
   }
 }

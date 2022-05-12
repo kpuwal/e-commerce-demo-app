@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ProductType } from '../types';
 import { connect } from "react-redux";
@@ -45,20 +46,49 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
           onMouseEnter={e => this.showButton(e)}
           onMouseLeave={e => this.hideButton(e)}>
           <Link to={`/${product.id}`}>
-            <img 
-              src={product.gallery[0]}
-              alt={product.name}
-              style={{width: '150px'}}/>
-              {!product.inStock && <p>OUT OF STOCK</p>}
+            <ImageContainer img={product.gallery[0]} style={{position: 'relative'}}>
+              {!product.inStock && <p style={{position: 'absolute'}}>OUT OF STOCK</p>}
+            </ImageContainer>
           </Link>
             {product.inStock && 
-            <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.handleAddToCart(product)}>+</div>}
+            <AddToCartButton display={this.state.display} style={{position: 'absolute'}} onClick={e => this.handleAddToCart(product)}>+</AddToCartButton>}
         </div>
         <PriceDisplay prices={product.prices} />
+        
       </div>
     )
   }
 }
 
+interface StyledProps { display: string }
+interface StyledProps2 { img: string }
+
+
 const mapDispatchToProps = { addToCart };
 export default connect(null, mapDispatchToProps)(ProductList);
+
+const ImageContainer = styled.div((props: StyledProps2) => ({
+  backgroundImage: `url(${props.img})`,
+  width: '356px',
+  height: '338px',
+  backgroundSize: "cover",
+  margin: '5px',
+}))
+
+// const Butt = styled.div`
+//   width: 20px;
+//   height: 20px;
+//   background-color: red;
+//   &:hover { background-color: green; }
+// `
+
+const AddToCartButton = styled.div((props: StyledProps) =>({
+  display: props.display,
+  margin: 'auto',
+  height: '50px',
+  width: '50px',
+  backgroundColor: 'lightgreen',
+  borderRadius: 50,
+  justifyContent: 'center',
+  alignItems: 'center'
+}))
