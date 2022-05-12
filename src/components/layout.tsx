@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Header } from '../components';
-import { widths, unit } from '../styles';
 import {Outlet} from 'react-router-dom';
 
 class Layout extends React.Component {
@@ -20,14 +19,16 @@ class Layout extends React.Component {
 export default Layout;
 
 const PageContainer = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  alignSelf: 'center',
-  flexGrow: 1,
-  maxWidth: `${widths.regularPageWidth}px`,
+  // display: 'flex',
+  // justifyContent: 'center',
+  // flexDirection: 'row',
+  // flexWrap: 'wrap',
+  // alignSelf: 'center',
+  // flexGrow: 1,
+  // maxWidth: `${widths.regularPageWidth}px`,
   width: '100%',
   padding: 0,
-  paddingBottom: `${unit} * 5`,
+  backgroundColor: 'yellow',
+  // flexWrap: 'wrap'
+  // paddingBottom: `${unit} * 5`,
 });

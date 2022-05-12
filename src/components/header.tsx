@@ -18,8 +18,6 @@ export default class Header extends React.Component {
         </Container>
         <Container>
           <CurrencyList />
-        </Container>
-        <Container>
           <Link to="/cart">mini cart</Link>
           <Badge />
         </Container>
@@ -32,14 +30,17 @@ const HeaderBar = styled.div({
   display: 'flex',
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
-  borderBottom: `solid 1px pink`,
-  boxShadow: '0px 1px 5px 0px rgba(0,0,0,0.15)',
-  padding: '5px 30px',
-  minHeight: 80,
-  backgroundColor: 'white',
+  justifyContent: 'space-around',
+  // borderBottom: `solid 1px pink`,
+  // boxShadow: '0px 1px 5px 0px rgba(0,0,0,0.15)',
+  // padding: '5px 30px',
+  minHeight: '5em',
+  // backgroundColor: 'white',
 });
 
 const Container = styled.div({
-  width: `${widths.regularPageWidth}px`,
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'flex-end'
+  // width: `${widths.regularPageWidth}px`,
 });

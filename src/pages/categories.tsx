@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
@@ -12,7 +14,7 @@ interface StateTypes {
   products: ProductType[];
 }
 
-class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
+class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
@@ -42,13 +44,12 @@ class CategoriesGrid extends React.Component<PropsTypes, StateTypes> {
   render() {
     const products = this.state.products;
     return (
-      <React.Fragment>
-        <div>CategoriesGrid</div>
-        <p>{this.props.match !== null ? this.props.match : 'all'}</p>
+      <Container>
+        {/* <p>{this.props.match !== null ? this.props.match : 'all'}</p> */}
           {products.map((product: ProductType) => 
             <ProductList key={product.id} product={product} />
           )}
-      </React.Fragment>
+      </Container>
     )
   }
 }
@@ -59,4 +60,12 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
   return <WrappedComponent {...props} match={name} />
 }
 
-export default withRouterParams(CategoriesGrid);
+export default withRouterParams(Categories);
+
+const Container = styled.div({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center'
+})
+

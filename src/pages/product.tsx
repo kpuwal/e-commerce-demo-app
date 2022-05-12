@@ -60,7 +60,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     return (
       <React.Fragment>
         {!this.state.isLoading && 
-          <Container>
+        <Container>
           <Gallery images={product.gallery} isMini={false} />
           <AttributesContainer>
             <h3>{product.name}</h3>
@@ -94,23 +94,36 @@ const ProductWithRouterParams =  withRouterParams(Product);
 export default connect(null, mapDispatchToProps)(ProductWithRouterParams);
 
 const Container = styled.div({
-  display: 'flex', 
+  display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
-  // width: '50%'
+  width: '100%',
+  // padding: '2em 6em',
+  backgroundColor: 'pink'
 })
 
 const AttributesContainer = styled.div({
-  position: 'relative',
-  float: 'right',
-  display: 'flex',
+  // position: 'relative',
+  // float: 'right',
+  // display: 'flex',
   flexDirection: 'column',
-  flexWrap: 'wrap',
-  width: '300px'
+  // flexWrap: 'wrap',
+  // width: '300px'
 })
 
-const CartButton = styled.div({
-  padding: 20, margin: 10,color: 'white', backgroundColor: '#5ECE7B'
+const CartButton = styled.button({
+  position: 'relative',
+  overflow: 'hidden',
+  transition: 'background 400ms',
+  color: '#fff',
+  padding: '1rem 2rem',
+  fontSize: '1.5rem',
+  outline: 0,
+  border: 0,
+  borderRadius: '0.25rem',
+  boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.3)',
+  cursor: 'pointer',
+  backgroundColor: '#5ECE7B'
 })
 
 const initialState = {

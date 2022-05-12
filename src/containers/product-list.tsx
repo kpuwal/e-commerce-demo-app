@@ -39,7 +39,7 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.props.product;
     return (
-      <div style={{flexDirection: 'column', margin: '5%'}}>
+      <div style={{}}>
         <div
           style={{display: 'flex'}}
           onMouseEnter={e => this.showButton(e)}
@@ -51,7 +51,8 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
               style={{width: '150px'}}/>
               {!product.inStock && <p>OUT OF STOCK</p>}
           </Link>
-            {product.inStock && <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.handleAddToCart(product)}>+</div>}
+            {product.inStock && 
+            <div style={{display: `${this.state.display}`,position: 'absolute', margin: 'auto', height: '50px', width: '50px', backgroundColor: 'lightgreen', borderRadius: 50, justifyContent: 'center', alignItems: 'center'}} onClick={e => this.handleAddToCart(product)}>+</div>}
         </div>
         <PriceDisplay prices={product.prices} />
       </div>

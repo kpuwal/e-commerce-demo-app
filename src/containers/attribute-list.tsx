@@ -10,9 +10,11 @@ interface PropsTypes {
   productIndex?: number,
 }
 
+interface StyledProps {isChecked: boolean}
+
 export default class AttributeList extends React.Component<PropsTypes> {
   render() {
-    const {attributes, selectedAttributes, handleSelect} = this.props;
+    const {attributes, selectedAttributes, handleSelect, productIndex} = this.props;
     return (
       <div>
         {attributes.map((attr: any, idx: number) => {
@@ -21,41 +23,41 @@ export default class AttributeList extends React.Component<PropsTypes> {
             <h3>{attr.name}</h3>
             <SwatchRow>
               {attr.items.map((item: any) => {
-                const checked = Object.keys(selectedAttributes).length !== 0 && selectedAttributes[attr.name] === item.id;
+                const isChecked = Object.keys(selectedAttributes).length !== 0 && selectedAttributes[attr.name] === item.id;
                 const values = {
                   name: attr.name, 
                   value: item.id, 
-                  idx: this.props.productIndex
-                }
+                  idx: productIndex }
                 return (
                   <Swatch
                     key={item.id}
-                    onClick={() => handleSelect(values)} 
-                    style={{backgroundColor: checked ? 'pink': 'white', color: checked ? 'white' : 'black'}}>
+                    onClick={() => handleSelect(values)}
+                    {...{isChecked}}>
                       {item.displayValue}
-                  </Swatch>
-                )
-              })}
+                  </Swatch>)})
+              }
             </SwatchRow>
-          </div>
-          )
-        })}
+          </div>)})
+        }
       </div>
     )
   }
 }
-
 
 const SwatchRow = styled.div({
   display: 'flex',
   flexDirection: 'row'
 })
 
-const Swatch = styled.div({
+const Swatch = styled.div((props: StyledProps) => ({
   width: '40px',
   height: '40px',
-  margin: '5%',
-  padding: '1%', 
-  border: '1px solid black', 
+  // margin: '5%',
+  // padding: '1%', 
+  border: '1px solid black',
+  alignText: 'center',
+  justifyContent: 'center',
   fontSize: '10px',
-})
+  backgroundColor: props.isChecked ? 'black': 'white',
+  color: props.isChecked ? 'white' : 'black'
+}))
