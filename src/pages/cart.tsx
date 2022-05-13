@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from "react-redux";
-import AttributeList from '../containers/attribute-list';
-import PriceDisplay from '../components/price-display';
+import { PriceDisplay, ProductCounter } from '../components';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
-import ProductCounter from '../containers/product-counter';
 import { widths } from '../styles';
 import Gallery from '../containers/gallery';
+import AttributeList from '../containers/attribute-list';
 
 
 interface PropsTypes {

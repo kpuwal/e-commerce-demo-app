@@ -23,9 +23,7 @@ class ProductCounter extends React.Component<PropsTypes> {
   render() {
     const {isVertical, amount} = this.props;
     return (
-      <Container style={{
-        flexDirection: isVertical ? 'column' : 'row', 
-        height: isVertical ? '120px' : '5%'}}>
+      <Container {...{isVertical}}>
         <button onClick={() => this.handleIncrement()}>+</button>
         <CounterDisplay>{amount}</CounterDisplay>
         <button onClick={() => this.handleDecrement()} disabled={amount === 0}>-</button>
@@ -40,25 +38,17 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(mapStateToProps)(ProductCounter);
 
+type StyledProps = {isVertical: boolean}
+
 const Container = styled.div`
   display: flex;
-  height: '5%',
+  flex-direction: ${(props: StyledProps) => props.isVertical ? 'column' : 'row'};
+  height: ${(props: StyledProps) => props.isVertical ? '120px' : '5%'};
   align-items: center;
   justify-content: space-around;
 `
-
-// const CounterButton = styled.button({
-//   // display: 'flex',
-//   width: '20px',
-//   height: '20px',
-//   border: '1px solid black',
-//   textAlign: 'center',
-//   verticalAlign: 'middle',
-//   lineHeight: '20px'
-// })
-
-const CounterDisplay = styled.div({
-  width: '140px',
-  height: '20px',
-  textAlign: 'center',
-})
+const CounterDisplay = styled.div`
+  width: 140px;
+  height: 20px;
+  text-align: center;
+}`

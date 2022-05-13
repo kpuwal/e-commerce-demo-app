@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 interface PropsTypes { images: string[], isMini: boolean };
 interface StateTypes { opacity: number, idx: number };
-// type StyledProps = { opacity: number, isMini: boolean };
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -18,7 +17,8 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleNext(){
-    this.setState({ opacity: 1, idx: (this.state.idx + 1)  % this.props.images.length });
+    const imgLength = this.props.images.length;
+    this.setState({ opacity: 1, idx: (this.state.idx + 1)  % imgLength });
   }
 
   handlePrev(){
@@ -29,10 +29,11 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const {images, isMini} = this.props;
+    const { idx: stateIndex, opacity: stateOpacity } = this.state;
     return (
       <GalleryContainer>
         {images.map((image, idx) => {
-          const opacity = this.state.idx === idx ? this.state.opacity : 0;
+          const opacity = stateIndex === idx ? stateOpacity : 0;
           return <Image key={idx} img={image} {...{opacity, isMini}} />})
         }
         {isMini 

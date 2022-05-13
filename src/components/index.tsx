@@ -3,3 +3,4 @@ export { default as Layout } from './layout';
 export { default as InfoDisplay } from './info-display';
 export { default as PriceDisplay } from './price-display';
 export { default as Badge } from './badge';
+export { default as ProductCounter } from './product-counter';
