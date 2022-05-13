@@ -19,5 +19,5 @@ export default class Layout extends React.Component {
 const PageContainer = styled.div`
 width: 100%;
 padding: 0;
-margin-left: 2%;
+margin: 0;
 `

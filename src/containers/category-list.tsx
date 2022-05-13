@@ -3,13 +3,9 @@ import styled from 'styled-components';
 import {useSearchParams, Link} from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 
-interface StateTypes {
-  categories: string[]
-}
-
-interface PropsTypes {
-  match: string;
-}
+type StateTypes = { categories: string[] };
+type PropsTypes = { match: string };
+type StyledProps = { underline: boolean };
 
 class CategoryList extends React.Component<PropsTypes, StateTypes> {
   constructor(props: any){
@@ -28,7 +24,7 @@ class CategoryList extends React.Component<PropsTypes, StateTypes> {
   render() {
     const activeCategory = this.props.match !== null ? this.props.match : 'all';
     return (
-      <div style={{display: 'flex', justifyContent: 'center'}}>
+      <Container>
         {this.state.categories.map((name: string) => (
           <NavContainer key={name} underline={activeCategory === name}>
             <Link to={`/?category=${name}`}
@@ -42,7 +38,7 @@ class CategoryList extends React.Component<PropsTypes, StateTypes> {
           </NavContainer>
           ))
         }
-      </div>
+      </Container>
     )
   }
 }
@@ -55,10 +51,12 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
 
 export default withRouterParams(CategoryList);
 
-interface StyledProps { underline: boolean };
-
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+`
 const NavContainer = styled.div`
-  flexDirection: row;
+  flex-direction: row;
   padding: 15px;
   border-bottom: ${(props: StyledProps) => props.underline ? '1px solid #5ECE7B' : '0px solid #fff'};
 `

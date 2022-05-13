@@ -58,13 +58,13 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.state.product;
     return (
-      <React.Fragment>
+      <ProductContainer>
         {!this.state.isLoading && 
         <Container>
           <Gallery images={product.gallery} isMini={false} />
           <AttributesContainer>
-            <h3>{product.name}</h3>
-            <h4>{product.brand}</h4>
+            <h2>{product.name}</h2>
+            <h4 style={{fontWeight: 100}}>{product.brand}</h4>
             <AttributeList 
               attributes={product.attributes}
               selectedAttributes={this.state.selectedAttributes}
@@ -79,7 +79,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
           </AttributesContainer>
         </Container>
         }
-      </React.Fragment>
+      </ProductContainer>
   )}
 }
 
@@ -93,23 +93,25 @@ const ProductWithRouterParams =  withRouterParams(Product);
 
 export default connect(null, mapDispatchToProps)(ProductWithRouterParams);
 
-const Container = styled.div({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  width: '100%',
-  // padding: '2em 6em',
-  backgroundColor: 'pink'
-})
+const ProductContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
-const AttributesContainer = styled.div({
-  // position: 'relative',
-  // float: 'right',
-  // display: 'flex',
-  flexDirection: 'column',
-  // flexWrap: 'wrap',
-  // width: '300px'
-})
+const Container = styled.div`
+  display: flex;
+  flexDirection: row;
+  justify-content: space-between;
+  align-self: center;
+  width: 83%;
+  padding: 2em 8em;
+  // background-color: pink;
+`
+
+const AttributesContainer = styled.div` 
+  flex-direction: column;
+  margin-right: 200px;
+`
 
 const CartButton = styled.button({
   position: 'relative',

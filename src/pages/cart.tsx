@@ -33,20 +33,20 @@ class Cart extends React.Component<PropsTypes> {
           return (
             <div key={idx} style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', width: `${widths.regularPageWidth}px`,}}>
               <div>
-              <h3>{item.product.name}</h3>
-              <p>{item.product.brand}</p>
-              
-              <AttributeList
-                productIndex={idx}
-                attributes={item.product.attributes}
-                selectedAttributes={item.selectedAttributes}
-                handleSelect={this.handleUpdateAttributes}
-                prices={item.product.prices} />
-              <PriceDisplay prices={item.product.prices} />
+                <h3>{item.product.name}</h3>
+                <p>{item.product.brand}</p>
+                
+                <AttributeList
+                  productIndex={idx}
+                  attributes={item.product.attributes}
+                  selectedAttributes={item.selectedAttributes}
+                  handleSelect={this.handleUpdateAttributes}
+                  prices={item.product.prices} />
+                <PriceDisplay prices={item.product.prices} />
               </div>
               <div>
-              <ProductCounter isVertical={true} amount={item.count} handleCount={this.handleCount} productIndex={idx} />
-              <Gallery images={item.product.gallery} isMini={true} />
+                <ProductCounter isVertical={true} amount={item.count} handleCount={this.handleCount} productIndex={idx} />
+                <Gallery images={item.product.gallery} isMini={true} />
               </div>
               
             </div>

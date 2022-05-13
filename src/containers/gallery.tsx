@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface PropsTypes { images: string[], isMini: boolean };
 interface StateTypes { opacity: number, idx: number };
-type StyledProps = { opacity: number, isMini: boolean };
+// type StyledProps = { opacity: number, isMini: boolean };
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -30,16 +30,10 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   render() {
     const {images, isMini} = this.props;
     return (
-      <GalleryContainer style={{position: 'relative'}}>
+      <GalleryContainer>
         {images.map((image, idx) => {
           const opacity = this.state.idx === idx ? this.state.opacity : 0;
-          return (
-            <ImagesContainer key={idx}>
-              <StackOfImages 
-                src={image}
-                alt={'description'}
-                {...{opacity, isMini}} />
-            </ImagesContainer>)})
+          return <Image key={idx} img={image} {...{opacity, isMini}} />})
         }
         {isMini 
           ? <MiniNavContainer>
@@ -48,10 +42,8 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
             </MiniNavContainer> 
           : <>
             {images.map((image, idx) => 
-              <div
-                key={idx}
-                onMouseEnter={() => this.handleSelect(idx)}>
-                <ImageNav src={image} alt={'description'} />
+              <div key={idx} onMouseEnter={() => this.handleSelect(idx)}>
+                <ImageNav image={image} />
               </div>)}
             </>}
       </GalleryContainer>
@@ -59,31 +51,37 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   }
 }
 
-const GalleryContainer = styled.div({
-  width: '6em',
-  backgroundColor: 'green'
-})
+type StyledProps = {
+  img: string,
+  opacity: number,
+  isMini: boolean
+}
 
-const ImagesContainer = styled.div({
-  position: 'absolute',
-  marginLeft: '8em'
-})
-
-const StackOfImages = styled.img((props: StyledProps) => ({
-  opacity: props.opacity,
-  width: props.isMini ? '7em' : '16em'
-}))
-
-const MiniNavContainer = styled.div({
-  right: '-6em',
-  top: '6em',
-  backgroundColor: 'pink',
-  position: 'absolute', 
-  display: 'flex',
-  flexDirection: 'row'
-})
-
-const ImageNav = styled.img({
-  width: '3em',
-  padding: '.1em 0 0 0',
-})
+const GalleryContainer = styled.div`
+  width: 6em;
+  position: relative;
+`
+const Image = styled.div`
+  background-image: ${(props: StyledProps) => `url(${props.img})`};
+  opacity: ${(props: StyledProps) => props.opacity};
+  width: ${(props: StyledProps) => props.isMini ? '7em' : '377px'};
+  height: ${(props: StyledProps) => props.isMini ? '7em' : '388px'};
+  position: absolute;
+  margin-left: 8em;
+  background-size: cover;
+`
+const MiniNavContainer = styled.div`
+  right: -6em;
+  top: 6em;
+  background-color: pink;
+  position: absolute;
+  display: flex;
+  flexDirection: row;
+`
+const ImageNav = styled.div`
+  width: 80px;
+  height: 80px;
+  margin: 0 0 7px 0;
+  background-image: ${(props: {image: string}) => `url(${props.image})`};
+  background-size: cover;
+`

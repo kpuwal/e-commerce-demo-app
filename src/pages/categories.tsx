@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
@@ -67,12 +66,14 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
+
 const CategoryNameContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  width: 80%;
-  margin: 1em 0 4em 0;
+  width: 83%;
+  margin: 2em 0 4em 0;
 `
+
 const CategoryName = styled.h1`
   font-family: Raleway;
   font-weight: 100;
@@ -80,7 +81,7 @@ const CategoryName = styled.h1`
 
 const ProductListContainer = styled.div`
   display: flex;
-  width: 80%;
+  width: 83%;
   flex-wrap: wrap;
   justify-content: flex-start;
  

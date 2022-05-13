@@ -40,13 +40,12 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(mapStateToProps)(ProductCounter);
 
-const Container = styled.div({
-  display: 'flex', 
-  // flexDirection: 'row',
+const Container = styled.div`
+  display: flex;
   height: '5%',
-  alignItems: 'center',
-  justifyContent: 'space-around'
-})
+  align-items: center;
+  justify-content: space-around;
+`
 
 // const CounterButton = styled.button({
 //   // display: 'flex',
