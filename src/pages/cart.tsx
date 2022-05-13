@@ -4,7 +4,7 @@ import { PriceDisplay, ProductCounter } from '../components';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import { widths } from '../styles';
 import Gallery from '../containers/gallery';
-import AttributeList from '../containers/attribute-list';
+import AttributeList from '../components/attribute-list';
 
 
 interface PropsTypes {

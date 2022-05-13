@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType, SelectedAttributesType } from '../types';
 import { InfoDisplay, PriceDisplay } from '../components';
-import AttributeList from '../containers/attribute-list';
+import AttributeList from '../components/attribute-list';
 import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
 
@@ -56,26 +56,24 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const product = this.state.product;
+    const { gallery, name, brand, attributes, prices, description } = this.state.product;
+    const { product, selectedAttributes } = this.state;
     return (
       <ProductContainer>
         {!this.state.isLoading && 
           <Container>
-            <Gallery images={product.gallery} isMini={false} />
+            <Gallery images={gallery} isMini={false} />
             <AttributesContainer>
-              <h2>{product.name}</h2>
-              <h4 style={{fontWeight: 100}}>{product.brand}</h4>
-              <AttributeList 
-                attributes={product.attributes}
-                selectedAttributes={this.state.selectedAttributes}
+              <h2>{name}</h2>
+              <h4 style={{fontWeight: 200}}>{brand}</h4>
+              <AttributeList
                 handleSelect={this.handleChange}
-                prices={product.prices} 
-              />
+                {...{prices, selectedAttributes, attributes}}/>
               <CartButton onClick={() => this.handleAddToCart(product)}>
                 Add To Cart
               </CartButton>
-              <PriceDisplay prices={product.prices} />
-              <InfoDisplay descr={product.description} />
+              <PriceDisplay prices={prices} />
+              <InfoDisplay descr={description} />
             </AttributesContainer>
           </Container>
         }
@@ -103,12 +101,13 @@ const Container = styled.div`
   justify-content: space-between;
   align-self: center;
   width: 83%;
-  padding: 2em 8em;
+  // padding: 0em 8em;
   // background-color: pink;
 `
 const AttributesContainer = styled.div` 
   flex-direction: column;
-  margin-right: 200px;
+  width: 300px;
+  margin-right: 100px;
 `
 const CartButton = styled.button`
   position: relative;
@@ -123,6 +122,7 @@ const CartButton = styled.button`
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
   background-color: #5ECE7B;
+  width: 300px;
 `
 
 const initialState = {
