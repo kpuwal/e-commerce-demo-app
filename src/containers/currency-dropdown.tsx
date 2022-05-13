@@ -40,10 +40,6 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
     }, 0)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('click', this.closeDropdown);
-  }
-
   closeDropdown = () => {
     this.setState({ isListOpen: false });
   }
@@ -99,16 +95,19 @@ const SelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100px;
+
   margin: 5px 0 0 -20px;
-  -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
-  -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
-  box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
+  // -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
+  // -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
+  // box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
 `
 const CaretIcon = styled.img`
   width: 14px;
   height: 14px;
 ` 
 const Button = styled.button`
+  font-size: 16px;
   background: white;
   border: 0px solid white;
 `

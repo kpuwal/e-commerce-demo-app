@@ -17,7 +17,7 @@ type StateTypes = {
   inCart: boolean
 }
 
-class Product extends React.Component<PropsTypes, StateTypes> {
+class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
@@ -77,13 +77,12 @@ type StyledProps = {
 }
 
 const mapDispatchToProps = { addToCart };
-export default connect(null, mapDispatchToProps)(Product);
+export default connect(null, mapDispatchToProps)(ProductThumbnail);
 
 const ProductItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   width: 386px;
   height: 444px;
   padding: 16px;
@@ -99,9 +98,10 @@ const ImageContainer = styled.div`
   opacity: ${(props: StyledProps) => props.hasOpacity ? 1 : 0.5};
   width: 356px;
   height: 338px;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
+  // background-size: contain;
+  // background-position: center;
 `
 const AddToCartButton = styled.div`
   display: ${(props: {display: string}) => props.display};

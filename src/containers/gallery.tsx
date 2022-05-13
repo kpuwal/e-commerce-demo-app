@@ -41,12 +41,12 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
               <div onClick={() => this.handleNext()}>next</div>
               <div onClick={() => this.handlePrev()}>prev</div>
             </MiniNavContainer> 
-          : <>
+          : <ImageNavContainer>
             {images.map((image, idx) => 
               <div key={idx} onMouseEnter={() => this.handleSelect(idx)}>
                 <ImageNav image={image} />
               </div>)}
-            </>}
+            </ImageNavContainer>}
       </GalleryContainer>
     )
   }
@@ -77,7 +77,16 @@ const MiniNavContainer = styled.div`
   background-color: pink;
   position: absolute;
   display: flex;
-  flexDirection: row;
+  flex-direction: row;
+`
+const ImageNavContainer = styled.div`
+  height: 420px;
+  // background-color: pink;
+  align-items: center;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `
 const ImageNav = styled.div`
   width: 80px;

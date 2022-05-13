@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
-import Product from '../containers/product-item';
+import ProductThumbnail from '../containers/product-thumbnail';
 
 type PropsTypes = { match: string };
 type StateTypes = { products: ProductType[] };
@@ -47,7 +47,7 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
         </CategoryName>
         <ProductList>
           {products.map((product: ProductType) =>
-            <Product key={product.id} product={product} /> )}
+            <ProductThumbnail key={product.id} product={product} /> )}
         </ProductList>
       </Container>
     )

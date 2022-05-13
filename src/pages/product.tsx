@@ -60,24 +60,24 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     return (
       <ProductContainer>
         {!this.state.isLoading && 
-        <Container>
-          <Gallery images={product.gallery} isMini={false} />
-          <AttributesContainer>
-            <h2>{product.name}</h2>
-            <h4 style={{fontWeight: 100}}>{product.brand}</h4>
-            <AttributeList 
-              attributes={product.attributes}
-              selectedAttributes={this.state.selectedAttributes}
-              handleSelect={this.handleChange}
-              prices={product.prices} 
-            />
-            <CartButton onClick={() => this.handleAddToCart(product)}>
-              Add To Cart
-            </CartButton>
-            <PriceDisplay prices={product.prices} />
-            <InfoDisplay descr={product.description} />
-          </AttributesContainer>
-        </Container>
+          <Container>
+            <Gallery images={product.gallery} isMini={false} />
+            <AttributesContainer>
+              <h2>{product.name}</h2>
+              <h4 style={{fontWeight: 100}}>{product.brand}</h4>
+              <AttributeList 
+                attributes={product.attributes}
+                selectedAttributes={this.state.selectedAttributes}
+                handleSelect={this.handleChange}
+                prices={product.prices} 
+              />
+              <CartButton onClick={() => this.handleAddToCart(product)}>
+                Add To Cart
+              </CartButton>
+              <PriceDisplay prices={product.prices} />
+              <InfoDisplay descr={product.description} />
+            </AttributesContainer>
+          </Container>
         }
       </ProductContainer>
   )}
@@ -97,7 +97,6 @@ const ProductContainer = styled.div`
   display: flex;
   justify-content: center;
 `
-
 const Container = styled.div`
   display: flex;
   flexDirection: row;
@@ -107,26 +106,24 @@ const Container = styled.div`
   padding: 2em 8em;
   // background-color: pink;
 `
-
 const AttributesContainer = styled.div` 
   flex-direction: column;
   margin-right: 200px;
 `
-
-const CartButton = styled.button({
-  position: 'relative',
-  overflow: 'hidden',
-  transition: 'background 400ms',
-  color: '#fff',
-  padding: '1rem 2rem',
-  fontSize: '1.5rem',
-  outline: 0,
-  border: 0,
-  borderRadius: '0.25rem',
-  boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.3)',
-  cursor: 'pointer',
-  backgroundColor: '#5ECE7B'
-})
+const CartButton = styled.button`
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  outline: 0;
+  border: 0;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  background-color: #5ECE7B;
+`
 
 const initialState = {
   id: '',
