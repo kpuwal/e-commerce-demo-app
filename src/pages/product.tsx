@@ -10,12 +10,12 @@ import AttributeList from '../containers/attribute-list';
 import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
 
-interface PropsTypes { 
+type PropsTypes = { 
   match: string,
   addToCart: any
 }
 
-interface StateTypes {
+type StateTypes = {
   product: ProductType,
   selectedAttributes: SelectedAttributesType<string>,
   isLoading: boolean
@@ -27,7 +27,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     this.state = {
       product: initialState,
       selectedAttributes: {},
-      isLoading: true,
+      isLoading: true
     }
   }
 

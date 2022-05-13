@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from "react-redux";
 import { PriceType } from '../types';
 
@@ -15,9 +16,9 @@ class PriceDisplay extends React.Component<PropsTypes> {
     )[0];
 
     return (
-      <div style={{fontWeight: 'bold'}}>
+      <Container>
         {(price.currency.symbol)} {(price.amount)}
-      </div>
+      </Container>
     )
   }
 }
@@ -27,3 +28,7 @@ const mapStateToProps = (state: any) => ({
 })
 
 export default connect(mapStateToProps)(PriceDisplay);
+
+const Container = styled.div`
+  font-weight: bold;
+`

@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ProductType } from '../types';
 import { connect } from "react-redux";
+import { ProductType } from '../types';
 import { addToCart } from '../redux/slices/cart-slice';
-
 import PriceDisplay from '../components/price-display';
 import CartIcon from '../assets/cart-w.png';
 
@@ -18,21 +17,16 @@ type StateTypes = {
   inCart: boolean
 }
 
-class ProductList extends React.Component<PropsTypes, StateTypes> {
+class Product extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
       display: 'none',
-      inCart: false,
+      inCart: false
   }}
 
-  showButton() {
-    this.setState({display: 'flex'});
-  }
-
-  hideButton() {
-    this.setState({display: "none"});
-  }
+  showButton() { this.setState({display: 'flex'}) };
+  hideButton() { this.setState({display: "none"}) };
 
   handleAddToCart(product: ProductType) {
     this.props.addToCart({product});
@@ -42,39 +36,37 @@ class ProductList extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.props.product;
     return (
-      <>
-        <ProductItemContainer
-          onMouseEnter={() => this.showButton()}
-          onMouseLeave={() => this.hideButton()}
-        >
-          <Link to={`/${product.id}`}>
-            <ImageContainer
-              img={product.gallery[0]}
-              hasOpacity={product.inStock}
-            >
-            {!product.inStock && <OutOfStock>OUT OF STOCK</OutOfStock>}
-            </ImageContainer>
-          </Link>
+      <ProductItemContainer
+        onMouseEnter={() => this.showButton()}
+        onMouseLeave={() => this.hideButton()}
+      >
+        <Link to={`/${product.id}`}>
+          <ImageContainer
+            img={product.gallery[0]}
+            hasOpacity={product.inStock}
+          >
+          {!product.inStock && <OutOfStock>OUT OF STOCK</OutOfStock>}
+          </ImageContainer>
+        </Link>
 
-          {this.state.inCart && 
-            <AddToCartButton display={'flex'}>
-              <CartImage src={CartIcon} alt='cart icon' />
-            </AddToCartButton>
-          }
-          {product.inStock && 
-            <AddToCartButton 
-              display={this.state.display}
-              onClick={() => this.handleAddToCart(product)}>
-              <CartImage src={CartIcon} alt='cart icon' />
-            </AddToCartButton>
-          }
+        {this.state.inCart && 
+          <AddToCartButton display={'flex'}>
+            <CartImage src={CartIcon} alt='cart icon' />
+          </AddToCartButton>
+        }
+        {product.inStock && 
+          <AddToCartButton 
+            display={this.state.display}
+            onClick={() => this.handleAddToCart(product)}>
+            <CartImage src={CartIcon} alt='cart icon' />
+          </AddToCartButton>
+        }
 
-          <DescriptionContainer>
-            <ProductName>{product.name}</ProductName>
-            <PriceDisplay prices={product.prices} />
-          </DescriptionContainer>
-        </ProductItemContainer>
-      </>
+        <DescriptionContainer>
+          <ProductName>{product.name}</ProductName>
+          <PriceDisplay prices={product.prices} />
+        </DescriptionContainer>
+      </ProductItemContainer>
     )
   }
 }
@@ -85,24 +77,23 @@ type StyledProps = {
 }
 
 const mapDispatchToProps = { addToCart };
-export default connect(null, mapDispatchToProps)(ProductList);
-
+export default connect(null, mapDispatchToProps)(Product);
 
 const ProductItemContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
   width: 386px;
   height: 444px;
   padding: 16px;
   margin: 16px 16px 16px 0;
-  align-items: center;
   &:hover {
     -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
     box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
   }
 `
-
 const ImageContainer = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.hasOpacity ? 1 : 0.5};
@@ -112,7 +103,6 @@ const ImageContainer = styled.div`
   background-repeat: no-repeat;
   background-position: center;
 `
-
 const AddToCartButton = styled.div`
   display: ${(props: {display: string}) => props.display};
   margin: auto;

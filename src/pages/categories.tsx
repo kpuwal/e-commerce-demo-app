@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
-import ProductList from '../containers/product-list';
+import Product from '../containers/product-item';
 
-interface PropsTypes {  match: string };
-interface StateTypes { products: ProductType[] };
+type PropsTypes = { match: string };
+type StateTypes = { products: ProductType[] };
 
 class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -37,17 +37,18 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
 
   render() {
     const products = this.state.products;
+    const match = this.props.match;
     return (
       <Container>
-        <CategoryNameContainer>
-          <CategoryName>
-            {this.props.match !== null ? this.props.match : 'all'}
-          </CategoryName>
-        </CategoryNameContainer>
-
-        <ProductListContainer>
-          {products.map((product: ProductType) => <ProductList key={product.id} product={product} /> )}
-        </ProductListContainer>
+        <CategoryName>
+          <Name>
+            {match !== null ? match : 'all'}
+          </Name>
+        </CategoryName>
+        <ProductList>
+          {products.map((product: ProductType) =>
+            <Product key={product.id} product={product} /> )}
+        </ProductList>
       </Container>
     )
   }
@@ -66,23 +67,19 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
 `
-
-const CategoryNameContainer = styled.div`
+const CategoryName = styled.div`
   display: flex;
   align-items: flex-start;
   width: 83%;
   margin: 2em 0 4em 0;
 `
-
-const CategoryName = styled.h1`
+const Name = styled.h1`
   font-family: Raleway;
   font-weight: 100;
 `
-
-const ProductListContainer = styled.div`
+const ProductList = styled.div`
   display: flex;
   width: 83%;
   flex-wrap: wrap;
   justify-content: flex-start;
- 
 `

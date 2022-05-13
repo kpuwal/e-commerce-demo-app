@@ -28,7 +28,7 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const {images, isMini} = this.props;
+    const { images, isMini } = this.props;
     const { idx: stateIndex, opacity: stateOpacity } = this.state;
     return (
       <GalleryContainer>
