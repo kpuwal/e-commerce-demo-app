@@ -56,7 +56,8 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const { gallery, name, brand, attributes, prices, description } = this.state.product;
+    const { gallery, name, brand, attributes, prices, description, inStock } = this.state.product;
+    console.log(inStock)
     const { product, selectedAttributes } = this.state;
     return (
       <ProductContainer>
@@ -69,10 +70,14 @@ class Product extends React.Component<PropsTypes, StateTypes> {
               <AttributeList
                 handleSelect={this.handleChange}
                 {...{prices, selectedAttributes, attributes}}/>
-              <CartButton onClick={() => this.handleAddToCart(product)}>
+              <h3 style={{fontFamily: 'Roboto'}}>PRICE</h3>
+              <PriceDisplay prices={prices} />
+              <CartButton
+                disabled={!inStock}
+                onClick={() => this.handleAddToCart(product)}
+              >
                 Add To Cart
               </CartButton>
-              <PriceDisplay prices={prices} />
               <InfoDisplay descr={description} />
             </AttributesContainer>
           </Container>
@@ -91,18 +96,19 @@ const ProductWithRouterParams =  withRouterParams(Product);
 
 export default connect(null, mapDispatchToProps)(ProductWithRouterParams);
 
+type StyledProps = {disabled: boolean};
+
 const ProductContainer = styled.div`
   display: flex;
   justify-content: center;
+  // padding-top: 50px;
 `
 const Container = styled.div`
   display: flex;
   flexDirection: row;
   justify-content: space-between;
   align-self: center;
-  width: 83%;
-  // padding: 0em 8em;
-  // background-color: pink;
+  width: 100%;
 `
 const AttributesContainer = styled.div` 
   flex-direction: column;
@@ -115,14 +121,18 @@ const CartButton = styled.button`
   transition: background 400ms;
   color: #fff;
   padding: 1rem 2rem;
+  margin: 3rem 0 0 0;
   font-size: 1.5rem;
   outline: 0;
   border: 0;
   border-radius: 0.25rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  box-shadow: ${(props: StyledProps) => props.disabled ? '0 0 0 rgba(0, 0, 0, 0)' : '0 0 0.5rem rgba(0, 0, 0, 0.2)'};
   cursor: pointer;
-  background-color: #5ECE7B;
+  background-color: ${(props: StyledProps) => props.disabled ? '#f1f1f1' : '#5ECE7B'};
   width: 300px;
+  &:active {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
 `
 
 const initialState = {

@@ -23,7 +23,7 @@ export default class AttributeList extends React.Component<PropsTypes> {
         {attributes.map((attribute: AttributesType, idx: number) => {
           return (
             <div key={idx}>
-              <h3>{attribute.name}</h3>
+              <h3 style={{fontFamily: 'Roboto'}}>{(attribute.name).toUpperCase()}</h3>
               <Swatch
                 items={attribute.items}
                 name={attribute.name}

@@ -95,7 +95,7 @@ const SelectorContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100px;
-
+  z-index: 1000;
   margin: 5px 0 0 -20px;
   // -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
   // -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);

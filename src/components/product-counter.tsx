@@ -24,9 +24,9 @@ class ProductCounter extends React.Component<PropsTypes> {
     const {isVertical, amount} = this.props;
     return (
       <Container {...{isVertical}}>
-        <button onClick={() => this.handleIncrement()}>+</button>
-        <CounterDisplay>{amount}</CounterDisplay>
-        <button onClick={() => this.handleDecrement()} disabled={amount === 0}>-</button>
+        <Button onClick={() => this.handleIncrement()}>+</Button>
+        <CounterDisplay {...{isVertical}}>{amount}</CounterDisplay>
+        <Button onClick={() => this.handleDecrement()} disabled={amount === 0}>-</Button>
       </Container>
     )
   }
@@ -39,16 +39,31 @@ const mapStateToProps = (state: any) => ({
 export default connect(mapStateToProps)(ProductCounter);
 
 type StyledProps = {isVertical: boolean}
+type StyledProps2 = { disabled?: boolean}
+
 
 const Container = styled.div`
   display: flex;
   flex-direction: ${(props: StyledProps) => props.isVertical ? 'column' : 'row'};
-  height: ${(props: StyledProps) => props.isVertical ? '120px' : '5%'};
-  align-items: center;
-  justify-content: space-around;
+  height: ${(props: StyledProps) => props.isVertical ? '14rem' : '47px'};
+  // width: 47px;
+  // align-items: center;
+  justify-content: flex-end;
+  // background-color: yellow;
 `
 const CounterDisplay = styled.div`
-  width: 140px;
-  height: 20px;
+  // width: ${(props: StyledProps) => props.isVertical ? '100%' : '10%'};
+  height: 100%; // 198px;
+  justify-content: center;
   text-align: center;
-}`
+  vertical-align: middle;
+  line-height: 10rem;
+`
+const Button = styled.button`
+  // display: block;
+  width: 2rem; // 45px;
+  height: 4rem; // 45px;
+  background-color: white;
+  border: ${(props: StyledProps2) => props.disabled ? '1px solid gray' : '1px solid black'}
+`
+

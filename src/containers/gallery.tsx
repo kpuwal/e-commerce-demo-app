@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import NextIcon from '../assets/chevron-next.png';
+import PrevIcon from '../assets/chevron-prev.png';
 
-interface PropsTypes { images: string[], isMini: boolean };
-interface StateTypes { opacity: number, idx: number };
+
+type PropsTypes = { images: string[], isMini: boolean };
+type StateTypes = { opacity: number, idx: number };
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -38,8 +41,12 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
         }
         {isMini 
           ? <MiniNavContainer>
-              <div onClick={() => this.handleNext()}>next</div>
-              <div onClick={() => this.handlePrev()}>prev</div>
+              <MiniNav onClick={() => this.handlePrev()}>
+                <img src={PrevIcon} alt='prev icon' />
+              </MiniNav>
+              <MiniNav onClick={() => this.handleNext()}>
+                <img src={NextIcon} alt='next icon' />
+              </MiniNav>
             </MiniNavContainer> 
           : <ImageNavContainer>
             {images.map((image, idx) => 
@@ -59,25 +66,36 @@ type StyledProps = {
 }
 
 const GalleryContainer = styled.div`
-  width: 6em;
+  width:  14rem; // 250px;
+  // height: 30%;
   position: relative;
+  // z-index: -10;
 `
 const Image = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.opacity};
-  width: ${(props: StyledProps) => props.isMini ? '7em' : '377px'};
-  height: ${(props: StyledProps) => props.isMini ? '7em' : '388px'};
+  width: ${(props: StyledProps) => props.isMini ? '14rem' : '25rem'};
+  height: ${(props: StyledProps) => props.isMini ? '14rem' : '388px'};
   position: absolute;
-  margin-left: 8em;
+  margin-left: ${(props: StyledProps) => props.isMini ? 0 : '8em'};
   background-size: cover;
+  background-repeat: no-repeat;
 `
 const MiniNavContainer = styled.div`
-  right: -6em;
-  top: 6em;
-  background-color: pink;
+  right: 10%;
+  top: 90%;
   position: absolute;
   display: flex;
   flex-direction: row;
+`
+const MiniNav = styled.div`
+  display: flex;
+  width: 1rem;
+  height: 1rem;
+  margin: .1rem;
+  background-color: #1f1f1f;
+  justify-content: center;
+  align-items: center;
 `
 const ImageNavContainer = styled.div`
   height: 420px;

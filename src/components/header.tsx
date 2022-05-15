@@ -29,7 +29,7 @@ const HeaderBar = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 100px 0 100px;
+  padding: 0 7% 0 7%;
   height: 80px;
 `
 const Container = styled.div`

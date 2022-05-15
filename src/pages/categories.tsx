@@ -70,8 +70,7 @@ const Container = styled.div`
 const CategoryName = styled.div`
   display: flex;
   align-items: flex-start;
-  width: 83%;
-  margin: 2em 0 4em 0;
+  width: 100%;
 `
 const Name = styled.h1`
   font-family: Raleway;
@@ -79,7 +78,8 @@ const Name = styled.h1`
 `
 const ProductList = styled.div`
   display: flex;
-  width: 83%;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: flex-start;
+
 `

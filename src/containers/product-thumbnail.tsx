@@ -61,7 +61,6 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
             <CartImage src={CartIcon} alt='cart icon' />
           </AddToCartButton>
         }
-
         <DescriptionContainer>
           <ProductName>{product.name}</ProductName>
           <PriceDisplay prices={product.prices} />
@@ -83,10 +82,11 @@ const ProductItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 386px;
-  height: 444px;
+  width: 28%; // 386px
+  height: 33%; // 444px;
   padding: 16px;
-  margin: 16px 16px 16px 0;
+  margin: 1.5% 1.5% 1.5% 0;
+  overflow: hidden;
   &:hover {
     -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
@@ -96,12 +96,15 @@ const ProductItemContainer = styled.div`
 const ImageContainer = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.hasOpacity ? 1 : 0.5};
-  width: 356px;
-  height: 338px;
+  display: flex;
+  width: 18rem; // 356px;
+  // max-width: 356px;
+  height: 17rem; // 338px;
   background-size: cover;
   background-repeat: no-repeat;
   // background-size: contain;
   // background-position: center;
+
 `
 const AddToCartButton = styled.div`
   display: ${(props: {display: string}) => props.display};
@@ -113,13 +116,17 @@ const AddToCartButton = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  margin-left: 270px;
-  margin-top: 310px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.15);
+  &:active {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  margin-left: 15%; // 270px;
+  margin-top: 19%; // 310px;
 `
 const OutOfStock = styled.p`
  position: absolute;
- margin-top: 180px;
- margin-left: 85px;
+ margin-top: 6rem; // 180px;
+ margin-left: 3rem; // 85px;
  font-weight: 400;
  font-size: 25px;
  color: black
@@ -130,7 +137,7 @@ const CartImage = styled.img`
 `
 const DescriptionContainer = styled.div`
   left: 0;
-  width: 356px;
+  width: 18rem; // 356px;
   color: #1D1F22;
 `
 const ProductName = styled.h3`

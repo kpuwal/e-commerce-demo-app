@@ -28,6 +28,7 @@ export default class Swatch extends React.Component<PropsTypes> {
             <React.Fragment key={item.id}>
               {this.props.type === 'swatch'
                 ? <ColorSwatchContainer bg={value} {...{isChecked}}>
+                    <Tooltip>{item.displayValue}</Tooltip>
                     <ColorSwatch
                       key={id}
                       onClick={() => handleSelect(values)}
@@ -55,26 +56,59 @@ type StyledProps = {isChecked: boolean, bg?: string };
 const SwatchRow = styled.div`
   display: flex;
   flex-direction: row;
-  margin-bottom: 30px;
-  padding: 10px 0;
+  margin-bottom: 1rem;
+  // padding: 10px 0;
+  height: 3rem;
+`
+const Tooltip = styled.span`
+  visibility: hidden;
+  font-size: 14px;
+  width: 60px;
+  background-color: #1f1f1f;
+  color: white;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
+  bottom: 130%;
+  left: 50%;
+  margin-left: -30px;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+  :: after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #1f1f1f transparent transparent transparent;
+  }
 `
 const ColorSwatchContainer = styled.div`
-  width: 30px;
-  hight: 30px;
+  position: relative;
+  width: 1.9rem; // 30px;
+  hight: 100%; // 30px;
   justify-content: center;
   align-items: center;
-  margin: 4px;
-  border: ${(props: StyledProps) => props.isChecked ? `1px solid ${props.bg}` : '1px solid white'};
+  margin: 2%; // 4px;
+  border: ${(props: StyledProps) => props.isChecked ? (`${props.bg}` === '#FFFFFF' ? '1px solid black' : `1px solid ${props.bg}`) : '1px solid white'};
+  &:hover ${Tooltip} {
+    visibility: visible;
+  }
 `
 const ColorSwatch = styled.div`
-  width: 26px;
-  height: 26px;
+  width: 80%; // 24px;
+  height: 80%; // 24px;
   margin: 2px;
   background-color: ${(props: StyledProps) => props.bg};
+  border: ${(props: StyledProps) => props.bg === '#FFFFFF' ? `1px solid black` : `1px solid ${props.bg}`};
 `
+
 const TextSwatch = styled.div`
-  width: 60px;
-  height: 40px;
+  width: 3rem; // 60px;
+  // height: 100%; // 40px;
   margin: 5px;
   border: 1px solid black;
   text-align: center;

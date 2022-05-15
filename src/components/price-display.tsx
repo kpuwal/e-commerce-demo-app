@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { connect } from "react-redux";
 import { PriceType } from '../types';
 
@@ -14,12 +13,7 @@ class PriceDisplay extends React.Component<PropsTypes> {
     const price = prices.filter((item: PriceType) => 
       item.currency.label === activeCurrency
     )[0];
-
-    return (
-      <Container>
-        {(price.currency.symbol)} {(price.amount)}
-      </Container>
-    )
+    return <b>{(price.currency.symbol)} {(price.amount)}</b>
   }
 }
 
@@ -28,7 +22,3 @@ const mapStateToProps = (state: any) => ({
 })
 
 export default connect(mapStateToProps)(PriceDisplay);
-
-const Container = styled.div`
-  font-weight: bold;
-`
