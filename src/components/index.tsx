@@ -5,3 +5,7 @@ export { default as PriceDisplay } from './price-display';
 export { default as Badge } from './cart/badge';
 export { default as ProductCounter } from './cart/product-counter';
 export { default as Loader } from './loader';
+export { default as Attributes } from './cart/attributes';
+export { default as Gallery } from './cart/gallery';
+export { default as Summary } from './cart/summary';
+export { default as AttributeList } from './attribute-list';
