@@ -72,6 +72,7 @@ const mapDispatchToProps = { updateAttributes, updateCount };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 const Container = styled.div`
+  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

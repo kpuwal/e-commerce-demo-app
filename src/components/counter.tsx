@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { removeFromCart } from '../redux/slices/cart-slice';
 
 type PropsTypes = {
@@ -39,7 +39,7 @@ const mapStateToProps = (state: any) => ({
   counter: state.cart.items,
 })
 
-const mapDispatchToProps = { removeFromCart }
+const mapDispatchToProps = { removeFromCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCounter);
 

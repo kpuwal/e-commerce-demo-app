@@ -1,28 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 import CategoryList from '../containers/category-list';
 import CurrencyDropdown from '../containers/currency-dropdown';
 import { Badge } from './'
 import CartIcon from '../assets/cart-d.png';
+import { showMiniCart } from '../redux/slices/cart-slice';
 
-export default class Header extends React.Component {
+type PropsTypes = {
+  showMiniCart: Function
+};
+
+class Header extends React.Component<PropsTypes> {
+  handleMiniCart() {
+    this.props.showMiniCart()
+  }
+
   render () {
+    console.log(this.props)
     return (
       <HeaderBar>
         <CategoryList />
         <div>logo</div>
         <Container>
           <CurrencyDropdown />
-          <Link to="/cart">
+          <div onClick={() => this.handleMiniCart()}>
             <CartImage src={CartIcon} alt='cart icon' />
-          </Link>
+          </div>
           <Badge />
         </Container>
       </HeaderBar>
     );
   }
 }
+
+const mapDispatchToProps = { showMiniCart };
+export default connect(null, mapDispatchToProps)(Header);
 
 const HeaderBar = styled.div`
   display: flex;

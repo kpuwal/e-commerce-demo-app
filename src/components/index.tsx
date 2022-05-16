@@ -10,4 +10,8 @@ export { default as CartSummary } from './cart-summary';
 export { default as AttributesContent } from './attributes-content';
 export { default as SwatchRow } from './swatch-row';
 export { default as SwatchColor } from './swatch-color';
+export { default as Overlay } from './overlay';
+export { default as MiniNav } from './gallery/mini-nav';
+export { default as ImageNav } from './gallery/image-nav';
+export { default as Images } from './gallery/images';
 
