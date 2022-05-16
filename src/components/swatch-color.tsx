@@ -5,23 +5,17 @@ import {ItemsType} from '../types';
 type PropsTypes = {
   isChecked: boolean,
   item: ItemsType,
-  name: string,
-  productIndex?: number,
+  values: any,
   handleSelect: Function
 }
 
 export default class SwatchColor extends React.Component<PropsTypes> {
   render() {
-    const values = {
-      name: this.props.name,
-      value: this.props.item.id,
-      idx: this.props.productIndex
-    };
     return (
       <ColorSwatchContainer bg={this.props.item.value} isChecked={this.props.isChecked}>
         <Tooltip>{this.props.item.displayValue}</Tooltip>
         <ColorSwatch
-          onClick={() => this.props.handleSelect(values)}
+          onClick={() => this.props.handleSelect(this.props.values)}
           bg={this.props.item.value}
           isChecked={this.props.isChecked} />
       </ColorSwatchContainer>
