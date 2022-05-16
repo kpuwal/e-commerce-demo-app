@@ -33,19 +33,22 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
     const { idx: stateIndex, opacity: stateOpacity } = this.state;
     return (
       <GalleryContainer>
-        <Images {...{images, stateIndex, stateOpacity, isMini}} />
         {isMini 
           ? <MiniNav
               handleNext={() => this.handleNext()}
               handlePrev={() => this.handlePrev()} />
           : <ImageNav handleSelect={this.handleSelect} {...{images}} />
         }
+        <Images {...{images, stateIndex, stateOpacity, isMini}} />
       </GalleryContainer>
     )
   }
 }
 
 const GalleryContainer = styled.div`
-  width:  14rem; // 250px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width:  35%;
   position: relative;
 `

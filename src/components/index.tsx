@@ -1,4 +1,3 @@
-export { default as Header } from './header';
 export { default as Layout } from './layout';
 export { default as Description } from './description';
 export { default as PriceDisplay } from './price-display';

@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-import CategoryList from '../containers/category-list';
-import CurrencyDropdown from '../containers/currency-dropdown';
-import { Badge } from './'
+// import { Link } from 'react-router-dom';
+import CategoryList from './category-list';
+import CurrencyDropdown from './currency-dropdown';
+import { Badge } from '../components'
 import CartIcon from '../assets/cart-d.png';
 import { showMiniCart } from '../redux/slices/cart-slice';
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Header, Overlay } from '../components';
+import {  Overlay } from '../components';
 import { Outlet } from 'react-router-dom';
+import Header from '../containers/header';
 
 type PropsTypes = {
-  isMiniOn: boolean
+  isMiniCartOn: boolean
 }
 
 class Layout extends React.Component<PropsTypes> {
@@ -15,7 +16,7 @@ class Layout extends React.Component<PropsTypes> {
       <React.Fragment>
         <Header />
         <PageContainer>
-          {this.props.isMiniOn && <Overlay />}
+          {this.props.isMiniCartOn && <Overlay />}
           <Outlet />
         </PageContainer>
       </React.Fragment>
@@ -24,7 +25,7 @@ class Layout extends React.Component<PropsTypes> {
 }
 
 const mapStateToProps = (state: any) => ({
-  isMiniOn: state.cart.isMiniOn,
+  isMiniCartOn: state.cart.isMiniOn,
 })
 
 export default connect(mapStateToProps)(Layout)
