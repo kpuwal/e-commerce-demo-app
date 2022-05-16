@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {ItemsType} from '../types';
+import { ItemsType } from '../types';
 
 type PropsTypes = {
   isChecked: boolean,
@@ -12,13 +12,18 @@ type PropsTypes = {
 export default class SwatchColor extends React.Component<PropsTypes> {
   render() {
     return (
-      <ColorSwatchContainer bg={this.props.item.value} isChecked={this.props.isChecked}>
-        <Tooltip>{this.props.item.displayValue}</Tooltip>
+      <Container
+        bg={this.props.item.value}
+        isChecked={this.props.isChecked}
+      >
+        <Tooltip>{
+          this.props.item.displayValue}
+        </Tooltip>
         <ColorSwatch
           onClick={() => this.props.handleSelect(this.props.values)}
           bg={this.props.item.value}
           isChecked={this.props.isChecked} />
-      </ColorSwatchContainer>
+      </Container>
     )
   }
 }
@@ -51,7 +56,7 @@ const Tooltip = styled.span`
     border-color: #1f1f1f transparent transparent transparent;
   }
 `
-const ColorSwatchContainer = styled.div`
+const Container = styled.div`
   position: relative;
   width:  30px;
   height:  30px;
