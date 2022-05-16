@@ -49,8 +49,8 @@ async function getProduct(id: string) {
       )
     )
   client.setEndpoint(url);
-  const result = await client.post(query)
-  return (JSON.parse(JSON.stringify(result.product)));
+  const data = await client.post(query);
+  return (JSON.parse(JSON.stringify(data)));
 }
 
 async function getCurrencies() {

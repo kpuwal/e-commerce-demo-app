@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Loader } from '../components';
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
 import ProductThumbnail from '../containers/product-thumbnail';
 
 type PropsTypes = { match: string };
-type StateTypes = { products: ProductType[] };
+type StateTypes = { products: ProductType[], isLoading: boolean };
 
 class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      isLoading: true
   }}
 
   componentDidMount() {
@@ -32,7 +34,7 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
     } else {
       result = await (QueryGraphQL.getCategory(this.props.match));
     }
-    this.setState({products: result.products});
+    this.setState({products: result.products, isLoading: false});
   }
 
   render() {
@@ -40,15 +42,20 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
     const match = this.props.match;
     return (
       <Container>
-        <CategoryName>
-          <Name>
-            {match !== null ? match : 'all'}
-          </Name>
-        </CategoryName>
-        <ProductList>
-          {products.map((product: ProductType) =>
-            <ProductThumbnail key={product.id} product={product} /> )}
-        </ProductList>
+        {this.state.isLoading 
+        ? <Loader />
+        : <>
+            <CategoryName>
+              <Name>
+                {match !== null ? match : 'all'}
+              </Name>
+            </CategoryName>
+            <ProductList>
+              {products.map((product: ProductType) =>
+                <ProductThumbnail key={product.id} product={product} /> )}
+            </ProductList>
+          </>
+        }
       </Container>
     )
   }

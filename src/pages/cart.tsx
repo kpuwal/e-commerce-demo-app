@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { PriceDisplay, ProductCounter } from '../components';
+import { Loader, PriceDisplay, ProductCounter } from '../components';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import Gallery from '../containers/gallery';
 import AttributeList from '../components/attribute-list';
 
 
-interface PropsTypes {
+type PropsTypes = {
   items: any,
   quantity: number,
   totalPrice: any,
@@ -16,7 +16,16 @@ interface PropsTypes {
   updateCount: Function
 }
 
-class Cart extends React.Component<PropsTypes> {
+type StateTypes = { isLoading: boolean };
+
+class Cart extends React.Component<PropsTypes, StateTypes> {
+  constructor(props: PropsTypes) {
+    super(props);
+    this.state = {
+      isLoading: true
+    }
+  }
+
   handleUpdateAttributes = (e: any) => {
     this.props.updateAttributes(e)
   }
@@ -44,7 +53,6 @@ class Cart extends React.Component<PropsTypes> {
               </LeftPanel>
               <RightPanel>
                 <ProductCounter
-                  isVertical={true}
                   amount={count}
                   handleCount={this.handleCount}
                   productIndex={idx} />

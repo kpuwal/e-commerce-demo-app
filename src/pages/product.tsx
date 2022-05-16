@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType, SelectedAttributesType } from '../types';
-import { InfoDisplay, PriceDisplay } from '../components';
+import { Loader, Description, PriceDisplay } from '../components';
 import AttributeList from '../components/attribute-list';
 import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
@@ -52,17 +52,17 @@ class Product extends React.Component<PropsTypes, StateTypes> {
 
   async fetchProductData() {
       const data = await (QueryGraphQL.getProduct(this.props.match))
-      this.setState({product: data, isLoading: false});
+      this.setState({product: data.product, isLoading: false});      
   }
 
   render() {
     const { gallery, name, brand, attributes, prices, description, inStock } = this.state.product;
-    console.log(inStock)
     const { product, selectedAttributes } = this.state;
     return (
       <ProductContainer>
-        {!this.state.isLoading && 
-          <Container>
+        {this.state.isLoading
+        ?  <Loader />
+        :  <Container>
             <Gallery images={gallery} isMini={false} />
             <AttributesContainer>
               <h2>{name}</h2>
@@ -78,7 +78,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
               >
                 Add To Cart
               </CartButton>
-              <InfoDisplay descr={description} />
+              <Description descr={description} />
             </AttributesContainer>
           </Container>
         }
@@ -87,7 +87,7 @@ class Product extends React.Component<PropsTypes, StateTypes> {
 }
 
 const withRouterParams = (WrappedComponent: any) => (props: any) => {
-  let { id } = useParams<"id">();
+  let { id } = useParams<'id'>();
   return <WrappedComponent {...props} match={id} />
 }
 
@@ -101,7 +101,6 @@ type StyledProps = {disabled: boolean};
 const ProductContainer = styled.div`
   display: flex;
   justify-content: center;
-  // padding-top: 50px;
 `
 const Container = styled.div`
   display: flex;
