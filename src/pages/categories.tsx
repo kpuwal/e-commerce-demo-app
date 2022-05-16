@@ -46,9 +46,7 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
         ? <Loader />
         : <>
             <CategoryName>
-              <Name>
-                {match !== null ? match : 'all'}
-              </Name>
+              <Name>{match !== null ? match : 'all'}</Name>
             </CategoryName>
             <ProductList>
               {products.map((product: ProductType) =>

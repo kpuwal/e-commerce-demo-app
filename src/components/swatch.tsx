@@ -88,27 +88,27 @@ const Tooltip = styled.span`
 `
 const ColorSwatchContainer = styled.div`
   position: relative;
-  width: 1.9rem; // 30px;
-  hight: 100%; // 30px;
+  width:  30px;
+  height:  30px;
   justify-content: center;
   align-items: center;
-  margin: 2%; // 4px;
+  margin: 2px;
   border: ${(props: StyledProps) => props.isChecked ? (`${props.bg}` === '#FFFFFF' ? '1px solid black' : `1px solid ${props.bg}`) : '1px solid white'};
   &:hover ${Tooltip} {
     visibility: visible;
   }
 `
 const ColorSwatch = styled.div`
-  width: 80%; // 24px;
-  height: 80%; // 24px;
+  width:  24px;
+  height:  24px;
   margin: 2px;
   background-color: ${(props: StyledProps) => props.bg};
   border: ${(props: StyledProps) => props.bg === '#FFFFFF' ? `1px solid black` : `1px solid ${props.bg}`};
 `
 
 const TextSwatch = styled.div`
-  width: 3rem; // 60px;
-  // height: 100%; // 40px;
+  width:  60px;
+  height:  40px;
   margin: 5px;
   border: 1px solid black;
   text-align: center;

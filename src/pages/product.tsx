@@ -78,7 +78,9 @@ class Product extends React.Component<PropsTypes, StateTypes> {
                 selectedAttributes={this.state.selectedAttributes}
                 handleSelect={this.handleChange}
               />
-              <Message>{this.state.isNotValidated && <>Select attributes</>}</Message>
+              <Message>
+                {this.state.isNotValidated && <>Select attributes</>}
+              </Message>
               <CartButton
                 disabled={!inStock}
                 onClick={() => this.handleAddToCart(this.state.product)}

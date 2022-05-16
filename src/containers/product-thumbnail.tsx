@@ -120,8 +120,8 @@ const AddToCartButton = styled.div`
   &:active {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
-  margin-left: 15%; // 270px;
-  margin-top: 19%; // 310px;
+  margin-left: 13rem; // 15% 270px;
+  margin-top: 15.5rem; // 310px;
 `
 const OutOfStock = styled.p`
  position: absolute;
