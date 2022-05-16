@@ -52,9 +52,12 @@ export const cartSlice = createSlice({
       }
       state.tax = refreshTax(state.totalPrice);
     },
+    removeFromCart: (state, action: PayloadAction<number>) => {
+      state.items.splice(action.payload, 1);
+    }
   },
 })
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, updateCount, updateAttributes } = actions;
+export const { addToCart, removeFromCart, updateCount, updateAttributes } = actions;
 export default reducer;

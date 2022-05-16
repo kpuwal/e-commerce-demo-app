@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from "react-redux";
+import { removeFromCart } from '../redux/slices/cart-slice';
 
-interface PropsTypes {
+type PropsTypes = {
   isVertical: boolean,
   amount: number,
   productIndex: number,
-  handleCount: Function
+  handleCount: Function,
+  removeFromCart: Function
 }
 
 class ProductCounter extends React.Component<PropsTypes> {
@@ -15,9 +17,10 @@ class ProductCounter extends React.Component<PropsTypes> {
     this.props.handleCount({actionType: 'increment', idx})
   }
 
-  handleDecrement() {
+  handleDecrement(amount: number) {
     const idx = this.props.productIndex;
     this.props.handleCount({actionType: 'decrement', idx})
+    if(amount - 1 === 0) {this.props.removeFromCart(idx)}
   }
 
   render() {
@@ -26,7 +29,7 @@ class ProductCounter extends React.Component<PropsTypes> {
       <Container {...{isVertical}}>
         <Button onClick={() => this.handleIncrement()}>+</Button>
         <CounterDisplay {...{isVertical}}>{amount}</CounterDisplay>
-        <Button onClick={() => this.handleDecrement()} disabled={amount === 0}>-</Button>
+        <Button onClick={() => this.handleDecrement(amount)} disabled={amount === 0}>-</Button>
       </Container>
     )
   }
@@ -36,7 +39,9 @@ const mapStateToProps = (state: any) => ({
   counter: state.cart.items,
 })
 
-export default connect(mapStateToProps)(ProductCounter);
+const mapDispatchToProps = { removeFromCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCounter);
 
 type StyledProps = {isVertical: boolean}
 type StyledProps2 = { disabled?: boolean}

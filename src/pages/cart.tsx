@@ -68,11 +68,10 @@ class Cart extends React.Component<PropsTypes> {
               <Label>Total:</Label>
               <PriceDisplay prices={this.props.totalPrice} />
             </Inline>
+            <CartButton >Place Order</CartButton>
           </>
         }
         {this.props.items.length === 0 && <>nothing to see here, keep on shopping</>}
-        {this.props.items.length === 0 ? <></> : <CartButton >Place Order</CartButton>}
-        {/* <CartButton >Place Order</CartButton> */}
       </div>
     )
   }
