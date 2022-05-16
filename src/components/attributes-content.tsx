@@ -1,6 +1,6 @@
 import React from 'react';
 import { AttributesType, PriceType } from '../types';
-import Swatch from './swatch';
+import { SwatchRow } from './';
 
 type PropsTypes = {
   attributes: AttributesType[],
@@ -26,7 +26,7 @@ export default class AttributesContent extends React.Component<PropsTypes> {
               <h3 style={{fontFamily: 'Roboto'}}>
                 {(attribute.name).toUpperCase()}
               </h3>
-              <Swatch
+              <SwatchRow
                 items={attribute.items}
                 name={attribute.name}
                 type={attribute.type} 

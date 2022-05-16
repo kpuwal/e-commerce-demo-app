@@ -36,6 +36,5 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column; 
-  // width: 30%;
+  flex-direction: column;
 `

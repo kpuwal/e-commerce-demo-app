@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ItemsType } from '../types';
-
+import {SwatchColor} from '.'
 type PropsTypes = {
   items: ItemsType[],
   selectedAttributes: { [key: string]: string},
@@ -11,11 +11,11 @@ type PropsTypes = {
   productIndex?: number
 }
 
-export default class Swatch extends React.Component<PropsTypes> {
+export default class SwatchRow extends React.Component<PropsTypes> {
   render() {
     const {selectedAttributes, handleSelect, productIndex, name} = this.props;
     return (
-      <SwatchRow>
+      <Container>
         {this.props.items.map((item: ItemsType) => {
           const { id, value } = item;
           const isChecked = Object.keys(selectedAttributes).length !== 0 && selectedAttributes[name] === id;
@@ -27,14 +27,14 @@ export default class Swatch extends React.Component<PropsTypes> {
           return (
             <React.Fragment key={item.id}>
               {this.props.type === 'swatch'
-                ? <ColorSwatchContainer bg={value} {...{isChecked}}>
-                    <Tooltip>{item.displayValue}</Tooltip>
-                    <ColorSwatch
-                      key={id}
-                      onClick={() => handleSelect(values)}
-                      bg={value}
-                      {...{isChecked}} />
-                  </ColorSwatchContainer>
+                ? <SwatchColor
+                  key={id}
+                  item={item}
+                  isChecked={isChecked}
+                  name={name}
+                  productIndex={this.props.productIndex}
+                  handleSelect={this.props.handleSelect}
+                  />
                 : <TextSwatch
                   key={id}
                   onClick={() => handleSelect(values)}
@@ -46,14 +46,14 @@ export default class Swatch extends React.Component<PropsTypes> {
             )
           })
         }
-      </SwatchRow>
+      </Container>
     )
   }
 }
 
 type StyledProps = {isChecked: boolean, bg?: string };
 
-const SwatchRow = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 1rem;

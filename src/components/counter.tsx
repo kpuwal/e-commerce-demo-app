@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { removeFromCart } from '../../redux/slices/cart-slice';
+import { removeFromCart } from '../redux/slices/cart-slice';
 
 type PropsTypes = {
   amount: number,

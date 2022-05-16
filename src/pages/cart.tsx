@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { AttributesContainer, Gallery, Summary } from '../components';
+import { AttributesContainer, CartSummary, ProductCounter } from '../components';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import { PriceType } from '../types';
+import Gallery from '../containers/gallery';
 
 type PropsTypes = {
   items: any,
@@ -37,17 +38,19 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
                 productIndex={idx}
                 selectedAttributes={item.selectedAttributes}
                 handleSelect={this.handleUpdateAttributes} />
-              <Gallery 
-                count={item.count}
-                gallery={item.product.gallery}
-                handleCount={this.handleCount}
-                {...{idx}} />
+                <GalleryPanel>
+                  <ProductCounter
+                    amount={item.count}
+                    handleCount={this.handleCount}
+                    productIndex={idx} />
+                  <Gallery images={item.product.gallery} isMini={true} />
+                </GalleryPanel>
             </Container>
           )
         })}
         <SummaryLine />
         {this.props.items.length !== 0 && 
-          <Summary
+          <CartSummary
             tax={this.props.tax}
             totalPrice={this.props.totalPrice}
             quantity={this.props.quantity} />
@@ -81,4 +84,9 @@ const SummaryLine = styled.hr`
 const Empty = styled.div`
   display: flex;
   justify-content: center;
+`
+const GalleryPanel = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 `

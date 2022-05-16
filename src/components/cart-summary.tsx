@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import { PriceDisplay } from '../';
-import { PriceType } from '../../types';
+import { PriceDisplay } from '.';
+import { PriceType } from '../types';
 
 type PropsTypes = {
   tax: PriceType[],
