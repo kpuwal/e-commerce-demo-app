@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType, SelectedAttributesType } from '../types';
-import { Loader, Description, PriceDisplay } from '../components';
-import AttributeList from '../components/attribute-list';
+import { Loader, Description, AttributesContainer } from '../components';
 import Gallery from '../containers/gallery';
 import { addToCart } from '../redux/slices/cart-slice';
 
@@ -18,7 +17,8 @@ type PropsTypes = {
 type StateTypes = {
   product: ProductType,
   selectedAttributes: SelectedAttributesType<string>,
-  isLoading: boolean
+  isLoading: boolean,
+  isNotValidated: boolean
 }
 
 class Product extends React.Component<PropsTypes, StateTypes> {
@@ -27,7 +27,8 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     this.state = {
       product: initialState,
       selectedAttributes: {},
-      isLoading: true
+      isLoading: true,
+      isNotValidated: false
     }
   }
 
@@ -36,17 +37,24 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   handleAddToCart(product: ProductType) {
-    this.props.addToCart({
-      product,
-      selectedAttributes: this.state.selectedAttributes
-    })
+    if(this.isValidated()) {
+      this.props.addToCart({
+        product,
+        selectedAttributes: this.state.selectedAttributes
+      })
+    } else {this.setState({isNotValidated: true})}
+    
   }
 
-  handleChange = (e: any) => {
-    const { name, value } = e;
+  isValidated() {
+    return (this.state.product.attributes.length === Object.keys(this.state.selectedAttributes).length)
+  }
+
+  handleChange = (event: any) => {
+    const { name, value } = event;
      this.setState((prevState: any) => {
        const attributes = { ...prevState.selectedAttributes, [name]: value };
-       return { selectedAttributes: attributes };
+       return { selectedAttributes: attributes, isNotValidated: false };
      });
    }
 
@@ -56,30 +64,27 @@ class Product extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const { gallery, name, brand, attributes, prices, description, inStock } = this.state.product;
-    const { product, selectedAttributes } = this.state;
+    const { gallery, description, inStock } = this.state.product;
     return (
       <ProductContainer>
         {this.state.isLoading
         ?  <Loader />
         :  <Container>
             <Gallery images={gallery} isMini={false} />
-            <AttributesContainer>
-              <h2>{name}</h2>
-              <h4 style={{fontWeight: 200}}>{brand}</h4>
-              <AttributeList
+            <InfoContainer>
+              <AttributesContainer
+                isCart={false}
+                item={this.state.product}
+                selectedAttributes={this.state.selectedAttributes}
                 handleSelect={this.handleChange}
-                {...{prices, selectedAttributes, attributes}}/>
-              <h3 style={{fontFamily: 'Roboto'}}>PRICE</h3>
-              <PriceDisplay prices={prices} />
+              />
+              <Message>{this.state.isNotValidated && <>Select attributes</>}</Message>
               <CartButton
                 disabled={!inStock}
-                onClick={() => this.handleAddToCart(product)}
-              >
-                Add To Cart
-              </CartButton>
+                onClick={() => this.handleAddToCart(this.state.product)}
+              >Add To Cart</CartButton>
               <Description descr={description} />
-            </AttributesContainer>
+            </InfoContainer>
           </Container>
         }
       </ProductContainer>
@@ -109,9 +114,9 @@ const Container = styled.div`
   align-self: center;
   width: 100%;
 `
-const AttributesContainer = styled.div` 
+const InfoContainer = styled.div` 
+  display: flex;
   flex-direction: column;
-  width: 300px;
   margin-right: 100px;
 `
 const CartButton = styled.button`
@@ -120,7 +125,7 @@ const CartButton = styled.button`
   transition: background 400ms;
   color: #fff;
   padding: 1rem 2rem;
-  margin: 3rem 0 0 0;
+  // margin: 1rem 0 0 0;
   font-size: 1.5rem;
   outline: 0;
   border: 0;
@@ -132,6 +137,12 @@ const CartButton = styled.button`
   &:active {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
+`
+const Message = styled.div`
+  height: 3rem;
+  padding-top: 1rem;
+  font-size: 1.5rem;
+  color: red;
 `
 
 const initialState = {

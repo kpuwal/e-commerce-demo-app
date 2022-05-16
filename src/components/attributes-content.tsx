@@ -10,7 +10,7 @@ type PropsTypes = {
   productIndex?: number
 }
 
-export default class AttributeList extends React.Component<PropsTypes> {
+export default class AttributesContent extends React.Component<PropsTypes> {
   render() {
     const {
       attributes,
@@ -23,7 +23,9 @@ export default class AttributeList extends React.Component<PropsTypes> {
         {attributes.map((attribute: AttributesType, idx: number) => {
           return (
             <div key={idx}>
-              <h3 style={{fontFamily: 'Roboto'}}>{(attribute.name).toUpperCase()}</h3>
+              <h3 style={{fontFamily: 'Roboto'}}>
+                {(attribute.name).toUpperCase()}
+              </h3>
               <Swatch
                 items={attribute.items}
                 name={attribute.name}

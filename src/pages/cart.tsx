@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { Attributes, Gallery, Summary } from '../components';
+import { AttributesContainer, Gallery, Summary } from '../components';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import { PriceType } from '../types';
 
@@ -28,13 +28,15 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
   render() {
     return (
       <div>
-        {this.props.items.map((item: any, idx: number) => {  
+        {this.props.items.map((item: any, idx: number) => { 
           return (
             <Container key={idx}>
-              <Attributes
+              <AttributesContainer
+                isCart={true}
+                item={item.product}
                 productIndex={idx}
-                handleSelect={this.handleUpdateAttributes}
-                {...{item}} />
+                selectedAttributes={item.selectedAttributes}
+                handleSelect={this.handleUpdateAttributes} />
               <Gallery 
                 count={item.count}
                 gallery={item.product.gallery}
@@ -50,8 +52,7 @@ class Cart extends React.Component<PropsTypes, StateTypes> {
             totalPrice={this.props.totalPrice}
             quantity={this.props.quantity} />
         }
-        {this.props.items.length === 0 && 
-          <Empty>the cart is empty</Empty>}
+        {this.props.items.length === 0 && <Empty>the cart is empty</Empty>}
       </div>
     )
   }
