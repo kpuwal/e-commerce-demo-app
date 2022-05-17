@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 
-import { CartItemType } from '../types';
+import { CartItemType, StyleItem } from '../types';
 import { ProductCounter, AttributesContainer } from '../components';
 import Gallery from './gallery';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 
 type PropsTypes = {
-  type: any,
+  type: StyleItem,
   items: CartItemType[],
   updateAttributes: Function,
   updateCount: Function

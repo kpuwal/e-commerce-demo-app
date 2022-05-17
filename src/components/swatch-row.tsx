@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ItemsType } from '../types';
+import { ItemsType, valuesTypes } from '../types';
 import { SwatchColor } from './';
 
 type PropsTypes = {
@@ -24,7 +24,7 @@ export default class SwatchRow extends React.Component<PropsTypes> {
             name: name,
             value: id,
             idx: productIndex
-          };
+          } as valuesTypes;
           return (
             <React.Fragment key={item.id}>
               {this.props.type === 'swatch'

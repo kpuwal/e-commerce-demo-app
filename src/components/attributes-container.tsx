@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { PriceDisplay, AttributesContent } from './'
+import { CartProductType, StyleItem, SelectedAttributesType } from '../types';
 
 type PropsTypes = {
-  item: any,
+  item: CartProductType,
   isCart: boolean,
-  type: any,
-  selectedAttributes: any,
+  type: StyleItem,
+  selectedAttributes: SelectedAttributesType<string>,
   productIndex?: number,
   handleSelect: Function,
 }

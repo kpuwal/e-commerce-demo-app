@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import { connect } from "react-redux";
 import { showMiniCart } from '../redux/slices/cart-slice';
 import CartItems from '../containers/cart-items';
 import {styleType} from '../styles';
+import { CartItemType } from '../types';
 
 type PropsTypes = {
-  items: any,
+  items: CartItemType[],
   quantity: number,
-  totalPrice: any,
+  totalPrice: number,
   isMiniOn: boolean,
   showMiniCart: Function
 }
@@ -21,11 +21,12 @@ class Overlay extends React.Component<PropsTypes, StateTypes> {
 
 
   render() {
+    const isSingular = this.props.quantity === 1
     return (
       <>
         <Container>
           <CartContainer>
-            <div>My Bag</div>
+            <div><b>My Bag</b>, {this.props.quantity} {isSingular ? 'item' : 'items'}</div>
             <CartItems type={styleType.miniCart} />
             <Link to='/cart/'>go to cart</Link>
           </CartContainer>

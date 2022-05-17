@@ -75,3 +75,24 @@ export type CartItemType = {
 export type SelectedAttributesType<Attr extends string>= {
   [key in Attr]: string
 }
+
+export type StyleItem = {
+  h3: {fontSize: string },
+  h4: {fontSize: string },
+  size: string,
+  counterWidth: string,
+  attrSize: string,
+  useCaps: boolean
+}
+
+export type StyleType = {
+  product: StyleItem,
+  cart: StyleItem,
+  miniCart: StyleItem
+}
+
+export type valuesTypes = {
+  name: string,
+  value: string,
+  idx: number
+}

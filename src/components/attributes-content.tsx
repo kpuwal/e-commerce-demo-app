@@ -1,11 +1,11 @@
 import React from 'react';
-import { AttributesType, PriceType } from '../types';
+import { AttributesType, PriceType, StyleItem } from '../types';
 import { SwatchRow } from './';
 
 type PropsTypes = {
   attributes: AttributesType[],
   prices: PriceType[],
-  type: any,
+  type: StyleItem,
   selectedAttributes: {},
   handleSelect: Function,
   productIndex?: number

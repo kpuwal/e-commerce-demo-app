@@ -3,9 +3,13 @@ import styled from 'styled-components';
 import {useSearchParams, Link} from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 
-type StateTypes = { categories: string[] };
-type PropsTypes = { match: string };
-type StyledProps = { underline: boolean };
+type StateTypes = {
+  categories: string[]
+}
+
+type PropsTypes = {
+  match: string
+}
 
 class CategoryList extends React.Component<PropsTypes, StateTypes> {
   constructor(props: any){
@@ -50,6 +54,8 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
 }
 
 export default withRouterParams(CategoryList);
+
+type StyledProps = { underline: boolean };
 
 const Container = styled.div`
   display: flex;

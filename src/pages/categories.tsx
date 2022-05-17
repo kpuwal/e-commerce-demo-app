@@ -6,8 +6,13 @@ import { QueryGraphQL } from '../graphql/queries';
 import { CategoryType, ProductType } from '../types';
 import ProductThumbnail from '../containers/product-thumbnail';
 
-type PropsTypes = { match: string };
-type StateTypes = { products: ProductType[], isLoading: boolean };
+type PropsTypes = {
+  match: string
+};
+type StateTypes = {
+  products: ProductType[],
+  isLoading: boolean
+};
 
 class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {

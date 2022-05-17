@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Images, MiniNav, ImageNav } from '../components'
+import { StyleItem } from '../types';
 
 type PropsTypes = {
-  type: any,
+  type: StyleItem,
   images: string[],
   hasMiniNav: boolean,
 }
 
-type StateTypes = { opacity: number, idx: number };
+type StateTypes = {
+  opacity: number,
+  idx: number
+};
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ItemsType } from '../types';
+import { ItemsType, valuesTypes } from '../types';
 
 type PropsTypes = {
   isChecked: boolean,
   item: ItemsType,
-  values: any,
+  values: valuesTypes,
   handleSelect: Function
 }
 
