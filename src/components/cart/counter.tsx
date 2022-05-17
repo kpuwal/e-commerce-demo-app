@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { removeFromCart } from '../../redux/slices/cart-slice';
 
 type PropsTypes = {
+  type: any,
   amount: number,
   productIndex: number,
   handleCount: Function,
@@ -25,7 +26,7 @@ class ProductCounter extends React.Component<PropsTypes> {
 
   render() {
     return (
-      <Container>
+      <Container right={this.props.type.counterWidth}>
         <Button onClick={() => this.handleIncrement()}>+</Button>
         <CounterDisplay>{this.props.amount}</CounterDisplay>
         <Button
@@ -44,16 +45,16 @@ const mapDispatchToProps = { removeFromCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCounter);
 
-type StyledProps = { disabled?: boolean };
+type StyledProps = { disabled?: boolean, right?: string };
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 5%;
+  width: 2rem;
   justify-content: center;
   position: relative;
-  right: -14%;
+  right: ${(props: StyledProps) => props.right};
   z-index: 4000;
 `
 const CounterDisplay = styled.div`
@@ -63,8 +64,8 @@ const CounterDisplay = styled.div`
   line-height: 12em;
 `
 const Button = styled.button`
-  width: 50%; // 45px;
-  height: 50%; // 45px;
+  width: 2rem; // 45px;
+  height: 2rem; // 45px;
   background-color: white;
   border: ${(props: StyledProps) => props.disabled ? '1px solid gray' : '1px solid black'}
 `

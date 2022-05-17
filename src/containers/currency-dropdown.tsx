@@ -8,7 +8,7 @@ import { changeCurrency } from '../redux/slices/currency-slice';
 import ArrowUpIcon from '../assets/collapse-arrow.png';
 import ArrowDownIcon from '../assets/expand-arrow.png';
 
-interface StateTypes {
+type StateTypes = {
   currencies: CurrencyType[],
   isListOpen: boolean,
   currentSymbol: string
@@ -23,6 +23,7 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
       currentSymbol: ''
     }
   }
+
   componentDidMount() {
     this.fetchData();
   }

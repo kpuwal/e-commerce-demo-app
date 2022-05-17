@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
-import { Link } from 'react-router-dom';
 import CategoryList from './category-list';
 import CurrencyDropdown from './currency-dropdown';
 import { Badge } from '../components'
@@ -19,18 +17,15 @@ class Header extends React.Component<PropsTypes> {
   }
 
   render () {
-    console.log(this.props)
     return (
       <HeaderBar>
         <CategoryList />
         <div>logo</div>
         <Container>
           <CurrencyDropdown />
-          {/* <div onClick={() => this.handleMiniCart()}> */}
-          <Link to='/cart'>
+          <div onClick={() => this.handleMiniCart()}>
             <CartImage src={CartIcon} alt='cart icon' />
-          </Link>
-          {/* </div> */}
+          </div>
           <Badge />
         </Container>
       </HeaderBar>

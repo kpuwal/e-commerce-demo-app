@@ -5,7 +5,8 @@ import { SwatchRow } from './';
 type PropsTypes = {
   attributes: AttributesType[],
   prices: PriceType[],
-  selectedAttributes: any,
+  type: any,
+  selectedAttributes: {},
   handleSelect: Function,
   productIndex?: number
 }
@@ -16,16 +17,17 @@ export default class AttributesContent extends React.Component<PropsTypes> {
       attributes,
       selectedAttributes,
       handleSelect,
-      productIndex
+      productIndex,
+      type
     } = this.props;
     return (
       <div>
         {attributes.map((attribute: AttributesType, idx: number) => {
           return (
             <div key={idx}>
-              <h3 style={{fontFamily: 'Roboto'}}>
-                {(attribute.name).toUpperCase()}
-              </h3>
+              <h4 style={{fontFamily: 'Roboto'}}>
+                {type.useCaps ? (attribute.name).toLocaleUpperCase() : (attribute.name)}:
+              </h4>
               <SwatchRow
                 items={attribute.items}
                 name={attribute.name}

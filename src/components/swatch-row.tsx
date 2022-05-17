@@ -59,14 +59,14 @@ const Container = styled.div`
   height: 3rem;
 `
 const TextSwatch = styled.div`
-  width:  60px;
-  height:  40px;
-  margin: 5px;
+  width:  4rem;
+  height:  2.5rem;
+  margin: 5px 5px 5px 0;
   border: 1px solid black;
   text-align: center;
   vertical-align: middle;
-  line-height: 40px;
-  font-size: 200;
+  line-height: 2.5rem;
+  font-size: 1rem;
   background-color: ${(props: StyledProps) => props.isChecked ? 'black' : 'white'};
   color: ${(props: StyledProps) => props.isChecked ? 'white' : 'black'};
 `

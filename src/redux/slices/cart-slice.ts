@@ -57,7 +57,7 @@ export const cartSlice = createSlice({
       state.items.splice(action.payload, 1);
     },
     showMiniCart: (state) => {
-      console.log('action')
+      console.log(state.isMiniOn, ' from state')
       state.isMiniOn = !state.isMiniOn;
     }
   },

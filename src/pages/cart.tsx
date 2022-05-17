@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { CartSummary, Item } from '../components';
+import { CartSummary } from '../components';
+import CartItems from '../containers/cart-items';
 import { PriceType, CartItemType } from '../types';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
+import { styleType } from '../styles';
 
 type PropsTypes = {
   items: CartItemType[],
@@ -26,14 +28,7 @@ class Cart extends React.Component<PropsTypes> {
   render() {
     return (
       <Container>
-        {
-          this.props.items.map((item: any, idx: number) => 
-            <Item 
-              key={idx}
-              handleSelect={this.handleUpdateAttributes}
-              handleCount={this.handleCount}
-              {...{item, idx}}/>)
-        }
+        <CartItems type={styleType.cart} />
         {
           this.props.items.length !== 0 && 
             <CartSummary

@@ -1,34 +1,71 @@
 import React from 'react';
 import styled from 'styled-components';
-import Cart from '../pages/cart';
+import { Link } from 'react-router-dom';
 
-export default class Overlay extends React.Component {
+import { connect } from "react-redux";
+import { showMiniCart } from '../redux/slices/cart-slice';
+import CartItems from '../containers/cart-items';
+import {styleType} from '../styles';
+
+type PropsTypes = {
+  items: any,
+  quantity: number,
+  totalPrice: any,
+  isMiniOn: boolean,
+  showMiniCart: Function
+}
+
+type StateTypes = { isVisible: boolean }
+
+class Overlay extends React.Component<PropsTypes, StateTypes> {
+
+
   render() {
     return (
-      <Container>
-        <CartContainer>
-          <Cart />
-        </CartContainer>
-      </Container>
+      <>
+        <Container>
+          <CartContainer>
+            <div>My Bag</div>
+            <CartItems type={styleType.miniCart} />
+            <Link to='/cart/'>go to cart</Link>
+          </CartContainer>
+        </Container>
+      </>
     )
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  items: state.cart.items,
+  quantity: state.cart.quantity,
+  totalPrice: state.cart.totalPrice,
+  isMiniOn: state.cart.isMiniOn
+})
+
+const mapDispatchToProps = { showMiniCart };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
+
 const Container = styled.div`
+  // display: flex;
   width: 100%;
-  height: 93%;
   position: fixed;
   top: 80px;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 1000;
+  z-index: 5000;
+  overflow-y: scroll;
+
 `
 const CartContainer = styled.div`
-// position: absolute;
-  width: 50%;
-  margin-top: 0;
-  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  min-height: 100px;
+  margin: 0 7% 7% 0;
+  padding: 2%;
+  float: right;
   background-color: white;
 `

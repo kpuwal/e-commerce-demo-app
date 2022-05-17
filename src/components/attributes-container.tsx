@@ -5,6 +5,7 @@ import { PriceDisplay, AttributesContent } from './'
 type PropsTypes = {
   item: any,
   isCart: boolean,
+  type: any,
   selectedAttributes: any,
   productIndex?: number,
   handleSelect: Function,
@@ -12,23 +13,20 @@ type PropsTypes = {
 
 export default class AttributesContainer extends React.Component<PropsTypes> {
   render() {
-    const productIndex = this.props.productIndex;
-    const selectedAttributes = this.props.selectedAttributes;
-    const {attributes, prices, name, brand} = this.props.item; 
+    const {productIndex, selectedAttributes, isCart, type} = this.props;
+    const {attributes, prices, name, brand} = this.props.item;
     return (
-      <Container>
-        <h2>{name}</h2>
-        <h4 style={{fontWeight: 200}}>{brand}</h4>
-        {
-          this.props.isCart && <PriceDisplay {...{prices}} />
-        }
+      <Container size={type.attrSize}>
+        <Name font={type.h3.fontSize}>{name}</Name>
+        <Brand font={type.h4.fontSize}>{brand}</Brand>
+        { isCart && <PriceDisplay {...{prices}} /> }
         <AttributesContent
           handleSelect={this.props.handleSelect}
-          {...{attributes, selectedAttributes, prices, productIndex}}
+          {...{attributes, selectedAttributes, prices, productIndex, type}}
         />
         {!this.props.isCart &&
           <>
-            <h3 style={{fontFamily: 'Roboto'}}>PRICE</h3>
+            <h4 style={{fontFamily: 'Roboto'}}>PRICE:</h4>
             <PriceDisplay prices={prices} />
           </>
         }
@@ -37,7 +35,19 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
   }
 }
 
+type StyledTypes = { size?: string, font?: string };
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  width: ${(props: StyledTypes) => props.size}; //  35%;
+`
+const Name = styled.div`
+  font-size: ${(props: StyledTypes) => props.font};
+  font-weight: bold;
+`
+const Brand = styled.div`
+  font-size: ${(props: StyledTypes) => props.font};
+  font-weight: 200;
+  padding: .7em 0 .7em 0;
 `

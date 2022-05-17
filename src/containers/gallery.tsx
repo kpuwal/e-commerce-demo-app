@@ -2,7 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { Images, MiniNav, ImageNav } from '../components'
 
-type PropsTypes = { images: string[], isMini: boolean };
+type PropsTypes = {
+  type: any,
+  images: string[],
+  hasMiniNav: boolean,
+}
+
 type StateTypes = { opacity: number, idx: number };
 
 export default class Gallery extends React.Component<PropsTypes, StateTypes> {
@@ -29,26 +34,27 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
   }
 
   render() {
-    const { images, isMini } = this.props;
+    const { images, hasMiniNav, type } = this.props;
     const { idx: stateIndex, opacity: stateOpacity } = this.state;
     return (
-      <GalleryContainer>
-        {isMini 
+      <GalleryContainer size={type.size}>
+        {hasMiniNav 
           ? <MiniNav
               handleNext={() => this.handleNext()}
               handlePrev={() => this.handlePrev()} />
           : <ImageNav handleSelect={this.handleSelect} {...{images}} />
         }
-        <Images {...{images, stateIndex, stateOpacity, isMini}} />
+        <Images {...{images, stateIndex, stateOpacity, hasMiniNav}} />
       </GalleryContainer>
     )
   }
 }
 
+type StyledTypes = { size: string };
+
 const GalleryContainer = styled.div`
   display: flex;
   flex-direction: row;
-  width: 35%;
+  width: ${(props: StyledTypes) => props.size};
   position: relative;
-  // justify-content: flex-end;
 `
