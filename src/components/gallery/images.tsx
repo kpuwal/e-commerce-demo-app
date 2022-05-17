@@ -33,10 +33,11 @@ type StyledProps = {
 const Image = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.opacity};
-  width: ${(props: StyledProps) => props.isMini ? '14rem' : '100%'};
-  height: ${(props: StyledProps) => props.isMini ? '14rem' : '100%'};
-  position: absolute;
-  margin-left: ${(props: StyledProps) => props.isMini ? 0 : '30%'};
+  width: ${(props: StyledProps) => props.isMini ? '60%' : '90%'};
+  height: 100%;
+  margin-left: ${(props: StyledProps) => props.isMini ? '40%' : '30%'};
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: ${(props: StyledProps) => props.isMini ? 'bottom right' : 'top'};
+  position: absolute;
 `

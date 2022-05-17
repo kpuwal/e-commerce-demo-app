@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
-import { PriceDisplay } from '.';
-import { PriceType } from '../types';
+import { PriceDisplay } from '..';
+import { PriceType } from '../../types';
 
 type PropsTypes = {
   tax: PriceType[],
@@ -13,6 +13,7 @@ export default class SummaryPanel extends React.Component<PropsTypes> {
   render() {
     return (
       <>
+        <SummaryLine />
         <Inline>
           <Label>Tax 21%:</Label>
           <PriceDisplay prices={this.props.tax} />
@@ -32,12 +33,11 @@ export default class SummaryPanel extends React.Component<PropsTypes> {
 }
 
 const Inline = styled.div`
-  display: flex;
-  flex-direction: row;
   margin-bottom: 1rem;
 `
 const Label = styled.div`
   margin-right: 1rem;
+  display: inline-block
 `
 const CartButton = styled.button`
   position: relative;
@@ -57,4 +57,8 @@ const CartButton = styled.button`
   &:active {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
+`
+const SummaryLine = styled.hr`
+  border: 1px solid #f1f1f1;
+  width: 100%;
 `

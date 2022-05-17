@@ -84,7 +84,9 @@ class Product extends React.Component<PropsTypes, StateTypes> {
               <CartButton
                 disabled={!inStock}
                 onClick={() => this.handleAddToCart(this.state.product)}
-              >Add To Cart</CartButton>
+              >
+                Add To Cart
+              </CartButton>
               <Description descr={description} />
             </InfoContainer>
           </Container>

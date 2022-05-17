@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CategoryList from './category-list';
 import CurrencyDropdown from './currency-dropdown';
 import { Badge } from '../components'
@@ -26,9 +26,11 @@ class Header extends React.Component<PropsTypes> {
         <div>logo</div>
         <Container>
           <CurrencyDropdown />
-          <div onClick={() => this.handleMiniCart()}>
+          {/* <div onClick={() => this.handleMiniCart()}> */}
+          <Link to='/cart'>
             <CartImage src={CartIcon} alt='cart icon' />
-          </div>
+          </Link>
+          {/* </div> */}
           <Badge />
         </Container>
       </HeaderBar>

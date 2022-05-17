@@ -19,10 +19,13 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
       <Container>
         <h2>{name}</h2>
         <h4 style={{fontWeight: 200}}>{brand}</h4>
-        {this.props.isCart && <PriceDisplay {...{prices}} />}
+        {
+          this.props.isCart && <PriceDisplay {...{prices}} />
+        }
         <AttributesContent
           handleSelect={this.props.handleSelect}
-          {...{attributes, selectedAttributes, prices, productIndex}} />
+          {...{attributes, selectedAttributes, prices, productIndex}}
+        />
         {!this.props.isCart &&
           <>
             <h3 style={{fontFamily: 'Roboto'}}>PRICE</h3>

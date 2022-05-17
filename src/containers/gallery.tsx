@@ -48,7 +48,7 @@ export default class Gallery extends React.Component<PropsTypes, StateTypes> {
 const GalleryContainer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width:  35%;
+  width: 35%;
   position: relative;
+  // justify-content: flex-end;
 `

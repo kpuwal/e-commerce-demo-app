@@ -29,11 +29,12 @@ const MiniNavContainer = styled.div`
   position: absolute;
   display: flex;
   flex-direction: row;
+  z-index: 2000;
 `
 const Nav = styled.div`
   display: flex;
-  width: 1rem;
-  height: 1rem;
+  width: 20px;
+  height: 20px;
   margin: .1rem;
   background-color: #1f1f1f;
   justify-content: center;
