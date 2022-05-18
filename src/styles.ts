@@ -11,7 +11,7 @@ export const styleType = {
   },
   cart: {
     h3: {fontSize: '1.5em'},
-    h4: {fontSize: '.5em'},
+    h4: {fontSize: '1.5em'},
     size: '35%',
     counterWidth: '-14%',
     attrSize: '30%',

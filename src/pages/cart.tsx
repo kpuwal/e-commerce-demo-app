@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { CartSummary } from '../components';
+import { CartSummary, Button } from '../components';
 import CartItems from '../containers/cart-items';
 import { PriceType, CartItemType } from '../types';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
@@ -30,13 +30,18 @@ class Cart extends React.Component<PropsTypes> {
       <Container>
         <CartItems type={styleType.cart} />
         {
-          this.props.items.length !== 0 && 
-            <CartSummary
-              tax={this.props.tax}
-              totalPrice={this.props.totalPrice}
-              quantity={this.props.quantity} />
+          this.props.items.length !== 0
+          ? <>
+              <CartSummary
+                tax={this.props.tax}
+                totalPrice={this.props.totalPrice}
+                quantity={this.props.quantity} />
+              <Button 
+                label="Place order"
+                onButtonClick={() => console.log('order')} />
+            </>
+          : <Empty>the cart is empty</Empty>
         }
-        {this.props.items.length === 0 && <Empty>the cart is empty</Empty>}
       </Container>
     )
   }

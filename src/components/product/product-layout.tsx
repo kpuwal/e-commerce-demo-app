@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Gallery from '../../containers/gallery';
-import { AttributesContainer, Description } from '../';
+import { AttributesContainer, Description, Button } from '../';
 import { ProductType } from '../../types';
 import { styleType } from '../../styles';
 
@@ -34,12 +34,11 @@ export default class ProductLayout extends React.Component<PropsTypes> {
           <Message>
             {this.props.isNotValidated && <>Select attributes</>}
           </Message>
-          <CartButton
+          <Button
             disabled={!inStock}
-            onClick={() => this.props.handleAddToCart(this.props.product)}
-          >
-            Add To Cart
-          </CartButton>
+            onButtonClick={() => this.props.handleAddToCart(this.props.product)}
+            label="Add to Cart"
+          />
           <Description descr={description} />
         </InfoContainer>
       </Container>

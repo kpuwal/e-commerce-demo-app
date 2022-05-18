@@ -26,7 +26,6 @@ export default class SummaryPanel extends React.Component<PropsTypes> {
           <Label>Total:</Label>
           <PriceDisplay prices={this.props.totalPrice} />
         </Inline>
-        <CartButton>Place Order</CartButton>
       </>
     )
   }
@@ -38,25 +37,6 @@ const Inline = styled.div`
 const Label = styled.div`
   margin-right: 1rem;
   display: inline-block
-`
-const CartButton = styled.button`
-  position: relative;
-  overflow: hidden;
-  transition: background 400ms;
-  color: #fff;
-  padding: 1rem 2rem;
-  margin: 3rem 0 0 0;
-  font-size: 1.5rem;
-  outline: 0;
-  border: 0;
-  border-radius: 0.25rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  background-color: #5ECE7B;
-  width: 300px;
-  &:active {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
 `
 const SummaryLine = styled.hr`
   border: 1px solid #f1f1f1;
