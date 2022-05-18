@@ -83,9 +83,9 @@ const ProductItemContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 28%; // 386px
-  height: 33%; // 444px;
-  padding: 16px;
-  margin: 1.5% 1.5% 1.5% 0;
+  height: 43%; // 444px;
+  padding: 16px 16px 40px 16px;
+  margin: 1.5% 2% 1.5% 0;
   overflow: hidden;
   &:hover {
     -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
@@ -97,13 +97,10 @@ const ImageContainer = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.hasOpacity ? 1 : 0.5};
   display: flex;
-  width: 18rem; // 356px;
-  // max-width: 356px;
-  height: 17rem; // 338px;
+  width: 18rem;
+  height: 17rem;
   background-size: cover;
   background-repeat: no-repeat;
-  // background-size: contain;
-  // background-position: center;
 
 `
 const AddToCartButton = styled.div`
