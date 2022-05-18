@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 import { showMiniCart } from '../redux/slices/cart-slice';
-import CartItems from '../containers/cart-items';
-import {styleType} from '../styles';
+import { styleType } from '../styles';
 import { CartItemType, PriceType } from '../types';
-import { PriceDisplay, Button } from './';
+import { PriceDisplay, Button } from '.';
+import CartItems from '../containers/cart-items';
 
 type PropsTypes = {
   items: CartItemType[],
@@ -45,7 +45,7 @@ class MiniCart extends React.Component<PropsTypes, StateTypes> {
             <Button
              isMini={true}
              label='place order'
-             onButtonClick={() => console.log('place order')}
+             onButtonClick={() => alert('order placed')}
             />
             </ButtonsContainer>
           </CartContainer>

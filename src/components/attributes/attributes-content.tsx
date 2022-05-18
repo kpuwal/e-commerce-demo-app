@@ -1,6 +1,6 @@
 import React from 'react';
-import { AttributesType, PriceType, StyleItem } from '../types';
-import { SwatchRow } from './';
+import { AttributesType, PriceType, StyleItem } from '../../types';
+import { SwatchRow } from '..';
 
 type PropsTypes = {
   attributes: AttributesType[],

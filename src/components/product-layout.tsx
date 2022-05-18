@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Gallery from '../../containers/gallery';
-import { AttributesContainer, Description, Button } from '../';
-import { ProductType } from '../../types';
-import { styleType } from '../../styles';
+import Gallery from '../containers/gallery';
+import { AttributesContainer, Description, Button } from '.';
+import { ProductType } from '../types';
+import { styleType } from '../styles';
 
 type PropsTypes = {
   product: ProductType,
@@ -46,8 +46,6 @@ export default class ProductLayout extends React.Component<PropsTypes> {
   }
 }
 
-type StyledProps = {disabled: boolean};
-
 const Container = styled.div`
   display: flex;
   flexDirection: row;
@@ -65,23 +63,4 @@ const Message = styled.div`
   padding-top: 1rem;
   font-size: 1.5rem;
   color: red;
-`
-const CartButton = styled.button`
-  position: relative;
-  overflow: hidden;
-  transition: background 400ms;
-  color: #fff;
-  padding: 1rem 2rem;
-  // margin: 1rem 0 0 0;
-  font-size: 1.5rem;
-  outline: 0;
-  border: 0;
-  border-radius: 0.25rem;
-  box-shadow: ${(props: StyledProps) => props.disabled ? '0 0 0 rgba(0, 0, 0, 0)' : '0 0 0.5rem rgba(0, 0, 0, 0.2)'};
-  cursor: pointer;
-  background-color: ${(props: StyledProps) => props.disabled ? '#f1f1f1' : '#5ECE7B'};
-  width: 300px;
-  &:active {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  }
 `

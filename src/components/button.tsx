@@ -24,7 +24,9 @@ export default class Button extends React.Component<PropsType> {
         disabled={this.props.disabled || false}
         onClick={this.handleClick}
       >
-        <Label color={this.props.white ? '#000000' : '#FFFFFF'} mini={this.props.isMini}>
+        <Label
+          color={this.props.white ? '#000000' : '#FFFFFF'}
+          mini={this.props.isMini}>
           {(this.props.label).toUpperCase()}
         </Label>
       </CartButton>

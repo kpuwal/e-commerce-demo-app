@@ -5,6 +5,7 @@ import CategoryList from './category-list';
 import CurrencyDropdown from './currency-dropdown';
 import { Badge } from '../components'
 import CartIcon from '../assets/cart-d.png';
+import BagIcon from '../assets/bag.png';
 import { showMiniCart } from '../redux/slices/cart-slice';
 
 type PropsTypes = {
@@ -20,7 +21,7 @@ class Header extends React.Component<PropsTypes> {
     return (
       <HeaderBar>
         <CategoryList />
-        <div>logo</div>
+        <div><img src={BagIcon} alt='logo' style={{width: '30px', height: '30px', marginLeft: '-90%'}} /></div>
         <Container>
           <CurrencyDropdown />
           <div onClick={() => this.handleMiniCart()}>

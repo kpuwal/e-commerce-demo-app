@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PriceDisplay, AttributesContent } from './'
-import { CartProductType, StyleItem, SelectedAttributesType } from '../types';
+import { PriceDisplay, AttributesContent } from '..'
+import { CartProductType, StyleItem, SelectedAttributesType } from '../../types';
 
 type PropsTypes = {
   item: CartProductType,

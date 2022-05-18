@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ItemsType, valuesTypes } from '../types';
-import { SwatchColor } from './';
+import { ItemsType, valuesTypes } from '../../types';
+import { SwatchColor } from '..';
 
 type PropsTypes = {
   items: ItemsType[],

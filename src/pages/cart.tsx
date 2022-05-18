@@ -38,7 +38,7 @@ class Cart extends React.Component<PropsTypes> {
                 quantity={this.props.quantity} />
               <Button 
                 label="Place order"
-                onButtonClick={() => console.log('order')} />
+                onButtonClick={() => alert('order placed!')} />
             </>
           : <Empty>the cart is empty</Empty>
         }
