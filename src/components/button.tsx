@@ -16,18 +16,19 @@ export default class Button extends React.Component<PropsType> {
   }
 
   render() {
+    const { white, isMini, label, disabled } = this.props;
     return (
       <CartButton
-        color={this.props.white ? '#FFFFFF' : '#5ECE7B'}
-        white={this.props.white}
-        mini={this.props.isMini}
-        disabled={this.props.disabled || false}
+        color={white ? '#FFFFFF' : '#5ECE7B'}
+        white={white}
+        mini={isMini}
+        disabled={disabled || false}
         onClick={this.handleClick}
       >
         <Label
-          color={this.props.white ? '#000000' : '#FFFFFF'}
-          mini={this.props.isMini}>
-          {(this.props.label).toUpperCase()}
+          color={white ? '#000000' : '#FFFFFF'}
+          mini={isMini}>
+          {(label).toUpperCase()}
         </Label>
       </CartButton>
     )

@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components';
 import reportWebVitals from './reportWebVitals';
@@ -15,19 +17,23 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+let persistor = persistStore(store)
+
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Categories />} />
-          <Route path=":id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="*" element={<div>404</div>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Categories />} />
+              <Route path=":id" element={<Product />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<div>404</div>} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

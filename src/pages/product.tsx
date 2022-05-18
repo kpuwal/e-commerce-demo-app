@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-
 import { QueryGraphQL } from '../graphql/queries';
 import { ProductType, SelectedAttributesType } from '../types';
 import { Loader, ProductLayout } from '../components';
