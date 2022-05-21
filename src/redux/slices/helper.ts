@@ -32,25 +32,3 @@ export function refreshTax(arr: PriceType[]) {
     const rounded = Math.round(((item.amount * 0.21)+ Number.EPSILON)*100)/100
     return {...item, amount: rounded}
 })}
-
-
-// export function mapCartAttributes(attributes: AttributesType[]): CartAttributesType[] {
-//   return attributes.map((attr: AttributesType) => {
-//     return {
-//       ...attr,
-//       items: attr.items.map((item: ItemsType) => {
-//         return {
-//           ...item,
-//           isSelected: false
-//         }
-//     })}
-//   })
-// }
-
-// export function createCartItem(product: ProductType): CartProductType {
-//   const attributes = mapCartAttributes(product.attributes);
-//   return {
-//     ...product,
-//     attributes,
-//   }
-// }

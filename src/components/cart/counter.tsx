@@ -13,7 +13,6 @@ type PropsTypes = {
 
 class ProductCounter extends React.Component<PropsTypes> {
   handleIncrement() {
-    console.log('increment', this.props.productIndex)
     const idx = this.props.productIndex;
     this.props.handleCount({actionType: 'increment', idx})
   }

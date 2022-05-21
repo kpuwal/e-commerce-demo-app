@@ -36,24 +36,19 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
   render() {
     const product = this.props.product;
     return (
+      <Link to={`/${product.id}`}>
+
       <ProductItemContainer
         onMouseEnter={() => this.showButton()}
         onMouseLeave={() => this.hideButton()}
       >
-        <Link to={`/${product.id}`}>
           <ImageContainer
             img={product.gallery[0]}
             hasOpacity={product.inStock}
           >
           {!product.inStock && <OutOfStock>OUT OF STOCK</OutOfStock>}
           </ImageContainer>
-        </Link>
-
-        {this.state.inCart && 
-          <AddToCartButton display={'flex'}>
-            <CartImage src={CartIcon} alt='cart icon' />
-          </AddToCartButton>
-        }
+       
         {product.inStock && 
           <AddToCartButton 
             display={this.state.display}
@@ -66,6 +61,7 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
           <PriceDisplay prices={product.prices} />
         </DescriptionContainer>
       </ProductItemContainer>
+      </Link>
     )
   }
 }
@@ -82,11 +78,12 @@ const ProductItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 28%; // 386px
-  height: 43%; // 444px;
+  width: 386px; //28%
+  height: 444px; // 43%
   padding: 16px 16px 40px 16px;
   margin: 1.5% 2% 1.5% 0;
   overflow: hidden;
+  text-decoration: none;
   &:hover {
     -webkit-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
     -moz-box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
