@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import CategoryList from './category-list';
 import CurrencyDropdown from './currency-dropdown';
@@ -21,12 +22,16 @@ class Header extends React.Component<PropsTypes> {
     return (
       <HeaderBar>
         <CategoryList />
-        <div><img src={BagIcon} alt='logo' style={{width: '30px', height: '30px', marginLeft: '-90%'}} /></div>
+          <Link to='/'>
+            <Logo src={BagIcon} alt='logo' />
+          </Link>
         <Container>
           <CurrencyDropdown />
-          <div onClick={() => this.handleMiniCart()}>
-            <CartImage src={CartIcon} alt='cart icon' />
-          </div>
+          <CartImage 
+            onClick={() => this.handleMiniCart()}
+            src={CartIcon}
+            alt='cart icon'
+          />
           <Badge />
         </Container>
       </HeaderBar>
@@ -55,4 +60,9 @@ const CartImage = styled.img`
   height: 20px;
   padding: 10px;
   position: relative;
+`
+const Logo = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-left: -90%;
 `

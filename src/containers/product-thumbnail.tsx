@@ -30,7 +30,7 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
 
   handleAddToCart(product: ProductType) {
     this.props.addToCart({product});
-    this.setState({inCart: true})
+    this.setState({inCart: true});
   }
 
   render() {
@@ -54,12 +54,12 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
           </DescriptionContainer>
         </Link>
         {product.inStock &&
-            <AddToCartButton 
-                display={this.state.display}
-                onClick={() => this.handleAddToCart(product)}>
-                <CartImage src={CartIcon} alt='cart icon' />
-              </AddToCartButton>
-            }
+          <AddToCartButton 
+            display={this.state.display}
+            onClick={() => this.handleAddToCart(product)}>
+            <CartImage src={CartIcon} alt='cart icon' />
+          </AddToCartButton>
+        }
       </ProductItemContainer>
     )
   }
@@ -76,18 +76,14 @@ export default connect(null, mapDispatchToProps)(ProductThumbnail);
 const ProductItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  // align-items: center;
   width: 386px;
   height: 450px;
-  // padding: 3.6% 4.1%;
-  // padding: 16px 16px;
   margin: 0 40px 103px 0;
   overflow: hidden;
   text-decoration: none;
   &:hover {
     box-shadow: 0px 0px 22px -2px rgba(0,0,0,0.1);
   }
-  // background-color: lightgray;
 `
 const ImageContainer = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
@@ -114,15 +110,13 @@ const AddToCartButton = styled.div`
   &:active {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0);
   }
-  // margin-left: 13rem; // 15% 270px;
-  // margin-top: -1.5rem; // 310px;
   margin-left: 299px;
   margin-top: 330px;
 `
 const OutOfStock = styled.p`
  position: absolute;
- margin-top: 6rem; // 180px;
- margin-left: 3rem; // 85px;
+ margin-top: 160px;
+ margin-left: 85px;
  font-weight: 400;
  font-size: 25px;
  color: black
@@ -140,12 +134,10 @@ const DescriptionContainer = styled.div`
   margin: 0 16px;
   font-size: 18px;
   color: #1D1F22;
-  // background-color: yellow;
 `
 const ProductName = styled.span`
   font-weight: 300;
   hight: 29px;
   padding: 5px 0;
   font-size: 18px;
-  // background-color: red;
 `
