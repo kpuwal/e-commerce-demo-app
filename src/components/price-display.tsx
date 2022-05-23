@@ -4,16 +4,17 @@ import { PriceType } from '../types';
 
 interface PropsTypes {
   prices: PriceType[],
-  activeCurrency: string
+  activeCurrency: string,
+  isBold?: boolean
 }
 
 class PriceDisplay extends React.Component<PropsTypes> {
   render() {
-    const { prices, activeCurrency } = this.props;
+    const { prices, activeCurrency, isBold } = this.props;
     const price = prices.filter((item: PriceType) => 
       item.currency.label === activeCurrency
     )[0];
-    return <b>{(price.currency.symbol)} {(price.amount)}</b>
+    return <div style={{fontWeight: isBold ? 700 : 500}}>{(price.currency.symbol)} {(price.amount)}</div>
   }
 }
 
