@@ -40,7 +40,7 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
         onMouseEnter={() => this.showButton()}
         onMouseLeave={() => this.hideButton()}
       >
-        <Link style={{ textDecoration: 'none'}} to={`/${product.id}`}>
+        <StyledLink to={`/${product.id}`}>
           <ImageContainer
             img={product.gallery[0]}
             hasOpacity={product.inStock}
@@ -52,7 +52,7 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
             <ProductName>{product.brand} {product.name}</ProductName>
             <PriceDisplay isBold={false} prices={product.prices} />
           </DescriptionContainer>
-        </Link>
+        </StyledLink>
         {product.inStock &&
           <AddToCartButton 
             display={this.state.display}
@@ -140,4 +140,7 @@ const ProductName = styled.span`
   hight: 29px;
   padding: 5px 0;
   font-size: 18px;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `

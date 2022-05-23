@@ -35,13 +35,13 @@ class MiniCart extends React.Component<PropsTypes, StateTypes> {
               <PriceDisplay prices={this.props.totalPrice} />
             </PriceContainer>
             <ButtonsContainer>
-            <Link style={{ textDecoration: 'none' }} to='/cart'>
+            <StyledLink to='/cart'>
               <Button
                 isMini={true}
                 white={true}
                 label='view bag'
                 onButtonClick={() => this.props.showMiniCart()}/>
-            </Link>
+            </StyledLink>
             <Button
              isMini={true}
              label='place order'
@@ -76,7 +76,6 @@ const Container = styled.div`
   background-color: rgba(0,0,0,0.5);
   z-index: 5000;
   overflow-y: scroll;
-
 `
 const CartContainer = styled.div`
   display: flex;
@@ -93,7 +92,6 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 marginTop: 1em;
-  
 `
 const PriceContainer = styled.div`
   display: flex;
@@ -105,4 +103,7 @@ const SummaryLine = styled.hr`
   border: 1px solid #f1f1f1;
   width: 100%;
   margin: 2em 0 1em 0;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `

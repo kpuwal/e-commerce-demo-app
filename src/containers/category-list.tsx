@@ -33,14 +33,11 @@ class CategoryList extends React.Component<PropsTypes, StateTypes> {
       <Container>
         {this.state.categories.map((name: string) => (
           <NavContainer key={name} underline={activeCategory === name}>
-            <Link to={`/?category=${name}`}
-              style={{
-                color: activeCategory === name ? '#5ECE7B' : '#1D1F22',
-                fontFamily: 'Raleway',
-                textDecoration: 'none'
-                }}>
-              {name.toUpperCase()}
-            </Link>
+            <StyledLink
+              to={`/?category=${name}`}
+              isActive={activeCategory === name}>
+                {name.toUpperCase()}
+            </StyledLink>
           </NavContainer>
           ))
         }
@@ -57,7 +54,7 @@ const withRouterParams = (WrappedComponent: any) => (props: any) => {
 
 export default withRouterParams(CategoryList);
 
-type StyledProps = { underline: boolean };
+type StyledProps = { underline?: boolean, isActive?: boolean };
 
 const Container = styled.div`
   display: flex;
@@ -67,4 +64,9 @@ const NavContainer = styled.div`
   flex-direction: row;
   padding: 15px;
   border-bottom: ${(props: StyledProps) => props.underline ? '1px solid #5ECE7B' : '0px solid #fff'};
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  font-family: Raleway;
+  color: ${(props: StyledProps) => props.isActive ? '#5ECE7B' : '#1D1F22'};
 `

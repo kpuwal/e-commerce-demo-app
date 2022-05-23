@@ -20,15 +20,15 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
       <Container size={type.attrSize}>
         <Name font={type.h3.fontSize}>{name}</Name>
         <Brand font={type.h4.fontSize}>{brand}</Brand>
-        { isCart && <PriceDisplay {...{prices}} /> }
+        { isCart && <PriceDisplay isBold={true} {...{prices}} /> }
         <AttributesContent
           handleSelect={this.props.handleSelect}
           {...{attributes, selectedAttributes, prices, productIndex, type}}
         />
         {!this.props.isCart &&
           <>
-            <h4 style={{fontFamily: 'Roboto'}}>PRICE:</h4>
-            <PriceDisplay prices={prices} />
+            <PriceLabel>PRICE:</PriceLabel>
+            <PriceDisplay prices={prices} isBold={true} />
           </>
         }
       </Container>
@@ -51,4 +51,7 @@ const Brand = styled.div`
   font-size: ${(props: StyledTypes) => props.font};
   font-weight: 200;
   padding: .7em 0 .7em 0;
+`
+const PriceLabel = styled.h4`
+  font-family: Roboto;
 `

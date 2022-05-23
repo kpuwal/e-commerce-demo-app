@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { connect } from "react-redux";
 import { PriceType } from '../types';
 
@@ -14,7 +15,11 @@ class PriceDisplay extends React.Component<PropsTypes> {
     const price = prices.filter((item: PriceType) => 
       item.currency.label === activeCurrency
     )[0];
-    return <div style={{fontWeight: isBold ? 700 : 500}}>{(price.currency.symbol)} {(price.amount)}</div>
+    return (
+      <Price {...{isBold}}>
+        {(price.currency.symbol)} {(price.amount)}
+      </Price>
+    )
   }
 }
 
@@ -23,3 +28,9 @@ const mapStateToProps = (state: any) => ({
 })
 
 export default connect(mapStateToProps)(PriceDisplay);
+
+type StyledProps = { isBold?: boolean };
+
+const Price = styled.div`
+  font-weight: ${(props: StyledProps) => props.isBold ? '700' : '500'};
+`

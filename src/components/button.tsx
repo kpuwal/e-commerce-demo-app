@@ -16,7 +16,7 @@ export default class Button extends React.Component<PropsType> {
   }
 
   render() {
-    const { white, isMini, label, disabled } = this.props;
+    const {white, isMini, label, disabled} = this.props;
     return (
       <CartButton
         color={white ? '#FFFFFF' : '#5ECE7B'}

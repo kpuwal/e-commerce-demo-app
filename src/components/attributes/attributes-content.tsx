@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { AttributesType, PriceType, StyleItem } from '../../types';
 import { SwatchRow } from '..';
 
@@ -25,9 +26,9 @@ export default class AttributesContent extends React.Component<PropsTypes> {
         {attributes.map((attribute: AttributesType, idx: number) => {
           return (
             <div key={idx}>
-              <h4 style={{fontFamily: 'Roboto'}}>
+              <NameLabel>
                 {type.useCaps ? (attribute.name).toLocaleUpperCase() : (attribute.name)}:
-              </h4>
+              </NameLabel>
               <SwatchRow
                 items={attribute.items}
                 name={attribute.name}
@@ -40,3 +41,7 @@ export default class AttributesContent extends React.Component<PropsTypes> {
     )
   }
 }
+
+const NameLabel = styled.h4`
+  font-family: Roboto;
+`

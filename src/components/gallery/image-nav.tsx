@@ -12,7 +12,7 @@ export default class ImageNav extends React.Component<PropsTypes> {
     return (
       <ImageNavContainer>
         {images.map((image, idx) => 
-          <div key={idx} onMouseEnter={() => handleSelect(idx)}>
+          <div key={idx} onClick={() => handleSelect(idx)}>
             <Image image={image} />
           </div>) }
       </ImageNavContainer>
@@ -25,13 +25,21 @@ const ImageNavContainer = styled.div`
   align-items: center;
   overflow-y: scroll;
   ::-webkit-scrollbar {
-    display: none;
+    -webkit-appearance: none;
+    width: 12px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0,0,0,.3);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    border: solid 4px white;
   }
 `
 const Image = styled.div`
   width: 80px;
   height: 80px;
   margin: 0 0 7px 0;
+  coursor: pointer;
   background-image: ${(props: {image: string}) => `url(${props.image})`};
   background-size: cover;
 `
