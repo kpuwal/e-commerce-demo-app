@@ -22,7 +22,8 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
       isLoading: true
   }}
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('categories component')
     this.fetchData();
   }
 
@@ -35,11 +36,16 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
   async fetchData() {
     let result: CategoryType;
     if (!this.props.match) {
-      result = await QueryGraphQL.getCategory('all');
+      try {
+        result = await QueryGraphQL.getCategory('all');
+        this.setState({products: result.products, isLoading: false});
+      } catch (err) {console.log(err)}
     } else {
-      result = await (QueryGraphQL.getCategory(this.props.match));
+      try {
+        result = await (QueryGraphQL.getCategory(this.props.match));
+        this.setState({products: result.products, isLoading: false});
+      } catch (err) { console.log(err)}
     }
-    this.setState({products: result.products, isLoading: false});
   }
 
   render() {

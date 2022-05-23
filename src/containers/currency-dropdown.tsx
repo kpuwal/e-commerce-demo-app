@@ -11,6 +11,7 @@ import ArrowDownIcon from '../assets/expand-arrow.png';
 type StateTypes = {
   currencies: CurrencyType[],
   isListOpen: boolean,
+  isLoading: boolean,
   currentSymbol: string
 }
 
@@ -20,11 +21,13 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
     this.state = {
       currencies: [],
       isListOpen: false,
+      isLoading: true,
       currentSymbol: ''
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    console.log('currencies')
     this.fetchData();
   }
 
@@ -47,7 +50,7 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
 
   handleSelectCurrency(current: {label: string, symbol: string}) {
     this.props.changeCurrency(current.label);
-    this.setState({currentSymbol: current.symbol})
+    this.setState({currentSymbol: current.symbol, isLoading: false})
   }
 
   toggleList() {
@@ -57,14 +60,16 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
   }
 
   async fetchData() {
-    const result = (await QueryGraphQL.getCurrencies()) as CurrencyType[];
+    try {const result = (await QueryGraphQL.getCurrencies()) as CurrencyType[];
     this.setState({currencies: result, currentSymbol: result[0].symbol});
+  } catch (err) { console.log(err)}
   }
 
   render() {
     const currencies = this.state.currencies;
     return (
-      <div>
+      <>
+      {this.state.isLoading && <div>
         <Button onClick={() => this.toggleList()}>
           {this.state.currentSymbol}
           {this.state.isListOpen
@@ -83,7 +88,8 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
             }
           </SelectorContainer>
         }
-      </div>
+      </div>}
+      </>
     )
   }
 }

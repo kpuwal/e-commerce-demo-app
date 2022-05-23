@@ -20,9 +20,11 @@ class CategoryList extends React.Component<PropsTypes, StateTypes> {
   }
   
   async componentDidMount() {
-    const result = await QueryGraphQL.getCategories();
+    console.log('category list')
+    try {const result = await QueryGraphQL.getCategories();
     const names = result.categories.map(item => item.name);
     this.setState({categories: names});
+  } catch (err) { console.log(err)}
   }
 
   render() {

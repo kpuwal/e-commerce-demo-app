@@ -20,7 +20,7 @@ const root = ReactDOM.createRoot(
 let persistor = persistStore(store)
 
 root.render(
-  <React.StrictMode>
+  <>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
@@ -35,7 +35,7 @@ root.render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </>
 );
 
 

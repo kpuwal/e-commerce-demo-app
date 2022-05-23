@@ -30,8 +30,10 @@ class Product extends React.Component<PropsTypes, StateTypes> {
     }
   }
 
-  componentDidMount() {
-    this.fetchProductData();
+  async componentDidMount() {
+    try {
+      this.fetchProductData();
+    } catch (err) { console.log(err)}
   }
 
   handleAddToCart = (product: ProductType) => {
