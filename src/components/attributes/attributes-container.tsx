@@ -45,13 +45,15 @@ const Container = styled.div`
 `
 const Name = styled.div`
   font-size: ${(props: StyledTypes) => props.font};
-  font-weight: bold;
 `
 const Brand = styled.div`
   font-size: ${(props: StyledTypes) => props.font};
   font-weight: 200;
-  padding: .7em 0 .7em 0;
+  padding: .7em 0 1.5em 0;
 `
-const PriceLabel = styled.h4`
-  font-family: Roboto;
+const PriceLabel = styled.div`
+  font-family: Roboto Condensed;
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 1rem;
 `

@@ -49,14 +49,15 @@ export default class ProductLayout extends React.Component<PropsTypes> {
 const Container = styled.div`
   display: flex;
   flexDirection: row;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-self: center;
   width: 100%;
+  cursor:inherit;
 `
 const InfoContainer = styled.div` 
   display: flex;
   flex-direction: column;
-  margin-right: 100px;
+  margin-left: 18%;
 `
 const Message = styled.div`
   height: 3rem;

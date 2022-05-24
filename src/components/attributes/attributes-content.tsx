@@ -42,6 +42,8 @@ export default class AttributesContent extends React.Component<PropsTypes> {
   }
 }
 
-const NameLabel = styled.h4`
-  font-family: Roboto;
+const NameLabel = styled.div`
+  font-family: Roboto Condensed;
+  font-size: 18px;
+  font-weight: 700;
 `

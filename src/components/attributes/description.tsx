@@ -14,6 +14,7 @@ export default class Description extends React.Component<PropsTypes> {
 
 const Container = styled.div`
   width: 300px;
+  font-weight: 400;
   font-size: 16px;
   font-family: Roboto;
   padding-top: 30px;

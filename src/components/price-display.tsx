@@ -33,4 +33,5 @@ type StyledProps = { isBold?: boolean };
 
 const Price = styled.div`
   font-weight: ${(props: StyledProps) => props.isBold ? '700' : '500'};
+  font-size: 18px;
 `

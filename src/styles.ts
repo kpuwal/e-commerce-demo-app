@@ -2,9 +2,9 @@ import { StyleType } from './types';
 
 export const styleType = {
   product: {
-    h3: {fontSize: '1.7em'},
-    h4: {fontSize: '1.5em'},
-    size: '35%',
+    h3: {fontSize: '30px'},
+    h4: {fontSize: '27px'},
+    size: '45%',
     counterWidth: '',
     attrSize: '100%',
     useCaps: true

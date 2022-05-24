@@ -33,11 +33,12 @@ type StyledProps = {
 const Image = styled.div`
   background-image: ${(props: StyledProps) => `url(${props.img})`};
   opacity: ${(props: StyledProps) => props.opacity};
-  width: ${(props: StyledProps) => props.hasMiniNav ? '60%' : '90%'};
+  width: ${(props: StyledProps) => props.hasMiniNav ? '60%' : '100%'};
   height: 100%;
-  margin-left: ${(props: StyledProps) => props.hasMiniNav ? '40%' : '30%'};
+  margin-left: ${(props: StyledProps) => props.hasMiniNav ? '40%' : '20%'};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: ${(props: StyledProps) => props.hasMiniNav ? 'bottom right' : 'top'};
   position: absolute;
+  // border: 1px solid red;
 `
