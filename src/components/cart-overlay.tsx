@@ -7,42 +7,18 @@ type PropsTypes = {
   show: boolean,
   showMiniCart: Function
 }
-// type StateProps = { isOpen: boolean }
 
 class CartOverlay extends React.Component<PropsTypes> {
-  private toggleContainer: React.RefObject<HTMLDivElement>;
 
-  constructor(props: PropsTypes) {
-    super(props);
-    // this.state = { isOpen: false };
-    this.toggleContainer = React.createRef();
-    this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
-  }
-
-  componentDidMount() {
-    window.addEventListener('click', this.onClickOutsideHandler);
-  }
-
-  componentWillUnmount() {
-   
-        window.removeEventListener('click', this.onClickOutsideHandler)
- 
-  }
-
-  onClickOutsideHandler(event: any) {
-      if (this.props.show && this.toggleContainer.current?.contains(event.target)) {
-
-        this.props.showMiniCart();
-        console.log('closed!')
-      }
-  }
 
   render() {
     if (!this.props.show) { return null }
     return (
       <>
-        <ModalBg ref={this.toggleContainer} />
-        <Container>container</Container>
+        <ModalBg onClick={() => this.props.showMiniCart()} />
+        <Container onClick={(e: any) => e.stopPropagation()}>
+          container
+        </Container>
       </>
     );
   }
@@ -60,10 +36,12 @@ const ModalBg = styled.div`
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
+  z-index: 6000;
 `
 const Container = styled.div`
   width: 500px;
   height: 300px;
   background-color: white;
   position: absolute;
+  z-index: 7000;
 `

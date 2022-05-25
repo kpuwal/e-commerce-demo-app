@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import {  MiniCart } from './';
+// import {  MiniCart } from './';
 import { Outlet } from 'react-router-dom';
 import Header from '../containers/header';
 
@@ -17,7 +17,6 @@ class MainLayout extends React.Component<PropsTypes> {
       <React.Fragment>
         <Header />
         <PageContainer>
-          {/* {this.props.isMiniCartOpen && <MiniCart />} */}
           <CartOverlay show={this.props.isMiniCartOpen}/>
           <Outlet />
         </PageContainer>
