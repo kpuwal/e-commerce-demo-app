@@ -27,7 +27,6 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
   }
 
   async componentDidMount() {
-    console.log('currencies')
     this.fetchData();
   }
 
@@ -36,15 +35,15 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
   
     setTimeout(() => {
       if(isListOpen){
-        window.addEventListener('click', this.closeDropdown)
+        window.addEventListener('click', this.onClickOutsideHandler)
       }
       else{
-        window.removeEventListener('click', this.closeDropdown)
+        window.removeEventListener('click', this.onClickOutsideHandler)
       }
     }, 0)
   }
 
-  closeDropdown = () => {
+  onClickOutsideHandler = () => {
     this.setState({ isListOpen: false });
   }
 

@@ -12,21 +12,63 @@ type PropsTypes = {
   items: CartItemType[],
   quantity: number,
   totalPrice: PriceType[],
-  isMiniOn: boolean,
+  isMiniCartOpen: boolean,
   showMiniCart: Function
 }
 
-type StateTypes = { isVisible: boolean }
+// type StateTypes = {
+//   isOpen: boolean,
+// }
 
-class MiniCart extends React.Component<PropsTypes, StateTypes> {
+class MiniCart extends React.Component<PropsTypes> {
+  private toggleContainer: React.RefObject<HTMLDivElement>;
+
+  constructor(props: PropsTypes) {
+    super(props);
+    // this.state = { isOpen: false };
+    this.toggleContainer = React.createRef();
+    this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
+  }
+
+  // componentDidMount() {
+  //   window.addEventListener('click', this.onClickOutsideHandler);
+  // }
+
+  componentWillUnmount() {
+    // window.removeEventListener('click', this.onClickOutsideHandler);
+    // setTimeout(() => {
+      if(this.props.isMiniCartOpen){
+        window.addEventListener('click', this.onClickOutsideHandler)
+      }
+      else{
+        window.removeEventListener('click', this.onClickOutsideHandler)
+      }
+    // }, 0)
+  }
+
+  // onClickHandler() {
+  //   this.setState(currentState => ({
+  //     isOpen: !currentState.isOpen
+  //   }));
+  // }
+
+  onClickOutsideHandler(event: any) {
+    console.log('current ', this.toggleContainer.current?.contains(event.target))
+      if (this.props.isMiniCartOpen && !this.toggleContainer.current?.contains(event.target)) {
+    console.log('click', this.props.isMiniCartOpen)
+
+        this.props.showMiniCart();
+      }
+  }
+
   render() {
-    const isSingular = (this.props.quantity === 1);
+    const isSingularItem = (this.props.quantity === 1);
     return (
       <>
-        <Container>
-          <CartContainer>
+        <Container ref={this.toggleContainer}>
+          <CartContainer >
             <div>
-              <b>My Bag</b>, {this.props.quantity} {isSingular ? 'item' : 'items'}
+              <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
             </div>
             <CartItems type={styleType.miniCart} />
             <SummaryLine />
@@ -37,13 +79,13 @@ class MiniCart extends React.Component<PropsTypes, StateTypes> {
             <ButtonsContainer>
             <StyledLink to='/cart'>
               <Button
-                isMini={true}
-                white={true}
+                isMini
+                white
                 label='view bag'
                 onButtonClick={() => this.props.showMiniCart()}/>
             </StyledLink>
             <Button
-             isMini={true}
+             isMini
              label='place order'
              onButtonClick={() => alert('order placed')}
             />
@@ -59,12 +101,12 @@ const mapStateToProps = (state: any) => ({
   items: state.cart.items,
   quantity: state.cart.quantity,
   totalPrice: state.cart.totalPrice,
-  isMiniOn: state.cart.isMiniOn
+  isMiniCartOpen: state.cart.isMiniCartOpen
 })
 
 const mapDispatchToProps = { showMiniCart };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MiniCart);
+export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(MiniCart);
 
 const Container = styled.div`
   width: 100%;

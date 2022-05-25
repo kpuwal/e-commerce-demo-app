@@ -20,7 +20,7 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
       <Container size={type.attrSize}>
         <Name font={type.h3.fontSize}>{name}</Name>
         <Brand font={type.h4.fontSize}>{brand}</Brand>
-        { isCart && <PriceDisplay isBold={true} {...{prices}} /> }
+        { isCart && <PriceDisplay isBold {...{prices}} /> }
         <AttributesContent
           handleSelect={this.props.handleSelect}
           {...{attributes, selectedAttributes, prices, productIndex, type}}
@@ -28,7 +28,7 @@ export default class AttributesContainer extends React.Component<PropsTypes> {
         {!this.props.isCart &&
           <>
             <PriceLabel>PRICE:</PriceLabel>
-            <PriceDisplay prices={prices} isBold={true} />
+            <PriceDisplay prices={prices} isBold />
           </>
         }
       </Container>

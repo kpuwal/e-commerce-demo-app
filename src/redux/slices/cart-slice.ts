@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
     quantity: 0,
     totalPrice: initPrice,
     tax: initPrice,
-    isMiniOn: false
+    isMiniCartOpen: false
   },
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemType>) => {
@@ -57,7 +57,7 @@ export const cartSlice = createSlice({
       state.items.splice(action.payload, 1);
     },
     showMiniCart: (state) => {
-      state.isMiniOn = !state.isMiniOn;
+      state.isMiniCartOpen = !state.isMiniCartOpen;
     }
   },
 })

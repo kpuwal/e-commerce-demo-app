@@ -5,8 +5,10 @@ import {  MiniCart } from './';
 import { Outlet } from 'react-router-dom';
 import Header from '../containers/header';
 
+import CartOverlay from '../components/cart-overlay';
+
 type PropsTypes = {
-  isMiniCartOn: boolean
+  isMiniCartOpen: boolean
 }
 
 class MainLayout extends React.Component<PropsTypes> {
@@ -15,7 +17,8 @@ class MainLayout extends React.Component<PropsTypes> {
       <React.Fragment>
         <Header />
         <PageContainer>
-          {this.props.isMiniCartOn && <MiniCart />}
+          {/* {this.props.isMiniCartOpen && <MiniCart />} */}
+          <CartOverlay show={this.props.isMiniCartOpen}/>
           <Outlet />
         </PageContainer>
       </React.Fragment>
@@ -24,7 +27,7 @@ class MainLayout extends React.Component<PropsTypes> {
 }
 
 const mapStateToProps = (state: any) => ({
-  isMiniCartOn: state.cart.isMiniOn,
+  isMiniCartOpen: state.cart.isMiniCartOpen,
 })
 
 export default connect(mapStateToProps)(MainLayout)

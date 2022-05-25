@@ -31,7 +31,7 @@ class CartItems extends React.Component<PropsTypes> {
         return (
           <Container key={idx}>
             <AttributesContainer
-              isCart={true}
+              isCart
               item={product}
               productIndex={idx}
               selectedAttributes={selectedAttributes}
@@ -46,7 +46,7 @@ class CartItems extends React.Component<PropsTypes> {
                 type={this.props.type} />
               <Gallery
                 images={product.gallery}
-                hasMiniNav={true}
+                hasMiniNav
                 type={this.props.type} />
             </GalleryPanel>
             {this.props.items.length === 0 && <Empty>the cart is empty</Empty>}

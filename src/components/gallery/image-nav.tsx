@@ -21,7 +21,7 @@ export default class ImageNav extends React.Component<PropsTypes> {
 }
 
 const ImageNavContainer = styled.div`
-  height: 420px;
+  height: 450px;
   align-items: center;
   overflow-y: scroll;
   ::-webkit-scrollbar {
