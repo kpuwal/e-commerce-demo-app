@@ -66,6 +66,7 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
 
   render() {
     const currencies = this.state.currencies;
+    // if (!this.state.isLoading) { return null };
     return (
       <>
       {this.state.isLoading && <div>

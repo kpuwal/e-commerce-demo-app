@@ -24,10 +24,13 @@ class ProductCounter extends React.Component<PropsTypes> {
   }
 
   render() {
+    const { counterWidth, counterHeight } = this.props.type;
     return (
-      <Container right={this.props.type.counterWidth}>
+      <Container width={counterWidth}>
         <Button onClick={() => this.handleIncrement()}>+</Button>
-        <CounterDisplay>{this.props.amount}</CounterDisplay>
+        <CounterDisplay height={counterHeight}>
+          {this.props.amount}
+        </CounterDisplay>
         <Button
           onClick={() => this.handleDecrement(this.props.amount)}
           disabled={this.props.amount === 0}>-</Button>
@@ -44,7 +47,11 @@ const mapDispatchToProps = { removeFromCart };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductCounter);
 
-type StyledProps = { disabled?: boolean, right?: string };
+type StyledProps = {
+  disabled?: boolean,
+  width?: string,
+  height?: string
+}
 
 const Container = styled.div`
   display: flex;
@@ -53,18 +60,18 @@ const Container = styled.div`
   width: 2rem;
   justify-content: center;
   position: relative;
-  right: ${(props: StyledProps) => props.right};
+  right: ${(props: StyledProps) => props.width};
   z-index: 4000;
 `
 const CounterDisplay = styled.div`
   justify-content: center;
   text-align: center;
   vertical-align: middle;
-  line-height: 12em;
+  line-height: ${(props: StyledProps) => props.height};
 `
 const Button = styled.button`
-  width: 2rem; // 45px;
-  height: 2rem; // 45px;
+  width: 30px;
+  height: 30px;
   background-color: white;
   border: ${(props: StyledProps) => props.disabled ? '1px solid gray' : '1px solid black'}
 `

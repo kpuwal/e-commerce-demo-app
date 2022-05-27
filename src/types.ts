@@ -81,6 +81,7 @@ export type StyleItem = {
   h4: {fontSize: string },
   size: string,
   counterWidth: string,
+  counterHeight: string,
   attrSize: string,
   useCaps: boolean
 }

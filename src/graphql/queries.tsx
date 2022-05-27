@@ -3,7 +3,6 @@ import { client, Query, Field} from "@tilework/opus";
 const url = "http://localhost:4000";
 
 async function getCategories() {
-  console.log('get categories')
   const query = new Query('categories', true)
     .addField('name')
   client.setEndpoint(url);
@@ -11,7 +10,6 @@ async function getCategories() {
 }
 
 async function getCategory(category: string) {
-  console.log('get category')
   const query = new Query('category', true)
 		.addArgument('input', 'CategoryInput', { title: category })
     .addField(new Field('products')
@@ -35,7 +33,6 @@ async function getCategory(category: string) {
 }
 
 async function getProduct(id: string) {
-  console.log('get product')
   const query = new Query('product', true)
     .addArgument('id','String!', id)
     .addFieldList(['id', 'name', 'inStock', 'gallery', 'description', 'category', 'brand'])
@@ -57,7 +54,6 @@ async function getProduct(id: string) {
 }
 
 async function getCurrencies() {
-  console.log('get currencies')
   const query = new Query('currencies', true)
     .addFieldList(['label', 'symbol'])
   client.setEndpoint(url);

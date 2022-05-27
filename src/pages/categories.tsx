@@ -8,11 +8,12 @@ import ProductThumbnail from '../containers/product-thumbnail';
 
 type PropsTypes = {
   match: string
-};
+}
+
 type StateTypes = {
   products: ProductType[],
   isLoading: boolean
-};
+}
 
 class Categories extends React.Component<PropsTypes, StateTypes> {
   constructor(props: PropsTypes) {
@@ -23,29 +24,21 @@ class Categories extends React.Component<PropsTypes, StateTypes> {
   }}
 
   async componentDidMount() {
-    console.log('categories component')
     this.fetchData();
   }
 
   componentDidUpdate (prevProps: any) {
-    if (prevProps.match !== this.props.match) {
-      this.fetchData()
-    }
+    if (prevProps.match !== this.props.match) { this.fetchData() };
   }
 
   async fetchData() {
     let result: CategoryType;
     if (!this.props.match) {
-      try {
-        result = await QueryGraphQL.getCategory('all');
-        this.setState({products: result.products, isLoading: false});
-      } catch (err) {console.log(err)}
+      result = await QueryGraphQL.getCategory('all');
     } else {
-      try {
-        result = await (QueryGraphQL.getCategory(this.props.match));
-        this.setState({products: result.products, isLoading: false});
-      } catch (err) { console.log(err)}
+      result = await (QueryGraphQL.getCategory(this.props.match));
     }
+    this.setState({products: result.products, isLoading: false});
   }
 
   render() {

@@ -12,12 +12,13 @@ type PropsTypes = {
 }
 
 class MainLayout extends React.Component<PropsTypes> {
+
   render () {
     return (
       <React.Fragment>
         <Header />
         <PageContainer>
-          <CartOverlay show={this.props.isMiniCartOpen}/>
+          {this.props.isMiniCartOpen && <CartOverlay show={this.props.isMiniCartOpen}/>}
           <Outlet />
         </PageContainer>
       </React.Fragment>

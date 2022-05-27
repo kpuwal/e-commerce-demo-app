@@ -29,7 +29,9 @@ const mapStateToProps = (state: any) => ({
 
 export default connect(mapStateToProps)(PriceDisplay);
 
-type StyledProps = { isBold?: boolean };
+type StyledProps = {
+  isBold?: boolean
+}
 
 const Price = styled.div`
   font-weight: ${(props: StyledProps) => props.isBold ? '700' : '500'};
