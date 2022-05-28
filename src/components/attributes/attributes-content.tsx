@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AttributesType, PriceType, StyleItem } from '../../types';
+import { AttributesType, PriceType, StyleItem, SelectedAttributesType } from '../../types';
 import { SwatchRow } from '..';
 
 type PropsTypes = {
   attributes: AttributesType[],
   prices: PriceType[],
   type: StyleItem,
-  selectedAttributes: {},
+  selectedAttributes: SelectedAttributesType<string>,
   handleSelect: Function,
   productIndex?: number
 }
@@ -22,12 +22,12 @@ export default class AttributesContent extends React.Component<PropsTypes> {
       type
     } = this.props;
     return (
-      <div>
+      <Container>
         {attributes.map((attribute: AttributesType, idx: number) => {
           return (
             <div key={idx}>
-              <NameLabel>
-                {type.useCaps ? (attribute.name).toLocaleUpperCase() : (attribute.name)}:
+              <NameLabel font={type.attrLabel}>
+                {attribute.name}:
               </NameLabel>
               <SwatchRow
                 items={attribute.items}
@@ -37,13 +37,20 @@ export default class AttributesContent extends React.Component<PropsTypes> {
               />
            </div>)})
         }
-      </div>
+      </Container>
     )
   }
 }
 
+type StyledTypes = {font: {textTransform: string, fontSize: string, fontWeight: number}}
+
+const Container = styled.div`
+  padding: 30px 0 20px 0;
+`
 const NameLabel = styled.div`
   font-family: Roboto Condensed;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: ${(props: StyledTypes) => props.font.fontSize};
+  font-weight: ${(props: StyledTypes) => props.font.fontWeight};
+  text-transform: ${(props: StyledTypes) => props.font.textTransform};
+  padding-bottom: 8px;
 `

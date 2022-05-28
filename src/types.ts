@@ -77,13 +77,15 @@ export type SelectedAttributesType<Attr extends string>= {
 }
 
 export type StyleItem = {
-  h3: {fontSize: string },
-  h4: {fontSize: string },
+  attributeName: {fontSize: string, fontWeight: number},
+  attributeBrand: {fontSize: string, fontWeight: number},
+  attrHeaderPadding: string,
+  attrLabel: {textTransform: string, fontSize: string, fontWeight: number},
+  priceFont: {fontSize: string, fontWeight: number},
   size: string,
   counterWidth: string,
   counterHeight: string,
-  attrSize: string,
-  useCaps: boolean
+  attrContainerSize: string
 }
 
 export type StyleType = {

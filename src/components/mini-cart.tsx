@@ -65,7 +65,7 @@ class MiniCart extends React.Component<PropsTypes> {
     const isSingularItem = (this.props.quantity === 1);
     return (
       <>
-        <Container ref={this.toggleContainer}>
+        {/* <Container ref={this.toggleContainer}>
           <CartContainer >
             <div>
               <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
@@ -91,7 +91,7 @@ class MiniCart extends React.Component<PropsTypes> {
             />
             </ButtonsContainer>
           </CartContainer>
-        </Container>
+        </Container> */}
       </>
     )
   }

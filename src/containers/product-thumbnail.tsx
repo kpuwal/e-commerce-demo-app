@@ -50,7 +50,7 @@ class ProductThumbnail extends React.Component<PropsTypes, StateTypes> {
           
           <DescriptionContainer>
             <ProductName>{product.brand} {product.name}</ProductName>
-            <PriceDisplay isBold={false} prices={product.prices} />
+            <PriceDisplay prices={product.prices} />
           </DescriptionContainer>
         </StyledLink>
         {product.inStock &&

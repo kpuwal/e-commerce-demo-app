@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { PriceType } from '../types';
+import { PriceType, StyleItem } from '../types';
 
 interface PropsTypes {
   prices: PriceType[],
   activeCurrency: string,
-  isBold?: boolean
+  type?: StyleItem
 }
 
 class PriceDisplay extends React.Component<PropsTypes> {
   render() {
-    const { prices, activeCurrency, isBold } = this.props;
+    const {prices, activeCurrency, type} = this.props;
     const price = prices.filter((item: PriceType) => 
       item.currency.label === activeCurrency
     )[0];
     return (
-      <Price {...{isBold}}>
+      <Price font={type?.priceFont}>
         {(price.currency.symbol)} {(price.amount)}
       </Price>
     )
@@ -30,10 +30,13 @@ const mapStateToProps = (state: any) => ({
 export default connect(mapStateToProps)(PriceDisplay);
 
 type StyledProps = {
-  isBold?: boolean
+  font?: {
+    fontSize: string,
+    fontWeight: number
+  }
 }
 
 const Price = styled.div`
-  font-weight: ${(props: StyledProps) => props.isBold ? '700' : '500'};
-  font-size: 18px;
+  font-weight: ${(props: StyledProps) => props.font?.fontWeight || 700};
+  font-size: ${(props: StyledProps) => props.font?.fontSize};
 `

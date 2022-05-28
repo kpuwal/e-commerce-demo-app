@@ -2,30 +2,77 @@ import { StyleType } from './types';
 
 export const styleType = {
   product: {
-    h3: {fontSize: '30px'},
-    h4: {fontSize: '27px'},
+    attributeName: {
+      fontSize: '27px',
+      fontWeight: 400
+    },
+    attributeBrand: {
+      fontSize: '27px',
+      fontWeight: 600
+    },
+    attrHeaderPadding: '13px',
+    attrLabel: {
+      textTransform: 'uppercase',
+      fontSize: '18px',
+      fontWeight: 700,
+    },
+    priceFont: {
+      fontSize: '18px',
+      fontWeight: 700
+    },
     size: '45%',
     counterWidth: '',
     counterHeight: '',
-    attrSize: '100%',
-    useCaps: true
+    attrContainerSize: '100%'
   },
+
   cart: {
-    h3: {fontSize: '1.5em'},
-    h4: {fontSize: '1.5em'},
+    attributeName: {
+      fontSize: '30px',
+      fontWeight: 400
+    },
+    attributeBrand: {
+      fontSize: '30px',
+      fontWeight: 600
+    },
+    attrHeaderPadding: '20px',
+    attrLabel: {
+      textTransform: 'uppercase',
+      fontSize: '',
+      fontWeight: 0,
+    },
+    priceFont: {
+      fontSize: '24px',
+      fontWeight: 700
+    },
     size: '35%',
     counterWidth: '-7%',
     counterHeight: '12em',
-    attrSize: '30%',
-    useCaps: true
+    attrContainerSize: '30%'
   },
+
   miniCart: {
-    h3: {fontSize: '.9em'},
-    h4: {fontSize: '.9em'},
+    attributeName: {
+      fontSize: '16px',
+      fontWeight: 300,
+    },
+    attributeBrand: {
+      fontSize: '16px',
+      fontWeight: 300,
+    },
+    attrHeaderPadding: '4px',
+    attrLabel: {
+      textTransform: 'capitalize',
+      fontSize: '14px',
+      fontWeight: 400,
+    },
+    priceFont: {
+      fontSize: '16px',
+      fontWeight: 500
+    },
     size: '90%',
     counterWidth: '-15%',
     counterHeight: '5em',
-    attrSize: '45%',
-    useCaps: false
+    attrContainerSize: '45%'
   }
 } as StyleType;

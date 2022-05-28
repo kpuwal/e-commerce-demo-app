@@ -32,7 +32,7 @@ class CartOverlay extends React.Component<PropsTypes> {
         <ModalBg onClick={() => this.props.showMiniCart()}>
           <Container onClick={(e: any) => e.stopPropagation()}>
             <Header>
-              <span>My Bag</span>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
+              <Title>My Bag</Title>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
             </Header>
             <Content>
               <CartItems type={styleType.miniCart} />
@@ -40,7 +40,9 @@ class CartOverlay extends React.Component<PropsTypes> {
             <Footer>
               <PriceContainer>
                 Total
-                <PriceDisplay isBold prices={this.props.totalPrice} />
+                <PriceDisplay
+                  type={styleType.miniCart}
+                  prices={this.props.totalPrice} />
               </PriceContainer>
               <ButtonsContainer>
                 <StyledLink to='/cart'>
@@ -97,7 +99,12 @@ const Container = styled.div`
 `
 const Header = styled.div`
   height: 5%;
-  justify-content: center;
+  padding-bottom: 16px;
+`
+const Title = styled.span`
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 700;
 `
 const Content = styled.div`
   padding-right: 16px;

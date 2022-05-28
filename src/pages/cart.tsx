@@ -35,6 +35,7 @@ class Cart extends React.Component<PropsTypes> {
               <CartSummary
                 tax={this.props.tax}
                 totalPrice={this.props.totalPrice}
+                type={styleType.cart}
                 quantity={this.props.quantity} />
               <Button 
                 label="Place order"
