@@ -9,7 +9,6 @@ import { PriceDisplay, Button } from './';
 import CartItems from '../containers/cart-items';
 
 type PropsTypes = {
-  show: boolean,
   items: CartItemType[],
   quantity: number,
   totalPrice: PriceType[],
@@ -19,9 +18,7 @@ type PropsTypes = {
 class CartOverlay extends React.Component<PropsTypes> {
 
   componentDidMount() {
-    if(this.props.show) {
-      document.body.style.overflowY = 'hidden';
-    }    
+    document.body.style.overflowY = 'hidden';
   }
   
   componentWillUnmount() {
@@ -34,19 +31,18 @@ class CartOverlay extends React.Component<PropsTypes> {
       <>
         <ModalBg onClick={() => this.props.showMiniCart()}>
           <Container onClick={(e: any) => e.stopPropagation()}>
-            <CartContainer >
-                <div>
-                  <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
-                </div>
-                <CartItems type={styleType.miniCart} />
-                
-              </CartContainer>
-              <SummaryLine />
-                <PriceContainer>
-                  <b>Total:</b>
-                  <PriceDisplay prices={this.props.totalPrice} />
-                </PriceContainer>
-                <ButtonsContainer>
+            <Header>
+              <span>My Bag</span>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
+            </Header>
+            <Content>
+              <CartItems type={styleType.miniCart} />
+            </Content>
+            <Footer>
+              <PriceContainer>
+                Total
+                <PriceDisplay isBold prices={this.props.totalPrice} />
+              </PriceContainer>
+              <ButtonsContainer>
                 <StyledLink to='/cart'>
                   <Button
                     isMini
@@ -55,11 +51,12 @@ class CartOverlay extends React.Component<PropsTypes> {
                     onButtonClick={() => this.props.showMiniCart()}/>
                 </StyledLink>
                 <Button
-                isMini
-                label='place order'
-                onButtonClick={() => alert('order placed')}
+                  isMini
+                  label='place order'
+                  onButtonClick={() => alert('order placed')}
                 />
-                </ButtonsContainer>
+              </ButtonsContainer>
+            </Footer>
           </Container>
         </ModalBg>
       </>
@@ -79,8 +76,7 @@ const mapDispatchToProps = { showMiniCart };
 export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
 
 const ModalBg = styled.div`
-overflow: hidden;
-position: fixed;
+  position: fixed;
   top: 80px;
   left: 0;
   right: 0;
@@ -89,43 +85,41 @@ position: fixed;
   z-index: 6000;
 `
 const Container = styled.div`
-  width: 375px;
-  height: 67%;
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  max-height: 80%;
   z-index: 7000;
   float: right;
   margin-right: 7%;
+  padding: 32px 0 32px 16px;
   background-color: white;
-  overflow-y: scroll;
-
 `
-const CartContainer = styled.div`
+const Header = styled.div`
+  height: 5%;
+  justify-content: center;
+`
+const Content = styled.div`
+  padding-right: 16px;
+  overflow-y: scroll;
+`
+const Footer = styled.div`
   display: flex;
   flex-direction: column;
-  // width: 100%;
-  height: 100%;
-  // min-height: 100px;
-  margin: 0 7% 7% 0;
-  padding: 2%;
-  float: right;
-  margin-bottom: 10%;
-  // z-index: 7000;
+  justify-content: space-between;
+  height: 15%;
+  padding-right: 16px;
 `
 const ButtonsContainer = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-marginTop: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 const PriceContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 32px 0;
   justify-content: space-between;
-  padding: 1em .5em 1em 0;
-`
-const SummaryLine = styled.hr`
-  border: 1px solid #f1f1f1;
-  width: 100%;
-  margin: 2em 0 1em 0;
 `
 const StyledLink = styled(Link)`
   text-decoration: none;

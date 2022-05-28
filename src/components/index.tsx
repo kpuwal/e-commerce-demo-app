@@ -8,6 +8,7 @@ export { default as SwatchColor } from './attributes/swatch-color';
 export { default as Badge } from './cart/badge';
 export { default as ProductCounter } from './cart/counter';
 export { default as CartSummary } from './cart/cart-summary';
+export { default as Modal } from './cart/modal';
 // gallery
 export { default as MiniNav } from './gallery/mini-nav';
 export { default as ImageNav } from './gallery/image-nav';

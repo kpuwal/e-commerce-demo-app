@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import {  MiniCart } from './';
 import { Outlet } from 'react-router-dom';
 import Header from '../containers/header';
-
+import { Modal } from '../components';
 import CartOverlay from '../components/cart-overlay';
 
 type PropsTypes = {
@@ -12,13 +12,14 @@ type PropsTypes = {
 }
 
 class MainLayout extends React.Component<PropsTypes> {
-
   render () {
     return (
       <React.Fragment>
         <Header />
         <PageContainer>
-          {this.props.isMiniCartOpen && <CartOverlay show={this.props.isMiniCartOpen}/>}
+          <Modal show={this.props.isMiniCartOpen}>
+            <CartOverlay />
+          </Modal>
           <Outlet />
         </PageContainer>
       </React.Fragment>
@@ -30,7 +31,7 @@ const mapStateToProps = (state: any) => ({
   isMiniCartOpen: state.cart.isMiniCartOpen,
 })
 
-export default connect(mapStateToProps)(MainLayout)
+export default connect(mapStateToProps)(MainLayout);
 
 const PageContainer = styled.div`
   padding: 7%;

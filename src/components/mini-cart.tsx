@@ -149,3 +149,31 @@ const SummaryLine = styled.hr`
 const StyledLink = styled(Link)`
   text-decoration: none;
 `
+
+
+{/* <CartContainer >
+                <div>
+                  <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
+                </div>
+                <CartItems type={styleType.miniCart} />
+                
+              </CartContainer>
+              <SummaryLine />
+                <PriceContainer>
+                  <b>Total:</b>
+                  <PriceDisplay prices={this.props.totalPrice} />
+                </PriceContainer>
+                <ButtonsContainer>
+                <StyledLink to='/cart'>
+                  <Button
+                    isMini
+                    white
+                    label='view bag'
+                    onButtonClick={() => this.props.showMiniCart()}/>
+                </StyledLink>
+                <Button
+                isMini
+                label='place order'
+                onButtonClick={() => alert('order placed')}
+                />
+                </ButtonsContainer> */}

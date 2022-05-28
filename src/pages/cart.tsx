@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
 import { CartSummary, Button } from '../components';
-import CartItems from '../containers/cart-items';
 import { PriceType, CartItemType } from '../types';
 import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import { styleType } from '../styles';
+import CartItems from '../containers/cart-items';
 
 type PropsTypes = {
   items: CartItemType[],
