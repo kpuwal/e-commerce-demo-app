@@ -15,6 +15,7 @@ export default class SwatchColor extends React.Component<PropsTypes> {
     const {handleSelect, values, item, styleType, isChecked} = this.props;
     return (
       <ColorSwatch
+        disabled={this.props.styleType.isCart}
         onClick={() => handleSelect(values)}
         bg={item.value}
         swatchStyle={styleType}
@@ -23,10 +24,10 @@ export default class SwatchColor extends React.Component<PropsTypes> {
   }
 }
 
-type StyledProps = {isChecked: boolean, bg?: string, swatchStyle?: {colorSizeBorder: string, isCart: boolean, colorPad: string} };
+type StyledProps = {isChecked: boolean, disabled: boolean, bg?: string, swatchStyle?: {colorSizeBorder: string, isCart: boolean, colorPad: string} };
 
 const ColorSwatch = styled.button`
-  cursor: pointer;
+  cursor: ${(props: StyledProps) => props.disabled ? 'default' : 'pointer'};
   width: ${(props: StyledProps) => props.swatchStyle?.colorSizeBorder};
   height: ${(props: StyledProps) => props.swatchStyle?.colorSizeBorder};
   margin: ${(props: StyledProps) => props.swatchStyle?.colorPad};

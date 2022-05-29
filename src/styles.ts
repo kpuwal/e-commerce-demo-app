@@ -52,7 +52,7 @@ export const styleType = {
     },
     attrSwatch: {
       colorSizeBorder: '36px',
-      isCart: false,
+      isCart: true,
       colorPad: '6px',
       textSizeW: '63px',
       textSizeH: '45px',

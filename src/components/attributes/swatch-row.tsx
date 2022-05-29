@@ -32,6 +32,7 @@ export default class SwatchRow extends React.Component<PropsTypes> {
                   {...{item, values, isChecked}}
                   />
                 : <TextSwatch
+                  disabled={this.props.styleType.isCart}
                   key={id}
                   onClick={() => handleSelect(values)}
                   swatchStyle={this.props.styleType}
@@ -48,14 +49,14 @@ export default class SwatchRow extends React.Component<PropsTypes> {
   }
 }
 
-type StyledProps = {isChecked: boolean, bg?: string, swatchStyle?: {textSizeW: string, textSizeH: string, textPad: string, textFont: string}};
+type StyledProps = {isChecked: boolean, disabled: boolean, bg?: string, swatchStyle?: {textSizeW: string, textSizeH: string, textPad: string, textFont: string}};
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
 `
 const TextSwatch = styled.button`
-  cursor: pointer;
+  cursor: ${(props: StyledProps) => props.disabled ? 'default' : 'pointer'};
   width: ${(props: StyledProps) => props.swatchStyle?.textSizeW};
   height: ${(props: StyledProps) => props.swatchStyle?.textSizeH};
   margin: 0 ${(props: StyledProps) => props.swatchStyle?.textPad} 12px 0;
