@@ -9,7 +9,7 @@ import { addToCart } from '../redux/slices/cart-slice';
 
 type PropsTypes = { 
   match: string,
-  addToCart: any
+  addToCart: Function
 }
 
 type StateTypes = {

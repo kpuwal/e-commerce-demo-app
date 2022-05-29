@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CartItemType, PriceType } from '../../types';
-import {isDuplicate, getDefaultAttributes, findItem, increaseTotalPrice, decreaseTotalPrice, refreshTax} from './helper';
+import {isDuplicate, isDuplicateWithAttributes, getDefaultAttributes, findItem, findItemWithAttributes, increaseTotalPrice, decreaseTotalPrice, refreshTax} from './helper';
 
 const initPrice = [
   {amount: 0, currency: {label: 'USD', symbol: '$'}},
@@ -22,16 +22,30 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemType>) => {
       const { product, selectedAttributes } = action.payload;
-      if (isDuplicate(state.items, product.id)) {
-        const idx = findItem(state.items, product.id);
-        state.items[idx].count += 1;
+      if (!selectedAttributes) {
+        if (isDuplicate(state.items, product.id)) {
+          const idx = findItem(state.items, product.id);
+          state.items[idx].count += 1;
+        } else {
+          state.items.push({
+            product: product,
+            selectedAttributes: getDefaultAttributes(product.attributes),
+            count: 1
+          });
+        }
       } else {
-        state.items.push({
-          product: product,
-          selectedAttributes: !selectedAttributes ? getDefaultAttributes(product.attributes) : selectedAttributes,
-          count: 1
-        });
+        if (isDuplicateWithAttributes(state.items, product.id, selectedAttributes)) {
+          const idx = findItemWithAttributes(state.items, product.id, selectedAttributes);
+          state.items[idx].count += 1;
+        } else {
+          state.items.push({
+            product: product,
+            selectedAttributes: selectedAttributes,
+            count: 1
+          });
+        }
       }
+
       state.quantity += 1;
       state.totalPrice = increaseTotalPrice(state.totalPrice, product.prices);
       state.tax = refreshTax(state.totalPrice);
