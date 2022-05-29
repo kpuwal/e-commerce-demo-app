@@ -45,8 +45,8 @@ class CartItems extends React.Component<PropsTypes> {
                 productIndex={idx}
                 type={this.props.type} />
               <Gallery
-                images={product.gallery}
                 hasMiniNav
+                images={product.gallery}
                 type={this.props.type} />
             </GalleryPanel>
             {this.props.items.length === 0 && <Empty>the cart is empty</Empty>}

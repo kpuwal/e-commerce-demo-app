@@ -32,7 +32,8 @@ export default class AttributesContent extends React.Component<PropsTypes> {
               <SwatchRow
                 items={attribute.items}
                 name={attribute.name}
-                type={attribute.type} 
+                type={attribute.type}
+                styleType={type.attrSwatch}
                 {...{selectedAttributes, handleSelect, productIndex}}
               />
            </div>)})

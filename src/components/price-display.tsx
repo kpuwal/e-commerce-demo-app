@@ -37,6 +37,6 @@ type StyledProps = {
 }
 
 const Price = styled.div`
-  font-weight: ${(props: StyledProps) => props.font?.fontWeight || 700};
+  font-weight: ${(props: StyledProps) => props.font?.fontWeight || 500};
   font-size: ${(props: StyledProps) => props.font?.fontSize};
 `

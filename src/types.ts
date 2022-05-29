@@ -81,6 +81,15 @@ export type StyleItem = {
   attributeBrand: {fontSize: string, fontWeight: number},
   attrHeaderPadding: string,
   attrLabel: {textTransform: string, fontSize: string, fontWeight: number},
+  attrSwatch: {
+    colorSizeBorder: string,
+    isCart: boolean,
+    colorPad: string,
+    textSizeW: string,
+    textSizeH: string,
+    textPad: string,
+    textFont: string
+  },
   priceFont: {fontSize: string, fontWeight: number},
   size: string,
   counterWidth: string,
