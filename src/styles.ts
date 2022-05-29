@@ -51,9 +51,9 @@ export const styleType = {
       fontWeight: 0,
     },
     attrSwatch: {
-      colorSizeBorder: '32px',
-      isCart: true,
-      colorPad: '12px',
+      colorSizeBorder: '36px',
+      isCart: false,
+      colorPad: '6px',
       textSizeW: '63px',
       textSizeH: '45px',
       textPad: '8px',
@@ -87,7 +87,7 @@ export const styleType = {
     attrSwatch: {
       colorSizeBorder: '16px',
       isCart: true,
-      colorPad: '2px',
+      colorPad: '4px',
       textSizeW: '42px',
       textSizeH: '24px',
       textPad: '8px',

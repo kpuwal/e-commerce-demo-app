@@ -21,12 +21,7 @@ export default class SwatchRow extends React.Component<PropsTypes> {
         {this.props.items.map((item: ItemsType) => {
           const {id, value} = item;
           const isChecked = Object.keys(selectedAttributes).length !== 0 && selectedAttributes[name] === id;
-          const values = {
-            name: name,
-            value: id,
-            idx: productIndex
-          } as valuesTypes;
-          
+          const values = {name: name, value: id, idx: productIndex} as valuesTypes;
           return (
             <React.Fragment key={item.id}>
               {this.props.type === 'swatch'
@@ -60,8 +55,9 @@ const Container = styled.div`
   flex-direction: row;
 `
 const TextSwatch = styled.button`
-  width:  ${(props: StyledProps) => props.swatchStyle?.textSizeW};
-  height:  ${(props: StyledProps) => props.swatchStyle?.textSizeH};
+  cursor: pointer;
+  width: ${(props: StyledProps) => props.swatchStyle?.textSizeW};
+  height: ${(props: StyledProps) => props.swatchStyle?.textSizeH};
   margin: 0 ${(props: StyledProps) => props.swatchStyle?.textPad} 12px 0;
   border: 1px solid black;
   text-align: center;

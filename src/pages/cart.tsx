@@ -28,6 +28,7 @@ class Cart extends React.Component<PropsTypes> {
   render() {
     return (
       <Container>
+        <Name>CART</Name>
         <CartItems type={styleType.cart} />
         {
           this.props.items.length !== 0
@@ -61,9 +62,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: white;
+  // background-color: white;
 `
 const Empty = styled.div`
   display: flex;
   justify-content: center;
+`
+const Name = styled.div`
+  padding-bottom: 32px;
+  font-family: Raleway;
+  font-weight: 700;
+  font-size: 32px;
 `
