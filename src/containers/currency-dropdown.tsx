@@ -1,27 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { connect } from "react-redux";
 import { QueryGraphQL } from '../graphql/queries';
 import { CurrencyType } from '../types';
-import { connect } from "react-redux";
 import { changeCurrency } from '../redux/slices/currency-slice';
+
 import ArrowUpIcon from '../assets/collapse-arrow.png';
 import ArrowDownIcon from '../assets/expand-arrow.png';
+
+type PropsTypes = {
+  isMiniCartOpen: boolean,
+  changeCurrency: Function
+}
 
 type StateTypes = {
   currencies: CurrencyType[],
   isListOpen: boolean,
-  isLoading: boolean,
   currentSymbol: string
 }
 
-class CurrencyDropdown extends React.Component<any, StateTypes> {
-  constructor(props: any) {
+class CurrencyDropdown extends React.Component<PropsTypes, StateTypes> {
+  constructor(props: PropsTypes) {
     super(props);
     this.state = {
       currencies: [],
       isListOpen: false,
-      isLoading: true,
       currentSymbol: ''
     }
   }
@@ -49,7 +52,7 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
 
   handleSelectCurrency(current: {label: string, symbol: string}) {
     this.props.changeCurrency(current.label);
-    this.setState({currentSymbol: current.symbol, isLoading: false})
+    this.setState({currentSymbol: current.symbol})
   }
 
   toggleList() {
@@ -66,11 +69,11 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
 
   render() {
     const currencies = this.state.currencies;
-    // if (!this.state.isLoading) { return null };
     return (
-      <>
-      {this.state.isLoading && <div>
-        <Button onClick={() => this.toggleList()}>
+      <div>
+        <Button
+          disabled={this.props.isMiniCartOpen}
+          onClick={() => this.toggleList()}>
           {this.state.currentSymbol}
           {this.state.isListOpen
             ? <CaretIcon src={ArrowUpIcon} alt="caret up" />
@@ -88,14 +91,17 @@ class CurrencyDropdown extends React.Component<any, StateTypes> {
             }
           </SelectorContainer>
         }
-      </div>}
-      </>
+      </div>
     )
   }
 }
 
+const mapStateToProps = (state: any) => ({
+  isMiniCartOpen: state.cart.isMiniCartOpen
+})
+
 const mapDispatchToProps = { changeCurrency };
-export default connect(null, mapDispatchToProps)(CurrencyDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyDropdown);
 
 const SelectorContainer = styled.div`
   position: absolute;
@@ -111,9 +117,12 @@ const CaretIcon = styled.img`
   height: 14px;
 ` 
 const Button = styled.button`
+  width: 50px;
   font-size: 16px;
   background: white;
   border: 0px solid white;
+  align-items: flex-end;
+  cursor: pointer;
 `
 const SelectorButton = styled.button`
   border: 0px;

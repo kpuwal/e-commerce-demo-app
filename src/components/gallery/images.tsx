@@ -38,7 +38,6 @@ const Image = styled.div`
   margin-left: ${(props: StyledProps) => props.hasMiniNav ? '20%' : '20%'};
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: ${(props: StyledProps) => props.hasMiniNav ? 'bottom right' : 'bottom'};
+  background-position: ${(props: StyledProps) => props.hasMiniNav ? 'bottom right' : 'top'};
   position: absolute;
-  // border: 1px solid red;
 `

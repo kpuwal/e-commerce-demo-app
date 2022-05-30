@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import CategoryList from './category-list';
-import CurrencyDropdown from './currency-dropdown';
+import { showMiniCart } from '../redux/slices/cart-slice';
+import { CategoryList, CurrencyDropdown } from './'
 import { Badge } from '../components'
+
 import CartIcon from '../assets/cart-d.png';
 import BagIcon from '../assets/bag.png';
-import { showMiniCart } from '../redux/slices/cart-slice';
 
 type PropsTypes = {
   showMiniCart: Function
@@ -60,6 +60,7 @@ const CartImage = styled.img`
   height: 20px;
   padding: 10px;
   position: relative;
+  cursor: pointer;
 `
 const Logo = styled.img`
   width: 30px;

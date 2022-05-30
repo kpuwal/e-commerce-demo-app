@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-// import {  MiniCart } from './';
 import { Outlet } from 'react-router-dom';
-import Header from '../containers/header';
-import { Modal } from '../components';
-import CartOverlay from '../components/cart-overlay';
+import { MiniCart, Modal } from './components';
+import { Header } from './containers';
 
 type PropsTypes = {
   isMiniCartOpen: boolean
@@ -18,7 +16,7 @@ class MainLayout extends React.Component<PropsTypes> {
         <Header />
         <PageContainer>
           <Modal show={this.props.isMiniCartOpen}>
-            <CartOverlay />
+            <MiniCart />
           </Modal>
           <Outlet />
         </PageContainer>

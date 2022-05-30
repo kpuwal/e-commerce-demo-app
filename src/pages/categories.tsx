@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Loader } from '../components';
 import { useSearchParams } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
+import { Loader } from '../components';
+import { ProductThumbnail } from '../containers';
 import { CategoryType, ProductType } from '../types';
-import ProductThumbnail from '../containers/product-thumbnail';
 
 type PropsTypes = {
   match: string

@@ -5,95 +5,64 @@ import { connect } from "react-redux";
 import { showMiniCart } from '../redux/slices/cart-slice';
 import { styleType } from '../styles';
 import { CartItemType, PriceType } from '../types';
-import { PriceDisplay, Button } from '.';
-import CartItems from '../containers/cart-items';
+import { PriceDisplay, Button } from './';
+import { CartItems } from '../containers';
 
 type PropsTypes = {
   items: CartItemType[],
   quantity: number,
   totalPrice: PriceType[],
-  isMiniCartOpen: boolean,
   showMiniCart: Function
 }
 
-// type StateTypes = {
-//   isOpen: boolean,
-// }
+class CartOverlay extends React.Component<PropsTypes> {
 
-class MiniCart extends React.Component<PropsTypes> {
-  private toggleContainer: React.RefObject<HTMLDivElement>;
-
-  constructor(props: PropsTypes) {
-    super(props);
-    // this.state = { isOpen: false };
-    this.toggleContainer = React.createRef();
-    this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
+  componentDidMount() {
+    document.body.style.overflowY = 'hidden';
   }
-
-  // componentDidMount() {
-  //   window.addEventListener('click', this.onClickOutsideHandler);
-  // }
-
+  
   componentWillUnmount() {
-    // window.removeEventListener('click', this.onClickOutsideHandler);
-    // setTimeout(() => {
-      if(this.props.isMiniCartOpen){
-        window.addEventListener('click', this.onClickOutsideHandler)
-      }
-      else{
-        window.removeEventListener('click', this.onClickOutsideHandler)
-      }
-    // }, 0)
-  }
-
-  // onClickHandler() {
-  //   this.setState(currentState => ({
-  //     isOpen: !currentState.isOpen
-  //   }));
-  // }
-
-  onClickOutsideHandler(event: any) {
-    console.log('current ', this.toggleContainer.current?.contains(event.target))
-      if (this.props.isMiniCartOpen && !this.toggleContainer.current?.contains(event.target)) {
-    console.log('click', this.props.isMiniCartOpen)
-
-        this.props.showMiniCart();
-      }
+    document.body.style.overflowY = 'scroll';
   }
 
   render() {
     const isSingularItem = (this.props.quantity === 1);
     return (
       <>
-        {/* <Container ref={this.toggleContainer}>
-          <CartContainer >
-            <div>
-              <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
-            </div>
-            <CartItems type={styleType.miniCart} />
-            <SummaryLine />
-            <PriceContainer>
-              <b>Total:</b>
-              <PriceDisplay prices={this.props.totalPrice} />
-            </PriceContainer>
-            <ButtonsContainer>
-            <StyledLink to='/cart'>
-              <Button
-                isMini
-                white
-                label='view bag'
-                onButtonClick={() => this.props.showMiniCart()}/>
-            </StyledLink>
-            <Button
-             isMini
-             label='place order'
-             onButtonClick={() => alert('order placed')}
-            />
-            </ButtonsContainer>
-          </CartContainer>
-        </Container> */}
+        <ModalBg onClick={() => this.props.showMiniCart()}>
+          <Container onClick={(e: any) => e.stopPropagation()}>
+            <Header>
+              <Title>My Bag</Title>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
+            </Header>
+            <Content>
+              <CartItems type={styleType.miniCart} />
+            </Content>
+            <Footer>
+              <PriceContainer>
+                Total
+                <PriceDisplay
+                  type={styleType.miniCart}
+                  prices={this.props.totalPrice} />
+              </PriceContainer>
+              <ButtonsContainer>
+                <StyledLink to='/cart'>
+                  <Button
+                    isMini
+                    white
+                    label='view bag'
+                    onButtonClick={() => this.props.showMiniCart()}/>
+                </StyledLink>
+                <Button
+                  isMini
+                  label='place order'
+                  onButtonClick={() => alert('order placed')}
+                />
+              </ButtonsContainer>
+            </Footer>
+          </Container>
+        </ModalBg>
       </>
-    )
+    );
   }
 }
 
@@ -106,74 +75,59 @@ const mapStateToProps = (state: any) => ({
 
 const mapDispatchToProps = { showMiniCart };
 
-export default connect(mapStateToProps, mapDispatchToProps, null, {forwardRef: true})(MiniCart);
+export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
 
-const Container = styled.div`
-  width: 100%;
+const ModalBg = styled.div`
   position: fixed;
   top: 80px;
   left: 0;
   right: 0;
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
-  z-index: 5000;
-  overflow-y: scroll;
+  z-index: 6000;
 `
-const CartContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 325px;
-  min-height: 100px;
-  margin: 0 7% 7% 0;
-  padding: 2%;
+  max-height: 80%;
+  z-index: 7000;
   float: right;
+  margin-right: 7%;
+  padding: 32px 0 32px 16px;
   background-color: white;
 `
+const Header = styled.div`
+  height: 5%;
+  padding-bottom: 16px;
+`
+const Title = styled.span`
+  font-size: 16px;
+  font-family: Raleway;
+  font-weight: 700;
+`
+const Content = styled.div`
+  padding-right: 16px;
+  overflow-y: scroll;
+`
+const Footer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 15%;
+  padding-right: 16px;
+`
 const ButtonsContainer = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-marginTop: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `
 const PriceContainer = styled.div`
   display: flex;
   flex-direction: row;
+  padding: 32px 0;
   justify-content: space-between;
-  padding: 1em .5em 1em 0;
-`
-const SummaryLine = styled.hr`
-  border: 1px solid #f1f1f1;
-  width: 100%;
-  margin: 2em 0 1em 0;
 `
 const StyledLink = styled(Link)`
   text-decoration: none;
 `
-
-
-{/* <CartContainer >
-                <div>
-                  <b>My Bag</b>, {this.props.quantity} {isSingularItem ? 'item' : 'items'}
-                </div>
-                <CartItems type={styleType.miniCart} />
-                
-              </CartContainer>
-              <SummaryLine />
-                <PriceContainer>
-                  <b>Total:</b>
-                  <PriceDisplay prices={this.props.totalPrice} />
-                </PriceContainer>
-                <ButtonsContainer>
-                <StyledLink to='/cart'>
-                  <Button
-                    isMini
-                    white
-                    label='view bag'
-                    onButtonClick={() => this.props.showMiniCart()}/>
-                </StyledLink>
-                <Button
-                isMini
-                label='place order'
-                onButtonClick={() => alert('order placed')}
-                />
-                </ButtonsContainer> */}

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-
+import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
 import { CartItemType, StyleItem } from '../types';
 import { ProductCounter, AttributesContainer } from '../components';
-import Gallery from './gallery';
-import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
+import { Gallery } from './';
 
 type PropsTypes = {
   type: StyleItem,

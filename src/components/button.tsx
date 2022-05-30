@@ -52,7 +52,7 @@ const CartButton = styled.button`
   outline: 0;
   border: ${(props: StyledProps) => props.white ? '1px solid black' : 0};
   box-shadow: ${(props: StyledProps) => props.disabled ? '0 0 0 rgba(0, 0, 0, 0)' : '0 0 0.5rem rgba(0, 0, 0, 0.15)'};
-  cursor: pointer;
+  cursor: ${(props: StyledProps) => props.disabled ? 'default' : 'pointer'};
   background-color: ${(props: StyledProps) => props.disabled ? '#f1f1f1' : props.color};
   width: ${(props: StyledProps) => props.mini ? '150px' : '300px'};
   &:active {

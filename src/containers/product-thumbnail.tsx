@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { ProductType } from '../types';
 import { addToCart } from '../redux/slices/cart-slice';
-import PriceDisplay from '../components/price-display';
+import { ProductType } from '../types';
+import { PriceDisplay } from '../components';
+
 import CartIcon from '../assets/cart-w.png';
 
 type PropsTypes = {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Gallery from '../containers/gallery';
-import { AttributesContainer, Description, Button } from '.';
+import { AttributesContainer, Description, Button } from './';
+import { Gallery } from '../containers';
 import { ProductType } from '../types';
 import { styleType } from '../styles';
 
@@ -49,7 +49,6 @@ export default class ProductLayout extends React.Component<PropsTypes> {
 const Container = styled.div`
   display: flex;
   flexDirection: row;
-  // justify-content: space-between;
   align-self: center;
   width: 100%;
   cursor:inherit;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useSearchParams, Link} from 'react-router-dom';
+import { useSearchParams, Link } from 'react-router-dom';
 import { QueryGraphQL } from '../graphql/queries';
 
 type StateTypes = {
