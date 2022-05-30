@@ -41,6 +41,7 @@ class CartOverlay extends React.Component<PropsTypes> {
               <PriceContainer>
                 Total
                 <PriceDisplay
+                  isBold
                   type={styleType.miniCart}
                   prices={this.props.totalPrice} />
               </PriceContainer>

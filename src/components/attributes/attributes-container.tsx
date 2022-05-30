@@ -56,4 +56,5 @@ const PriceLabel = styled.div`
   font-family: Roboto Condensed;
   font-size: 18px;
   font-weight: 700;
+  padding-bottom: 8px;
 `
