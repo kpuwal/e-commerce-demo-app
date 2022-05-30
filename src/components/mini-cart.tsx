@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { showMiniCart } from '../redux/slices/cart-slice';
+import { showMiniCart, placeOrder } from '../redux/slices/cart-slice';
 import { styleType } from '../styles';
 import { CartItemType, PriceType } from '../types';
 import { PriceDisplay, Button } from './';
@@ -12,7 +12,8 @@ type PropsTypes = {
   items: CartItemType[],
   quantity: number,
   totalPrice: PriceType[],
-  showMiniCart: Function
+  showMiniCart: Function,
+  placeOrder: Function
 }
 
 class CartOverlay extends React.Component<PropsTypes> {
@@ -23,6 +24,11 @@ class CartOverlay extends React.Component<PropsTypes> {
   
   componentWillUnmount() {
     document.body.style.overflowY = 'scroll';
+  }
+
+  handlePlaceOrder = () => {
+    this.props.placeOrder();
+    alert('order placed!');
   }
 
   render() {
@@ -56,7 +62,7 @@ class CartOverlay extends React.Component<PropsTypes> {
                 <Button
                   isMini
                   label='place order'
-                  onButtonClick={() => alert('order placed')}
+                  onButtonClick={() => this.handlePlaceOrder()}
                 />
               </ButtonsContainer>
             </Footer>
@@ -74,7 +80,7 @@ const mapStateToProps = (state: any) => ({
   isMiniCartOpen: state.cart.isMiniCartOpen
 })
 
-const mapDispatchToProps = { showMiniCart };
+const mapDispatchToProps = { showMiniCart, placeOrder };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);
 

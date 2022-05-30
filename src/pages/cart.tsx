@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from "react-redux";
-import { updateAttributes, updateCount } from '../redux/slices/cart-slice';
+import { updateAttributes, updateCount, placeOrder } from '../redux/slices/cart-slice';
 import { CartSummary, Button } from '../components';
 import { CartItems } from '../containers';
 import { PriceType, CartItemType } from '../types';
@@ -13,7 +13,8 @@ type PropsTypes = {
   totalPrice: PriceType[],
   tax: PriceType[],
   updateAttributes: Function,
-  updateCount: Function
+  updateCount: Function,
+  placeOrder: Function
 }
 
 class Cart extends React.Component<PropsTypes> {
@@ -23,6 +24,11 @@ class Cart extends React.Component<PropsTypes> {
 
   handleCount = (action: {}) => {
     this.props.updateCount(action)
+  }
+
+  handlePlaceOrder = () => {
+    this.props.placeOrder();
+    alert('order placed!');
   }
 
   render() {
@@ -40,7 +46,7 @@ class Cart extends React.Component<PropsTypes> {
                 quantity={this.props.quantity} />
               <Button 
                 label="Place order"
-                onButtonClick={() => alert('order placed!')} />
+                onButtonClick={() => this.handlePlaceOrder()} />
             </>
           : <Empty>the cart is empty</Empty>
         }
@@ -56,13 +62,12 @@ const mapStateToProps = (state: any) => ({
   tax: state.cart.tax
 })
 
-const mapDispatchToProps = { updateAttributes, updateCount };
+const mapDispatchToProps = { updateAttributes, updateCount, placeOrder };
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  // background-color: white;
 `
 const Empty = styled.div`
   display: flex;

@@ -8,17 +8,19 @@ const initPrice = [
   {amount: 0, currency: {label: 'AUD', symbol: 'A$'}},
   {amount: 0, currency: {label: 'JPY', symbol: '¥'}},
   {amount: 0, currency: {label: 'RUB', symbol: '₽'}},
-] as PriceType[]
+] as PriceType[];
+
+const initialState = {
+  items: [] as CartItemType[],
+  quantity: 0,
+  totalPrice: initPrice,
+  tax: initPrice,
+  isMiniCartOpen: false
+};
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState: {
-    items: [] as CartItemType[],
-    quantity: 0,
-    totalPrice: initPrice,
-    tax: initPrice,
-    isMiniCartOpen: false
-  },
+  initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<CartItemType>) => {
       const { product, selectedAttributes } = action.payload;
@@ -72,10 +74,13 @@ export const cartSlice = createSlice({
     },
     showMiniCart: (state) => {
       state.isMiniCartOpen = !state.isMiniCartOpen;
+    },
+    placeOrder: () => {
+      return initialState
     }
   },
 })
 
 const { actions, reducer } = cartSlice;
-export const { addToCart, removeFromCart, updateCount, updateAttributes, showMiniCart } = actions;
+export const { addToCart, removeFromCart, updateCount, updateAttributes, showMiniCart, placeOrder } = actions;
 export default reducer;
